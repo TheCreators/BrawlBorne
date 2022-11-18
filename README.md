@@ -3,6 +3,8 @@
   Unity 3D FPS Game
 </div>
 
+[![DeepSource](https://deepsource.io/gh/TheCreators/BrawlBorne.svg/?label=active+issues&show_trend=true&token=Xy-UnUKY4VBrU_7c5GQpuu39)](https://deepsource.io/gh/TheCreators/BrawlBorne/?ref=repository-badge)
+
 
 [Miro MindMap](https://miro.com/app/board/uXjVPC6Tqtw=/?share_link_id=168174453400)
 
