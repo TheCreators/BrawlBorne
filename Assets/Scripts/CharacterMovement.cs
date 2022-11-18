@@ -6,12 +6,13 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody _rigidBody;
     
     [SerializeField] private float _moveSpeed;
-    void Start()
+
+    private void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
     }
-    
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         TryMove();
     }
