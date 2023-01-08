@@ -5,7 +5,7 @@ public class PlayerGravity : MonoBehaviour
     [SerializeField] private CharacterController _controller;
     [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private GroundChecker _groundChecker;
-    
+
     private Vector3 _velocity;
 
     private void Update()
@@ -14,9 +14,9 @@ public class PlayerGravity : MonoBehaviour
         {
             _velocity.y = -2f;
         }
-        
+
         _velocity.y += _gravity * Time.deltaTime;
-        
+
         _controller.Move(_velocity * Time.deltaTime);
     }
 }
