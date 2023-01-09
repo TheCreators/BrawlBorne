@@ -5,10 +5,10 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Requirements")]
     [SerializeField] private CharacterController _controller;
-    
+
     [Header("Settings")]
     [SerializeField] private float _speed = 12f;
-    
+
     private Vector2 _moveDirection;
 
     private void Update()

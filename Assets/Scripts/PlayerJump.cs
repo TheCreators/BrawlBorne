@@ -6,7 +6,7 @@ public class PlayerJump : MonoBehaviour
     [Header("Requirements")]
     [SerializeField] private CharacterController _controller;
     [SerializeField] private GroundChecker _groundChecker;
-    
+
     [Header("Settings")]
     [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private float _jumpHeight = 3f;
@@ -24,7 +24,7 @@ public class PlayerJump : MonoBehaviour
             }
 
             if (_isJumping)
-            { 
+            {
                 ApplyJumpVelocity();
             }
         }
@@ -38,17 +38,17 @@ public class PlayerJump : MonoBehaviour
     {
         _isJumping = context.performed;
     }
-    
+
     private void ResetVelocity()
     {
         _velocity.y = -2f;
     }
-    
-    private void ApplyGravity() 
+
+    private void ApplyGravity()
     {
         _velocity.y += _gravity * Time.deltaTime;
     }
-    
+
     private void ApplyJumpVelocity()
     {
         _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
