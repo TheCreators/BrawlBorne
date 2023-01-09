@@ -3,9 +3,12 @@ using UnityEngine.InputSystem;
 
 public class MouseRotation : MonoBehaviour
 {
-    [SerializeField] private float _sensitivity = 1000f;
+    [Header("Requirements")]
     [SerializeField] private Transform _playerBody;
     
+    [Header("Settings")]
+    [SerializeField] private float _sensitivity = 1000f;
+
     private Quaternion _rotation;
 
     private void Start()
