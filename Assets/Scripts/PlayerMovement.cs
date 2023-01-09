@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed = 12f;
 
     private Vector2 _moveDirection;
-    
+
     private void Update()
     {
         Move(_moveDirection);
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveDirection = context.ReadValue<Vector2>();
     }
-    
+
     private void Move(Vector2 direction)
     {
         Vector3 move = transform.right * direction.x + transform.forward * direction.y;
