@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed = 12f;
     
     private Vector2 _moveDirection;
-    
+
     private void Update()
     {
         Move(_moveDirection);
