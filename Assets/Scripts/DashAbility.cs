@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 
 public class DashAbility : MonoBehaviour
 {
-    [Header("Requirements")] 
+    [Header("Requirements")]
     [SerializeField] private CharacterController _controller;
 
-    [Header("Settings")] 
+    [Header("Settings")]
     [SerializeField] [Range(0, 50)] private float _dashSpeed = 10f;
     [SerializeField] [Range(0, 10)] private float _dashDuration = 0.5f;
-    
+
     private bool _isDashing;
 
     public void Update()
@@ -31,7 +31,7 @@ public class DashAbility : MonoBehaviour
         _isDashing = true;
         StartCoroutine(StopDashingAfter(_dashDuration));
     }
-    
+
     private IEnumerator StopDashingAfter(float seconds)
     {
         yield return new WaitForSeconds(seconds);
