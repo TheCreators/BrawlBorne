@@ -7,13 +7,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController _controller;
 
     [Header("Settings")]
-    [SerializeField] private float _speed = 12f;
+    [SerializeField] [Range(0, 50)] private float _normalSpeed = 12f;
+    [SerializeField] [Range(0, 50)] private float _shiftSpeed = 6f;
 
+    private float _speed;
     private Vector2 _moveDirection;
+    
+    private void Start()
+    {
+        _speed = _normalSpeed;
+    }
 
     private void Update()
     {
-        Move(_moveDirection);
+        Move();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -21,9 +28,14 @@ public class PlayerMovement : MonoBehaviour
         _moveDirection = context.ReadValue<Vector2>();
     }
 
-    private void Move(Vector2 direction)
+    public void OnShift(InputAction.CallbackContext context)
     {
-        Vector3 move = transform.right * direction.x + transform.forward * direction.y;
+        _speed = context.performed ? _shiftSpeed : _normalSpeed;
+    }
+
+    private void Move()
+    {
+        Vector3 move = transform.right * _moveDirection.x + transform.forward * _moveDirection.y;
         _controller.Move(move * (_speed * Time.deltaTime));
     }
 }
