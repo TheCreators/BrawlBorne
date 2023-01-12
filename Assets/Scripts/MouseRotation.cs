@@ -7,7 +7,7 @@ public class MouseRotation : MonoBehaviour
     [SerializeField] private Transform _playerBody;
 
     [Header("Settings")]
-    [SerializeField] private float _sensitivity = 1000f;
+    [SerializeField] [Range(0, 100)] private float _sensitivity = 10f;
 
     private Quaternion _rotation;
 

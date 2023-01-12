@@ -8,8 +8,8 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private GroundChecker _groundChecker;
 
     [Header("Settings")]
-    [SerializeField] private float _gravity = -9.81f;
-    [SerializeField] private float _jumpHeight = 3f;
+    [SerializeField] [Range(-50, 0)] private float _gravity = -9.81f;
+    [SerializeField] [Range(0, 10)] private float _jumpHeight = 3f;
 
     private Vector3 _velocity;
     private bool _isJumping;
