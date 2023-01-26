@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float _speed;
     private Vector2 _moveDirection;
-    
+
     private void Start()
     {
         _speed = _normalSpeed;
