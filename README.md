@@ -18,7 +18,7 @@ To contribute do following steps:
 4. Develop...
 5. Create a [pull request to develop](https://github.com/TheCreators/BrawlBorne/compare/develop...)
 
-If you want to use **Rider** do following steps:
+If you want to use **Rider** do following [steps](https://www.jetbrains.com/help/rider/Unity.html#e4af4903):
 
 1. Open project in Unity Editor
 2. Select **Edit | Preferences** and open the **External Tools** page
