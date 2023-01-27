@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 6942594267589458439}
   - component: {fileID: 6942594267589458440}
   - component: {fileID: 1307913016}
+  - component: {fileID: 1805602996}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -444,3 +445,20 @@ MonoBehaviour:
   _controller: {fileID: 6942594267589458437}
   _dashSpeed: 15
   _dashDuration: 0.2
+--- !u!114 &1805602996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f47f0777fcfd54fbe3ed3acdec9295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 7373508321927834216, guid: 1ca6a2ed1555e6f48a5cde6bf80476b9, type: 3}
+  _camera: {fileID: 6942594267192523694}
+  _bulletsPerShot: 6
+  _timeBetweenBullets: 0.125
+  _bulletsSpread: 0.5
