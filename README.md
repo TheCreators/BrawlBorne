@@ -16,7 +16,14 @@ To contribute do following steps:
 2. Clone repository `git clone https://github.com/TheCreators/BrawlBorne`
 3. Create new branch from develop `git checkout -b feature-name origin/develop`
 4. Develop...
-5. Create a [pull request to develop](https://github.com/TheCreators/BrawlBorne/compare/develop...) 
+5. Create a [pull request to develop](https://github.com/TheCreators/BrawlBorne/compare/develop...)
+
+If you want to use **Rider** do following steps:
+
+1. Open project in Unity Editor
+2. Select **Edit | Preferences** and open the **External Tools** page
+3. In the **External Script Editor**, select a **JetBrains Rider**
+4. Open any `*.cs` file from Unity Editor
 
 ## Contributors
 
