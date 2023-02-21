@@ -27,7 +27,7 @@ public class DualGun : MonoBehaviour
         int positionShiftAmount = 1;
         for (int i = 0; i < _bulletsPerShot; i++)
         {
-            Vector3 spawnPosition = transform.position + 
+            Vector3 spawnPosition = _camera.position + 
                                     transform.forward + 
                                     _bulletsSpread * positionShiftAmount * transform.right;
             
