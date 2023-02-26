@@ -10,10 +10,10 @@ public class Bullet : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _lifeTime = 10f;
-    
+
     private Vector3 _oldPosition;
-    
-    
+
+
     private void Start()
     {
         Destroy(gameObject, _lifeTime);
@@ -22,9 +22,9 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         _oldPosition = transform.position;
-        
+
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
-        
+
         DetectCollision();
     }
 
