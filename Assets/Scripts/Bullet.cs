@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// Destroys the bullet after <see cref="_lifeTime"/> seconds.
+/// Moves the bullet forward at <see cref="_speed"/> units per second.
+/// Detects collision with any object and destroys the bullet.
+/// </summary>
 public class Bullet : MonoBehaviour
 {
     [Header("Settings")]
@@ -20,8 +25,11 @@ public class Bullet : MonoBehaviour
         
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
         
-        Debug.DrawLine(_oldPosition, transform.position, Color.red);
-        
+        DetectCollision();
+    }
+
+    private void DetectCollision()
+    {
         if (Physics.Linecast(_oldPosition, transform.position, out RaycastHit hit))
         {
             Destroy(gameObject);
