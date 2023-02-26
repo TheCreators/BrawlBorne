@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7373508321927834218}
-  - component: {fileID: 7373508321927834217}
   - component: {fileID: -4072338951609616105}
   m_Layer: 0
   m_Name: Bullet
@@ -118,20 +117,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &7373508321927834217
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7373508321927834216}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.15
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.13, z: 0}
 --- !u!114 &-4072338951609616105
 MonoBehaviour:
   m_ObjectHideFlags: 0
