@@ -461,4 +461,7 @@ MonoBehaviour:
   _camera: {fileID: 6942594267192523694}
   _bulletsPerShot: 6
   _timeBetweenBullets: 0.125
+  _timeBetweenShots: 0.75
   _bulletsSpread: 0.5
+  _bulletSpawnDistance: 1
+  _bulletSpawnHeight: -0.5
