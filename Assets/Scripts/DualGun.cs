@@ -1,10 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class DualGun : MonoBehaviour
+public class DualGun : Gun
 {
-    [FormerlySerializedAs("_bulletPrefab")]
     [Header("Requirements")]
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _camera;
@@ -21,15 +19,7 @@ public class DualGun : MonoBehaviour
 
     private bool _isShooting;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
-    }
-
-    public void Shoot()
+    public override void Shoot()
     {
         if (_isShooting)
         {
