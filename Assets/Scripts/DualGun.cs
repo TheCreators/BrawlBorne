@@ -16,8 +16,9 @@ public class DualGun : MonoBehaviour
     
     [Header("Spawn Settings")]
     [SerializeField] [Min(0)] private float _bulletsSpread = 0.5f;
+    [SerializeField] private float _bulletSpawnDistance = 1f;
     [SerializeField] private float _bulletSpawnHeight = 0.5f;
-    
+
     private bool _isShooting;
     
     private void Update()
@@ -45,9 +46,9 @@ public class DualGun : MonoBehaviour
         int positionShiftAmount = 1;
         for (int i = 0; i < _bulletsPerShot; i++)
         {
-            Vector3 spawnPosition = _camera.position + // Spawn position
-                                    _camera.forward + // Bullet direction
-                                    _camera.up * _bulletSpawnHeight + // Bullet spawn height
+            Vector3 spawnPosition = _camera.position + // Position
+                                    _camera.forward * _bulletSpawnDistance + // Distance from camera
+                                    _camera.up * _bulletSpawnHeight + // Height from camera
                                     _bulletsSpread * positionShiftAmount * transform.right; // Spread (left or right)
             
             Instantiate(_bullet, spawnPosition, _camera.rotation);
