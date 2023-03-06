@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 7373508321927834216, guid: 1ca6a2ed1555e6f48a5cde6bf80476b9, type: 3}
-  _camera: {fileID: 6942594267192523694}
+  _shootingDirection: {fileID: 6942594267192523694}
   _bulletsPerShot: 6
   _timeBetweenBullets: 0.125
   _timeBetweenShots: 0.75

@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class DualGun : Gun
 {
-    [Header("Requirements")]
-    [SerializeField] private GameObject _bullet;
-    [SerializeField] private Transform _camera;
-
     [Header("Settings")]
     [SerializeField] [Min(0)] private int _bulletsPerShot = 6;
     [SerializeField] [Min(0)] private float _timeBetweenBullets = 0.25f;
@@ -36,12 +32,12 @@ public class DualGun : Gun
         int positionShiftAmount = 1;
         for (int i = 0; i < _bulletsPerShot; i++)
         {
-            Vector3 spawnPosition = _camera.position + // Position
-                                    _camera.forward * _bulletSpawnDistance + // Distance from camera
-                                    _camera.up * _bulletSpawnHeight + // Height from camera
+            Vector3 spawnPosition = _shootingDirection.position + // Position
+                                    _shootingDirection.forward * _bulletSpawnDistance + // Distance from camera
+                                    _shootingDirection.up * _bulletSpawnHeight + // Height from camera
                                     _bulletsSpread * positionShiftAmount * transform.right; // Spread (left or right)
 
-            Instantiate(_bullet, spawnPosition, _camera.rotation);
+            Instantiate(_bullet, spawnPosition, _shootingDirection.rotation);
 
             positionShiftAmount *= -1;
             yield return new WaitForSeconds(_timeBetweenBullets);
