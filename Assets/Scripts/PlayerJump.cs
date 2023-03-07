@@ -5,7 +5,6 @@ public class PlayerJump : MonoBehaviour
 {
     [Header("Requirements")]
     [SerializeField] private CharacterController _controller;
-    [SerializeField] private GroundChecker _groundChecker;
 
     [Header("Settings")]
     [SerializeField] [Range(-50, 0)] private float _gravity = -9.81f;
@@ -16,7 +15,7 @@ public class PlayerJump : MonoBehaviour
 
     private void Update()
     {
-        if (_groundChecker.IsGrounded)
+        if (_controller.isGrounded)
         {
             if (_velocity.y < 0)
             {
