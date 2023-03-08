@@ -10,7 +10,7 @@ public class GroundChecker : MonoBehaviour
     [SerializeField] private LayerMask _groundMask;
 
     public bool IsGrounded => Physics.CheckBox(_groundCheck.position, Vector3.one * _checkRadius, Quaternion.identity, _groundMask);
-    
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = IsGrounded ? Color.green : Color.red;

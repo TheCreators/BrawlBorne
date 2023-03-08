@@ -10,13 +10,13 @@ public class AnimationStateController : MonoBehaviour
     private PlayerMovement _playerMovement;
     private PlayerJump _playerJump;
     private GroundChecker _groundChecker;
-    
-    private static readonly int VelocityX = Animator.StringToHash("Velocity X"); 
+
+    private static readonly int VelocityX = Animator.StringToHash("Velocity X");
     private static readonly int VelocityZ = Animator.StringToHash("Velocity Z");
     private static readonly int IsGrounded = Animator.StringToHash("Is Grounded");
     private static readonly int IsJumping = Animator.StringToHash("Is Jumping");
     private static readonly int IsMoving = Animator.StringToHash("Is Moving");
-    
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();

@@ -7,7 +7,7 @@ public class PlayerJump : MonoBehaviour
 {
     [SerializeField] [Range(0, 5)] private float _gravityMultiplier = 1;
     [SerializeField] [Range(0, 50)] private float _jumpPower = 3f;
-    
+
     private CharacterController _controller;
     private GroundChecker _groundChecker;
 
@@ -28,7 +28,7 @@ public class PlayerJump : MonoBehaviour
         ApplyGravity();
         ApplyMovement();
     }
-    
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.started)

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(0, 50)] private float _shiftSpeed = 6f;
     [SerializeField] [Range(0, 0.5f)] private float _moveDirectionSmoothingSpeed = 0.1f;
     [SerializeField] [Range(0, 0.5f)] private float _speedSmoothingSpeed = 0.1f;
-    
+
     private CharacterController _controller;
 
     private Vector2 _inputMoveDirection;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
-        
+
         _speed = _normalSpeed;
         _smoothSpeed = _normalSpeed;
     }

@@ -9,9 +9,9 @@ public class DashAbility : MonoBehaviour
     [SerializeField] [Range(0, 10)] private float _dashDuration = 0.5f;
 
     private CharacterController _controller;
-    
+
     private bool _isDashing;
-    
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
