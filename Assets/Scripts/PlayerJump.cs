@@ -5,12 +5,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(GroundChecker))]
 public class PlayerJump : MonoBehaviour
 {
-    private CharacterController _controller;
-    private GroundChecker _groundChecker;
-
-    [Header("Settings")]
     [SerializeField] [Range(0, 5)] private float _gravityMultiplier = 1;
     [SerializeField] [Range(0, 50)] private float _jumpPower = 3f;
+    
+    private CharacterController _controller;
+    private GroundChecker _groundChecker;
 
     private Vector3 _direction;
     private float _velocity;

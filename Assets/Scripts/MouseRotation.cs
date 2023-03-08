@@ -3,10 +3,6 @@ using UnityEngine.InputSystem;
 
 public class MouseRotation : MonoBehaviour
 {
-    [Header("Requirements")]
-    [SerializeField] private Transform _playerBody;
-
-    [Header("Settings")]
     [SerializeField] [Range(0, 100)] private float _sensitivity = 10f;
 
     private Quaternion _rotation;
@@ -27,6 +23,6 @@ public class MouseRotation : MonoBehaviour
         _rotation.x = Mathf.Clamp(_rotation.x, -90f, 90f); // clamp the rotation to prevent the camera from flipping upside down
 
         transform.localRotation = Quaternion.Euler(_rotation.x, 0f, 0f);
-        _playerBody.Rotate(Vector3.up * mouseX);
+        transform.parent.Rotate(Vector3.up * mouseX);
     }
 }

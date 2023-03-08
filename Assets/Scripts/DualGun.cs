@@ -4,7 +4,6 @@ using UnityEngine.Serialization;
 
 public class DualGun : MonoBehaviour
 {
-    [FormerlySerializedAs("_bulletPrefab")]
     [Header("Requirements")]
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _camera;
