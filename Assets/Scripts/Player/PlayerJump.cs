@@ -1,56 +1,74 @@
+using Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerJump : MonoBehaviour
+namespace Player
 {
-    [Header("Requirements")]
-    [SerializeField] private CharacterController _controller;
-    [SerializeField] private GroundChecker _groundChecker;
-
-    [Header("Settings")]
-    [SerializeField] [Range(-50, 0)] private float _gravity = -9.81f;
-    [SerializeField] [Range(0, 10)] private float _jumpHeight = 3f;
-
-    private Vector3 _velocity;
-    private bool _isJumping;
-
-    private void Update()
+    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(GroundChecker))]
+    public class PlayerJump : MonoBehaviour
     {
-        if (_groundChecker.IsGrounded)
+        [SerializeField] [Range(0, 5)] private float _gravityMultiplier = 1;
+        [SerializeField] [Range(0, 50)] private float _jumpPower = 3f;
+
+        private CharacterController _controller;
+        private GroundChecker _groundChecker;
+
+        private Vector3 _direction;
+        private float _velocity;
+        private const float Gravity = -9.81f;
+        private bool _jumpHeld;
+        public bool IsJumping { get; private set; }
+
+        private void Awake()
         {
-            if (_velocity.y < 0)
+            _controller = GetComponent<CharacterController>();
+            _groundChecker = GetComponent<GroundChecker>();
+        }
+
+        private void Update()
+        {
+            ApplyGravity();
+            ApplyMovement();
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.started)
             {
-                ResetVelocity();
+                _jumpHeld = true;
             }
 
-            if (_isJumping)
+            if (context.canceled)
             {
-                ApplyJumpVelocity();
+                _jumpHeld = false;
             }
         }
 
-        ApplyGravity();
+        private void ApplyGravity()
+        {
+            if (_groundChecker.IsGrounded && _velocity < 0.0f)
+            {
+                _velocity = -1.0f;
+                IsJumping = false;
+            }
+            else
+            {
+                _velocity += Gravity * _gravityMultiplier * Time.deltaTime;
+                IsJumping = true;
+            }
 
-        _controller.Move(_velocity * Time.deltaTime);
-    }
+            _direction.y = _velocity;
 
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        _isJumping = context.performed;
-    }
+            if (_groundChecker.IsGrounded && _jumpHeld)
+            {
+                _velocity = Mathf.Sqrt(_jumpPower * -2.0f * Gravity);
+            }
+        }
 
-    private void ResetVelocity()
-    {
-        _velocity.y = -2f;
-    }
-
-    private void ApplyGravity()
-    {
-        _velocity.y += _gravity * Time.deltaTime;
-    }
-
-    private void ApplyJumpVelocity()
-    {
-        _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+        private void ApplyMovement()
+        {
+            _controller.Move(_direction * Time.deltaTime);
+        }
     }
 }

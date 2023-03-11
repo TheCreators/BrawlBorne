@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-public abstract class Gun : MonoBehaviour
+namespace Guns
 {
-    [Header("Requirements")]
-    [SerializeField] protected GameObject _bullet;
-    [SerializeField] protected Transform _shootingDirection;
+    public abstract class Gun : MonoBehaviour
+    {
+        [Header("Requirements")]
+        [SerializeField] protected GameObject _bullet;
+        [SerializeField] protected Transform _shootingDirection;
 
-    public abstract void Shoot();
+        public abstract void Shoot();
+    }
 }

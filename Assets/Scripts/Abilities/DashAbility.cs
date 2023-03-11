@@ -2,44 +2,51 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DashAbility : MonoBehaviour
+namespace Abilities
 {
-    [Header("Requirements")]
-    [SerializeField] private CharacterController _controller;
-
-    [Header("Settings")]
-    [SerializeField] [Range(0, 50)] private float _dashSpeed = 10f;
-    [SerializeField] [Range(0, 10)] private float _dashDuration = 0.5f;
-
-    private bool _isDashing;
-
-    public void Update()
+    [RequireComponent(typeof(CharacterController))]
+    public class DashAbility : MonoBehaviour
     {
-        if (_isDashing)
-        {
-            Dash();
-        }
-    }
+        [SerializeField] [Range(0, 50)] private float _dashSpeed = 10f;
+        [SerializeField] [Range(0, 10)] private float _dashDuration = 0.5f;
 
-    public void OnAbility(InputAction.CallbackContext context)
-    {
-        if (context.performed is false)
+        private CharacterController _controller;
+
+        private bool _isDashing;
+
+        private void Awake()
         {
-            return;
+            _controller = GetComponent<CharacterController>();
         }
 
-        _isDashing = true;
-        StartCoroutine(StopDashingAfter(_dashDuration));
-    }
+        public void Update()
+        {
+            if (_isDashing)
+            {
+                Dash();
+            }
+        }
 
-    private IEnumerator StopDashingAfter(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        _isDashing = false;
-    }
+        public void OnAbility(InputAction.CallbackContext context)
+        {
+            if (context.performed is false)
+            {
+                return;
+            }
 
-    private void Dash()
-    {
-        _controller.Move(transform.forward * _dashSpeed * Time.deltaTime);
+            _isDashing = true;
+            StartCoroutine(StopDashingAfter(_dashDuration));
+        }
+
+        private IEnumerator StopDashingAfter(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            _isDashing = false;
+        }
+
+        private void Dash()
+        {
+            _controller.Move(transform.forward * _dashSpeed * Time.deltaTime);
+        }
     }
 }

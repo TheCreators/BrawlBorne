@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Guns;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
