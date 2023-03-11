@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
-    [Header("Settings")]
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _lifeTime = 10f;
 
@@ -23,14 +22,14 @@ public class Bullet : MonoBehaviour
     {
         _oldPosition = transform.position;
 
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
 
         DetectCollision();
     }
 
     private void DetectCollision()
     {
-        if (Physics.Linecast(_oldPosition, transform.position, out RaycastHit hit))
+        if (Physics.Linecast(_oldPosition, transform.position, out _))
         {
             Destroy(gameObject);
         }
