@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1805602996}
   - component: {fileID: 8826726188078539771}
   - component: {fileID: 1650874961}
+  - component: {fileID: 345751618092189793}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -312,6 +313,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: aa746590-c30a-4803-a87c-f479ab1fda3f
     m_ActionName: Player/Shoot[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 345751618092189793}
+        m_TargetAssemblyTypeName: Ultimates.FlyUltimate, Assembly-CSharp
+        m_MethodName: OnUltimate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 61fc4d9e-0642-4de7-8fa3-a56144778c6a
+    m_ActionName: Player/Ultimate[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -443,6 +460,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gun: {fileID: 1805602996}
+--- !u!114 &345751618092189793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4e65e91505e2d4bac407cb0ef51e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ascendDuration: 1.5
+  _flyDuration: 10
+  _ascendPower: 20
+  _ascendCoefficient: 0.113
+  _flyCoefficient: 0.0945
 --- !u!1001 &1125899177775471265
 PrefabInstance:
   m_ObjectHideFlags: 0
