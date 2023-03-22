@@ -34,7 +34,7 @@ namespace Ultimates
             _groundChecker = GetComponent<GroundChecker>();
         }
 
-        void Update()
+        private void Update()
         {
             if (_isAscending || _isFlying)
             {
