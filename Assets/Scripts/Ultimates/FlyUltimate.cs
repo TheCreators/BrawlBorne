@@ -21,19 +21,19 @@ namespace Ultimates
         private const float Gravity = -9.81f;
         private const float AscendCoefficient = 0.113f;
         private const float FlyCoefficient = 0.0945f;
-        
+
         private float _startSpeed;
         private float _flyingSpeed;
 
         private bool _isFlying = false;
         private bool _isAscending = false;
-        
+
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
             _groundChecker = GetComponent<GroundChecker>();
         }
-        
+
         void Update()
         {
             if (_isAscending || _isFlying)
