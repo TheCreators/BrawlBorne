@@ -14,30 +14,32 @@ namespace Ultimates
         [SerializeField] [Range(0, 15)] private float _flyDuration = 10f;
 
         [SerializeField] [Range(10, 50)] private float _ascendPower = 20f;
-        [SerializeField] [Range(0, 0.2f)] private float _ascendCoefficient = 0.113f;
-        [SerializeField] [Range(0, 0.2f)] private float _flyCoefficient = 0.0945f;
 
         private CharacterController _controller;
         private GroundChecker _groundChecker;
 
         private const float Gravity = -9.81f;
-
-        private Vector3 _direction;
-        private float _ascendSpeed;
+        private const float AscendCoefficient = 0.113f;
+        private const float FlyCoefficient = 0.0945f;
+        
+        private float _startSpeed;
+        private float _flyingSpeed;
 
         private bool _isFlying = false;
         private bool _isAscending = false;
+        
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
             _groundChecker = GetComponent<GroundChecker>();
         }
+        
         void Update()
         {
             if (_isAscending || _isFlying)
             {
                 ApplyGravity();
-                _controller.Move(_direction * Time.deltaTime);
+                _controller.Move(Vector3.up * _flyingSpeed * Time.deltaTime);
             }
         }
 
@@ -48,8 +50,8 @@ namespace Ultimates
                 return;
             }
             _isAscending = true;
-            _ascendSpeed = Mathf.Sqrt(_ascendPower * -2.0f * Gravity);
-            _direction.y = 0.05f * _ascendSpeed;
+            _startSpeed = Mathf.Sqrt(_ascendPower * -2.0f * Gravity);
+            _flyingSpeed = 0.05f * _startSpeed;
             StartCoroutine(AscendingTime());
         }
 
@@ -67,11 +69,11 @@ namespace Ultimates
         {
             if (_isAscending)
             {
-                _direction.y += _ascendCoefficient * _ascendSpeed * -Gravity * Time.deltaTime;
+                _flyingSpeed += AscendCoefficient * _startSpeed * -Gravity * Time.deltaTime;
             }
             if (_isFlying)
             {
-                _direction.y += _flyCoefficient * _ascendSpeed * -Gravity * Time.deltaTime;
+                _flyingSpeed += FlyCoefficient * _startSpeed * -Gravity * Time.deltaTime;
             }
         }
     }
