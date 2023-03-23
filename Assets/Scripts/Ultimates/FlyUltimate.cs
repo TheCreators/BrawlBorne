@@ -39,7 +39,7 @@ namespace Ultimates
             if (_isAscending || _isFlying)
             {
                 ApplyGravity();
-                _controller.Move(Vector3.up * _flyingSpeed * Time.deltaTime);
+                _controller.Move(Vector3.up * (_flyingSpeed * Time.deltaTime));
             }
         }
 
