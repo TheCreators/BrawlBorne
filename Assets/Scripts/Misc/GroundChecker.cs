@@ -11,7 +11,12 @@ namespace Misc
         [SerializeField] [Range(0, 5)] private float _checkRadius = 0.4f;
         [SerializeField] private LayerMask _groundMask;
 
-        public bool IsGrounded => Physics.CheckBox(_groundCheck.position, Vector3.one * _checkRadius, Quaternion.identity, _groundMask);
+        public bool IsGrounded { get; private set; }
+
+        private void Update()
+        {
+            IsGrounded = Physics.CheckBox(_groundCheck.position, Vector3.one * _checkRadius, Quaternion.identity, _groundMask);
+        }
 
         private void OnDrawGizmosSelected()
         {
