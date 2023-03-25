@@ -2,73 +2,59 @@ using Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(GroundChecker))]
+public class PlayerJump : MonoBehaviour
 {
-    [RequireComponent(typeof(CharacterController))]
-    [RequireComponent(typeof(GroundChecker))]
-    public class PlayerJump : MonoBehaviour
+    [SerializeField][Min(0)] private float _jumpForce = 8f;
+    [SerializeField][Min(0)] private float _jumpCooldown = 0.5f;
+    private bool _readyToJump = true;
+    private bool _jumpHeld = false;
+
+    private Rigidbody _rigidbody;
+    private GroundChecker _groundChecker;
+
+    void Start()
     {
-        [SerializeField] [Range(0, 5)] private float _gravityMultiplier = 1;
-        [SerializeField] [Range(0, 50)] private float _jumpPower = 3f;
+        _rigidbody = GetComponent<Rigidbody>();
+        _groundChecker = GetComponent<GroundChecker>();
+    }
 
-        private CharacterController _controller;
-        private GroundChecker _groundChecker;
-
-        private Vector3 _direction;
-        private float _velocity;
-        private const float Gravity = -9.81f;
-        private bool _jumpHeld;
-        public bool IsJumping { get; private set; }
-
-        private void Awake()
+    void FixedUpdate()
+    {
+        if (_jumpHeld && _readyToJump && _groundChecker.IsGrounded)
         {
-            _controller = GetComponent<CharacterController>();
-            _groundChecker = GetComponent<GroundChecker>();
+            _readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), _jumpCooldown);
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _jumpHeld = true;
         }
 
-        private void Update()
+        if (context.canceled)
         {
-            ApplyGravity();
-            ApplyMovement();
+            _jumpHeld = false;
         }
+    }
 
-        public void OnJump(InputAction.CallbackContext context)
-        {
-            if (context.started)
-            {
-                _jumpHeld = true;
-            }
+    public bool IsJumping => _readyToJump == false;
 
-            if (context.canceled)
-            {
-                _jumpHeld = false;
-            }
-        }
+    private void Jump() 
+    {
+        // reset y velocity
+        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
 
-        private void ApplyGravity()
-        {
-            if (_groundChecker.IsGrounded && _velocity < 0.0f)
-            {
-                _velocity = -1.0f;
-                IsJumping = false;
-            }
-            else
-            {
-                _velocity += Gravity * _gravityMultiplier * Time.deltaTime;
-                IsJumping = true;
-            }
+        _rigidbody.AddRelativeForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+    }
 
-            _direction.y = _velocity;
-
-            if (_groundChecker.IsGrounded && _jumpHeld)
-            {
-                _velocity = Mathf.Sqrt(_jumpPower * -2.0f * Gravity);
-            }
-        }
-
-        private void ApplyMovement()
-        {
-            _controller.Move(_direction * Time.deltaTime);
-        }
+    private void ResetJump()
+    {
+        _readyToJump = true;
     }
 }
