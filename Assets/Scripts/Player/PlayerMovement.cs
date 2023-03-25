@@ -92,14 +92,7 @@ namespace Player
         {
             if (_groundChecker.IsGrounded)
             {
-                if (_sneakHeld)
-                {
-                    _moveSpeed = _sneakSpeed;
-                }
-                else
-                {
-                    _moveSpeed = _walkSpeed;
-                }
+                _moveSpeed = _sneakHeld ? _sneakSpeed : _walkSpeed;
             }
         }
     }
