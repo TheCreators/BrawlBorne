@@ -2,16 +2,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerShooting : MonoBehaviour
+namespace Player
 {
-    [Header("Requirements")]
-    [SerializeField] private Gun _gun;
-
-    public void OnShoot(InputAction.CallbackContext context)
+    public class PlayerShooting : MonoBehaviour
     {
-        if (context.performed)
+        [Header("Requirements")]
+        [SerializeField] private Gun _gun;
+
+        public void OnShoot(InputAction.CallbackContext context)
         {
-            _gun.Shoot();
+            if (context.performed)
+            {
+                _gun.Shoot();
+            }
         }
     }
 }
