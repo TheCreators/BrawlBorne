@@ -16,13 +16,13 @@ namespace Player
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
 
-        void Start()
+        private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _groundChecker = GetComponent<GroundChecker>();
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (_jumpHeld && _readyToJump && _groundChecker.IsGrounded)
             {
