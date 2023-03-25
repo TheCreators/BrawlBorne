@@ -30,8 +30,9 @@ namespace Player
 
         private void Update()
         {
-            _animator.SetFloat(VelocityX, _playerMovement.NormalizedSmoothMoveDirectionWithSmoothSpeed.y);
-            _animator.SetFloat(VelocityZ, _playerMovement.NormalizedSmoothMoveDirectionWithSmoothSpeed.x);
+            Debug.Log(_playerMovement.GetNormalizedRelativeVelocity());
+            _animator.SetFloat(VelocityX, _playerMovement.GetNormalizedRelativeVelocity().x);
+            _animator.SetFloat(VelocityZ, _playerMovement.GetNormalizedRelativeVelocity().y);
             _animator.SetBool(IsGrounded, _groundChecker.IsGrounded);
             _animator.SetBool(IsJumping, _playerJump.IsJumping);
             _animator.SetBool(IsMoving, _playerMovement.IsMoving);
