@@ -45,7 +45,7 @@ namespace Player
             }
         }
 
-        public bool IsJumping => _readyToJump == false;
+        public bool IsJumping => !_readyToJump;
 
         private void Jump()
         {
