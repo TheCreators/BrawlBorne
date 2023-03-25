@@ -8,8 +8,8 @@ namespace Player
     [RequireComponent(typeof(GroundChecker))]
     public class PlayerJump : MonoBehaviour
     {
-        [SerializeField][Min(0)] private float _jumpForce = 8f;
-        [SerializeField][Min(0)] private float _jumpCooldown = 0.5f;
+        [SerializeField, Min(0)] private float _jumpForce = 8f;
+        [SerializeField, Min(0)] private float _jumpCooldown = 0.5f;
         private bool _readyToJump = true;
         private bool _jumpHeld = false;
 

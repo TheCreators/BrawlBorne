@@ -5,7 +5,7 @@ namespace Player
 {
     public class MouseRotation : MonoBehaviour
     {
-        [SerializeField] [Range(0, 100)] private float _sensitivity = 10f;
+        [SerializeField, Range(0, 100)] private float _sensitivity = 10f;
 
         private Quaternion _rotation;
 

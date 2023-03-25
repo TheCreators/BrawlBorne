@@ -8,10 +8,10 @@ namespace Player
     [RequireComponent(typeof(GroundChecker))]
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField][Min(0)] private float _walkSpeed = 10f;
-        [SerializeField][Min(0)] private float _sneakSpeed = 7f;
-        [SerializeField][Min(0)] private float groundDrag = 5f;
-        [SerializeField][Range(0, 1)] private float _airSpeedMultiplier = 0.5f;
+        [SerializeField, Min(0)] private float _walkSpeed = 10f;
+        [SerializeField, Min(0)] private float _sneakSpeed = 7f;
+        [SerializeField, Min(0)] private float groundDrag = 5f;
+        [SerializeField, Range(0, 1)] private float _airSpeedMultiplier = 0.5f;
 
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
