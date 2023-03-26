@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shift",
+                    "name": "Sneak",
                     "type": "Button",
                     "id": "9ae74a4a-23ec-47c4-8ead-cc073285991f",
                     "expectedControlType": "Button",
@@ -200,7 +200,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shift",
+                    "action": "Sneak",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

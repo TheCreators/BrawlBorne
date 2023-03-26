@@ -1,65 +1,100 @@
+using Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player
 {
-    [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(GroundChecker))]
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] [Range(0, 50)] private float _normalSpeed = 12f;
-        [SerializeField] [Range(0, 50)] private float _shiftSpeed = 6f;
-        [SerializeField] [Range(0, 0.5f)] private float _moveDirectionSmoothingSpeed = 0.1f;
-        [SerializeField] [Range(0, 0.5f)] private float _speedSmoothingSpeed = 0.1f;
+        [SerializeField, Min(0)] private float _walkSpeed = 10f;
+        [SerializeField, Min(0)] private float _sneakSpeed = 7f;
+        [SerializeField, Min(0)] private float _groundDrag = 5f;
+        [SerializeField, Range(0, 1)] private float _airSpeedMultiplier = 0.5f;
 
-        private CharacterController _controller;
+        private Rigidbody _rigidbody;
+        private GroundChecker _groundChecker;
 
+        private float _moveSpeed;
         private Vector2 _inputMoveDirection;
-        private Vector2 _smoothMoveDirection;
-        private Vector2 _smoothMoveVelocity;
+        private bool _sneakHeld;
+        private const int SpeedMultiplier = 10;
 
-        private float _speed;
-        private float _smoothSpeed;
-        private float _smoothSpeedVelocity;
-
-
-        private void Awake()
+        private void Start()
         {
-            _controller = GetComponent<CharacterController>();
-
-            _speed = _normalSpeed;
-            _smoothSpeed = _normalSpeed;
+            _rigidbody = GetComponent<Rigidbody>();
+            _groundChecker = GetComponent<GroundChecker>();
         }
 
         private void Update()
         {
-            SmoothValues();
-            Move();
+            UpdateRigidbodyDrag();
+            UpdateSpeed();
+            LimitSpeed();
         }
 
-        public Vector2 NormalizedSmoothMoveDirectionWithSmoothSpeed => _smoothMoveDirection * _smoothSpeed / _normalSpeed;
-
-        public bool IsMoving => _inputMoveDirection != Vector2.zero;
+        private void FixedUpdate()
+        {
+            Move();
+        }
 
         public void OnMove(InputAction.CallbackContext context)
         {
             _inputMoveDirection = context.ReadValue<Vector2>();
         }
 
-        public void OnShift(InputAction.CallbackContext context)
+        public void OnSneak(InputAction.CallbackContext context)
         {
-            _speed = context.performed ? _shiftSpeed : _normalSpeed;
+            if (context.performed)
+            {
+                _sneakHeld = true;
+            }
+            else if (context.canceled)
+            {
+                _sneakHeld = false;
+            }
         }
 
-        private void SmoothValues()
+        public Vector2 GetNormalizedRelativeVelocity()
         {
-            _smoothMoveDirection = Vector2.SmoothDamp(_smoothMoveDirection, _inputMoveDirection, ref _smoothMoveVelocity, _moveDirectionSmoothingSpeed);
-            _smoothSpeed = Mathf.SmoothDamp(_smoothSpeed, _speed, ref _smoothSpeedVelocity, _speedSmoothingSpeed);
+            var forwardVelocity = Vector3.Dot(_rigidbody.velocity, transform.forward);
+            var rightVelocity = Vector3.Dot(_rigidbody.velocity, transform.right);
+            return new Vector2(forwardVelocity, rightVelocity) / _walkSpeed;
+        }
+
+        public bool IsMoving => _inputMoveDirection != Vector2.zero;
+
+        private void UpdateRigidbodyDrag()
+        {
+            _rigidbody.drag = _groundChecker.IsGrounded ? _groundDrag : 0f;
         }
 
         private void Move()
         {
-            var move = transform.right * _smoothMoveDirection.x + transform.forward * _smoothMoveDirection.y;
-            _controller.Move(move * (_smoothSpeed * Time.deltaTime));
+            var moveDirection = new Vector3(_inputMoveDirection.x, 0f, _inputMoveDirection.y).normalized;
+
+            _rigidbody.AddRelativeForce(moveDirection * _moveSpeed * SpeedMultiplier * (_groundChecker.IsGrounded ? 1f : _airSpeedMultiplier), ForceMode.Force);
+        }
+
+        private void LimitSpeed()
+        {
+            var flatVelocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
+
+            if (flatVelocity.magnitude > _moveSpeed)
+            {
+                var limitedVelocity = flatVelocity.normalized * _moveSpeed;
+                _rigidbody.velocity = new Vector3(limitedVelocity.x, _rigidbody.velocity.y, limitedVelocity.z);
+            }
+        }
+
+        private void UpdateSpeed()
+        {
+            if (_groundChecker.IsGrounded)
+            {
+                _moveSpeed = _sneakHeld ? _sneakSpeed : _walkSpeed;
+            }
         }
     }
 }

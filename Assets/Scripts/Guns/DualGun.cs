@@ -6,12 +6,12 @@ namespace Guns
     public class DualGun : Gun
     {
         [Header("Settings")]
-        [SerializeField] [Min(0)] private int _bulletsPerShot = 6;
-        [SerializeField] [Min(0)] private float _timeBetweenBullets = 0.25f;
-        [SerializeField] [Min(0)] private float _timeBetweenShots = 0.5f;
+        [SerializeField, Min(0)] private int _bulletsPerShot = 6;
+        [SerializeField, Min(0)] private float _timeBetweenBullets = 0.25f;
+        [SerializeField, Min(0)] private float _timeBetweenShots = 0.5f;
 
         [Header("Spawn Settings")]
-        [SerializeField] [Min(0)] private float _bulletsSpread = 0.5f;
+        [SerializeField, Min(0)] private float _bulletsSpread = 0.5f;
         [SerializeField] private float _bulletSpawnDistance = 1f;
         [SerializeField] private float _bulletSpawnHeight = 0.5f;
 

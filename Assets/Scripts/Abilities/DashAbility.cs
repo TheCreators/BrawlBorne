@@ -4,19 +4,19 @@ using UnityEngine.InputSystem;
 
 namespace Abilities
 {
-    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(Rigidbody))]
     public class DashAbility : MonoBehaviour
     {
-        [SerializeField] [Range(0, 50)] private float _dashSpeed = 10f;
-        [SerializeField] [Range(0, 10)] private float _dashDuration = 0.5f;
+        [SerializeField, Range(0, 25)] private float _dashSpeed = 7f;
+        [SerializeField, Range(0, 10)] private float _dashDuration = 0.5f;
 
-        private CharacterController _controller;
+        private Rigidbody _rigidbody;
 
         private bool _isDashing;
 
         private void Awake()
         {
-            _controller = GetComponent<CharacterController>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
         public void Update()
@@ -46,7 +46,7 @@ namespace Abilities
 
         private void Dash()
         {
-            _controller.Move(transform.forward * _dashSpeed * Time.deltaTime);
+            _rigidbody.AddRelativeForce(Vector3.forward * _dashSpeed, ForceMode.Impulse);
         }
     }
 }
