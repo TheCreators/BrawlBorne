@@ -1,6 +1,7 @@
 using Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -10,7 +11,7 @@ namespace Player
     {
         [SerializeField, Min(0)] private float _walkSpeed = 10f;
         [SerializeField, Min(0)] private float _sneakSpeed = 7f;
-        [SerializeField, Min(0)] private float groundDrag = 5f;
+        [SerializeField, Min(0)] private float _groundDrag = 5f;
         [SerializeField, Range(0, 1)] private float _airSpeedMultiplier = 0.5f;
 
         private Rigidbody _rigidbody;
@@ -67,7 +68,7 @@ namespace Player
 
         private void UpdateRigidbodyDrag()
         {
-            _rigidbody.drag = _groundChecker.IsGrounded ? groundDrag : 0f;
+            _rigidbody.drag = _groundChecker.IsGrounded ? _groundDrag : 0f;
         }
 
         private void Move()
