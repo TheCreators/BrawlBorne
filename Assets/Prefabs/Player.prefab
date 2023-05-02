@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 1307913016}
   - component: {fileID: 1805602996}
   - component: {fileID: 1650874961}
+  - component: {fileID: 646994419412641321}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -381,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkSpeed: 10
   _sneakSpeed: 7
-  groundDrag: 5
+  _groundDrag: 5
   _airSpeedMultiplier: 0.5
 --- !u!114 &6319289774936516497
 MonoBehaviour:
@@ -456,6 +457,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gun: {fileID: 1805602996}
+--- !u!114 &646994419412641321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ece6177fbc9924088721f85e684111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: -4072338951609616105, guid: 1ca6a2ed1555e6f48a5cde6bf80476b9, type: 3}
+  _healthPoints: 100
 --- !u!1001 &1125899177775471265
 PrefabInstance:
   m_ObjectHideFlags: 0
