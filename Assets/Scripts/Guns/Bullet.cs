@@ -12,6 +12,8 @@ namespace Guns
         [SerializeField] private float _speed = 10f;
         [SerializeField] private float _lifeTime = 10f;
 
+        [SerializeField] public int _damage = 5;
+
         private Vector3 _oldPosition;
 
 
