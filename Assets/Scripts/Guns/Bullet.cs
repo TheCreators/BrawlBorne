@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Guns
@@ -9,34 +11,43 @@ namespace Guns
     /// </summary>
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] private float _speed = 10f;
-        [SerializeField] private float _lifeTime = 10f;
-
-        [SerializeField] public int _damage = 5;
+        [Header("Settings")]
+        [SerializeField] private float _speed = 20f;
+        [SerializeField] private float _lifeTime = 1f;
+        [SerializeField] private int _damageSpeedCoeff = 0;
+        [SerializeField] public float damage = 5f;
 
         private Vector3 _oldPosition;
+        private float _downSpeed;
 
 
         private void Start()
         {
+            _downSpeed = damage * (1 / _lifeTime) * _damageSpeedCoeff;
             Destroy(gameObject, _lifeTime);
         }
 
         private void Update()
         {
             _oldPosition = transform.position;
-
             transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
 
-            DetectCollision();
+            damage = Mathf.MoveTowards(damage, 0, _downSpeed * Time.deltaTime);
+
+            //DetectCollision();
         }
 
-        private void DetectCollision()
+        /*protected void DetectCollision()
         {
             if (Physics.Linecast(_oldPosition, transform.position, out _))
             {
                 Destroy(gameObject);
             }
+        }*/
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Destroy(gameObject);
         }
     }
 }
