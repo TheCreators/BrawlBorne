@@ -181,7 +181,10 @@ GameObject:
   - component: {fileID: 1805602996}
   - component: {fileID: 1650874961}
   - component: {fileID: 1991780286631926046}
-  - component: {fileID: 646994419412641321}
+  - component: {fileID: -264341011622334892}
+  - component: {fileID: 958933650428750912}
+  - component: {fileID: 2630830179299884629}
+  - component: {fileID: 7110834872051245403}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -506,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcd7966dce343f0b12440cd7213a76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gun: {fileID: 1805602996}
+  _gun: {fileID: 0}
 --- !u!114 &1991780286631926046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +525,7 @@ MonoBehaviour:
   _ascendSpeed: 10
   _ascendDuration: 0.5
   _flyDuration: 5
---- !u!114 &646994419412641321
+--- !u!114 &-264341011622334892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -534,9 +537,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ece6177fbc9924088721f85e684111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: -4072338951609616105, guid: 1ca6a2ed1555e6f48a5cde6bf80476b9,
-    type: 3}
+  _bullet: {fileID: 6426913969410153700, guid: 7b8730ff56ad72545aef98c28889cf53, type: 3}
   _healthPoints: 100
+--- !u!114 &958933650428750912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49ed34fcd6dcdd4d979260b57d0fcb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 7373508321927834216, guid: 6e7b0a09c7e46a049996e810938f17c2, type: 3}
+  _shootingDirection: {fileID: 0}
+  _timeBetweenShots: 0.5
+  _bulletSpawnDistance: 1
+  _bulletSpawnHeight: 0.5
+--- !u!114 &2630830179299884629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f561bdd50119b4d884dce19297afda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 7373508321927834216, guid: a581dd863f1b0af4a9b4b6ee5eee4e1f, type: 3}
+  _shootingDirection: {fileID: 0}
+  _timeBetweenShots: 0.2
+  _bulletSpawnDistance: 1
+  _bulletSpawnHeight: -1
+--- !u!114 &7110834872051245403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6284ea602b8834d4dad00a195f7143b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 7373508321927834216, guid: 071aa03b589194944986faf6f66bd6f7, type: 3}
+  _shootingDirection: {fileID: 0}
+  _bulletsPerShot: 4
+  _timeBetweenShots: 0.5
+  _bulletsSpread: 0.5
+  _bulletSpawnDistance: 1
+  _bulletSpawnHeight: 0.5
 --- !u!1001 &1125899177775471265
 PrefabInstance:
   m_ObjectHideFlags: 0

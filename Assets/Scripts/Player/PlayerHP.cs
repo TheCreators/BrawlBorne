@@ -12,19 +12,22 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] private Bullet _bullet;
 
     [Header("Settings")]
-    [SerializeField, Min(0)] private int _healthPoints = 100;
+    [SerializeField, Min(0)] private float _healthPoints = 100f;
 
-    // Update is called once per frame
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == _bullet.gameObject)
+        if (collision != null && _bullet != null)
         {
-            _healthPoints -= _bullet._damage;
+            if (collision.gameObject.CompareTag("Damagable"))
+            {
+                print(_bullet.damage);
+                _healthPoints -= _bullet.damage;
+            }
         }
 
         if (_healthPoints <= 0)
         {
-            Destroy(transform.gameObject);
+            Destroy(gameObject);
         }
     }
 }
