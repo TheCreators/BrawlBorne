@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace TMPro.Examples
 {
-    
+
     public class TMP_UiFrameRateCounter : MonoBehaviour
     {
         public float UpdateInterval = 5.0f;

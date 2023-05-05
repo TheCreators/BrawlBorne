@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace TMPro.Examples
 {
-    
+
     public class TMPro_InstructionOverlay : MonoBehaviour
     {
 
