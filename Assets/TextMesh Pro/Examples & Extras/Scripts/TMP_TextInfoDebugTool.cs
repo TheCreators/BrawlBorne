@@ -11,7 +11,7 @@ namespace TMPro.Examples
     {
         // Since this script is used for debugging, we exclude it from builds.
         // TODO: Rework this script to make it into an editor utility.
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public bool ShowCharacters;
         public bool ShowWords;
         public bool ShowLinks;
@@ -56,40 +56,40 @@ namespace TMPro.Examples
             m_HandleSize = HandleUtility.GetHandleSize(m_Transform.position) * m_ScaleMultiplier;
 
             // Draw line metrics
-            #region Draw Lines
+        #region Draw Lines
             if (ShowLines)
                 DrawLineBounds();
-            #endregion
+        #endregion
 
             // Draw word metrics
-            #region Draw Words
+        #region Draw Words
             if (ShowWords)
                 DrawWordBounds();
-            #endregion
+        #endregion
 
             // Draw character metrics
-            #region Draw Characters
+        #region Draw Characters
             if (ShowCharacters)
                 DrawCharactersBounds();
-            #endregion
+        #endregion
 
             // Draw Quads around each of the words
-            #region Draw Links
+        #region Draw Links
             if (ShowLinks)
                 DrawLinkBounds();
-            #endregion
+        #endregion
 
             // Draw Quad around the bounds of the text
-            #region Draw Bounds
+        #region Draw Bounds
             if (ShowMeshBounds)
                 DrawBounds();
-            #endregion
+        #endregion
 
             // Draw Quad around the rendered region of the text.
-            #region Draw Text Bounds
+        #region Draw Text Bounds
             if (ShowTextBounds)
                 DrawTextBounds();
-            #endregion
+        #endregion
         }
 
 
@@ -646,7 +646,7 @@ namespace TMPro.Examples
             UnityEditor.Handles.DrawDottedLine(tr, br, dotSpacing);
             UnityEditor.Handles.DrawDottedLine(br, bl, dotSpacing);
         }
-        #endif
+#endif
     }
 }
 
