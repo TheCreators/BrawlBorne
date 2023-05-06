@@ -133,22 +133,6 @@ namespace Bot
         }
 
         private bool HasReachedDestination() => !Agent.pathPending && Agent.remainingDistance < 0.5f;
-        //
-        // private bool IsSomeoneInRange(float range)
-        // {
-        //     foreach (var hero in _heroesPool.Heroes)
-        //     {
-        //         if (hero == gameObject) continue;
-        //         
-        //         var distance = Vector3.Distance(transform.position, hero.transform.position);
-        //         
-        //         if (!(distance <= range)) continue;
-        //         
-        //         return true;
-        //     }
-        //
-        //     return false;
-        // }
 
         private bool IsAnyHeroInRange(float range)
         {
