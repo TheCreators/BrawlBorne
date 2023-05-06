@@ -12,7 +12,7 @@ namespace Ultimates
         [SerializeField, Range(5, 50)] private float _ascendSpeed = 10f;
         [SerializeField, Range(0, 5)] private float _ascendDuration = 1f;
         [SerializeField, Range(0, 15)] private float _flyDuration = 5f;
-        
+
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
 
@@ -30,7 +30,7 @@ namespace Ultimates
             }
             StartCoroutine(StopFlyingAfter());
         }
-        
+
         private IEnumerator StopFlyingAfter()
         {
             ChangeAscendingSpeed(_ascendSpeed);
