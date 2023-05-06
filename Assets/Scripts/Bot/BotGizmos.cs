@@ -3,9 +3,15 @@ using UnityEngine;
 
 namespace Bot
 {
+    [RequireComponent(typeof(BotController))]
     public class BotGizmos : MonoBehaviour
     {
-        [SerializeField] private BotController _botController;
+        private BotController _botController;
+
+        private void Awake()
+        {
+            _botController = GetComponent<BotController>();
+        }
 
         private void Update()
         {
