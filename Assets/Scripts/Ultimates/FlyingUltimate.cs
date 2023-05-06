@@ -28,10 +28,10 @@ namespace Ultimates
             {
                 return;
             }
-            StartCoroutine(StopFlyingAfter());
+            StartCoroutine(FlyingRoutine());
         }
 
-        private IEnumerator StopFlyingAfter()
+        private IEnumerator FlyingRoutine()
         {
             ChangeAscendingSpeed(_ascendSpeed);
             yield return new WaitForSeconds(_ascendDuration);
