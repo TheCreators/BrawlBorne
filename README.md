@@ -3,9 +3,6 @@
   Unity 3D FPS Game
   <br>
   <a href="https://miro.com/app/board/uXjVPC6Tqtw=/?share_link_id=168174453400">Development MindMap</a>
-  <br>
-  <br>
-  <a href="https://deepsource.io/gh/TheCreators/BrawlBorne/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/TheCreators/BrawlBorne.svg/?label=active+issues&show_trend=true&token=Xy-UnUKY4VBrU_7c5GQpuu39"/></a>
 </div>
 
 # Contribution
