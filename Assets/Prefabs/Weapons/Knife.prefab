@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7978551712811809496}
   - component: {fileID: 5678128309254035011}
-  - component: {fileID: -659008422932591261}
   - component: {fileID: -9205003229317269467}
   m_Layer: 3
   m_Name: Knife
@@ -46,6 +45,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f561bdd50119b4d884dce19297afda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onUse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -9205003229317269467}
+        m_TargetAssemblyTypeName: Sound.WeaponSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _lookDirection: {fileID: 0}
   _damage: 1
   _hitLayers:
@@ -54,102 +68,6 @@ MonoBehaviour:
   _radius: 0.77
   _length: 2.2
   _hitOffset: {x: 0, y: 0, z: 0}
---- !u!82 &-659008422932591261
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8657438045476478946}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &-9205003229317269467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,5 +80,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42dae91862bf3af4595a6503fcbece46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotgunSound: {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
-  _audioSource: {fileID: -659008422932591261}
+  _sound: {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
+  _audioSource: {fileID: 0}
