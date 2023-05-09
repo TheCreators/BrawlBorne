@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 477042130070592949}
   - component: {fileID: 477042130070592950}
   - component: {fileID: 477042130070592951}
-  - component: {fileID: 477042130070592952}
-  - component: {fileID: 477042130070592953}
   - component: {fileID: -143211974280577395}
+  - component: {fileID: 4591675464745393446}
+  - component: {fileID: 6342258248279081278}
+  - component: {fileID: 5977217962883420356}
+  - component: {fileID: 8606340750331939890}
   m_Layer: 8
   m_Name: Bot
   m_TagString: Untagged
@@ -144,37 +146,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &477042130070592952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477042130070592955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caefed07f701be648910d9628aef7ab5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weapon: {fileID: 3588704989233938750}
-  _randomPointMaxRadius: 40
-  _randomPointMinRadius: 25
-  _playerDetectionRadius: 20
-  _playerAttackRadius: 12
-  _strafeSpeed: 3
-  _strafeDistance: 2
---- !u!114 &477042130070592953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477042130070592955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7718bbf442474daea5a57e37ed26811c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-143211974280577395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +158,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27626dbb1b1e46aebdd4bbab6ae8858d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthPoints: 100
+  _healthPoints: 300
+--- !u!114 &4591675464745393446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477042130070592955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd642d4bf7b48e69ae27e94099c6ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _randomPointMaxRadius: 40
+  _randomPointMinRadius: 25
+  _strafeSpeed: 3
+  _strafeDistance: 2
+--- !u!114 &6342258248279081278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477042130070592955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a387133984484a9e7bbe86fb6f64db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerDetectionRadius: 20
+  _playerAttackRadius: 15
+--- !u!114 &5977217962883420356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477042130070592955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b72ce338fc7473e97bf25a40eb4261f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 3588704989233938750}
+--- !u!114 &8606340750331939890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477042130070592955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da24a199f20d4a788ce8a8333a07ea8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentState: 0
 --- !u!1001 &697631111259761690
 PrefabInstance:
   m_ObjectHideFlags: 0
