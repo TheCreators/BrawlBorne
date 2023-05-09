@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Combat;
 using Player;
+using Ultimates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class SpeedUltimate : MonoBehaviour
+public class SpeedUltimate : Ultimate
 {
     [SerializeField] private LayerMask _hitLayers;
     
@@ -23,12 +24,8 @@ public class SpeedUltimate : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
     }
 
-    public void OnUltimate(InputAction.CallbackContext context)
+    public override void Use()
     {
-        if (context.performed is false)
-        {
-            return;
-        }
         StartCoroutine(HittingRoutine());
     }
 

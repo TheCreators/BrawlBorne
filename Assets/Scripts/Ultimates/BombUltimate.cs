@@ -4,17 +4,14 @@ using UnityEngine.InputSystem;
 
 namespace Ultimates
 {
-    public class BombUltimate : MonoBehaviour
+    public class BombUltimate : Ultimate
     {
         [Header("Requirements")]
         [SerializeField] private Weapon _weapon;
 
-        public void OnUltimate(InputAction.CallbackContext context)
+        public override void Use()
         {
-            if (context.performed is true)
-            {
-                _weapon.TryUse();
-            }
+            _weapon.TryUse();
         }
     }
 }
