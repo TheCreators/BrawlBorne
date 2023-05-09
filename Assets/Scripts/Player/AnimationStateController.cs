@@ -30,7 +30,6 @@ namespace Player
 
         private void Update()
         {
-            Debug.Log(_playerMovement.GetNormalizedRelativeVelocity());
             _animator.SetFloat(VelocityX, _playerMovement.GetNormalizedRelativeVelocity().x);
             _animator.SetFloat(VelocityZ, _playerMovement.GetNormalizedRelativeVelocity().y);
             _animator.SetBool(IsGrounded, _groundChecker.IsGrounded);
