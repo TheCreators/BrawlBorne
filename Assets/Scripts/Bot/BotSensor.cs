@@ -15,7 +15,7 @@ namespace Bot
         [CanBeNull] public GameObject ClosestHeroInDetectionRange => GetClosestHeroInRange(_playerDetectionRadius);
         [CanBeNull] public GameObject ClosestHeroInAttackRange => GetClosestHeroInRange(_playerAttackRadius);
 
-        public bool IsAnyHeroInRange(float range)
+        private bool IsAnyHeroInRange(float range)
         {
             foreach (var hero in HeroesPool.Instance.Heroes)
             {
@@ -32,7 +32,7 @@ namespace Bot
         }
 
         [CanBeNull]
-        public GameObject GetClosestHeroInRange(float range)
+        private GameObject GetClosestHeroInRange(float range)
         {
             GameObject closestHero = null;
             var closestDistance = Mathf.Infinity;
@@ -59,7 +59,9 @@ namespace Bot
             if (target == null) return false;
 
             Vector3 direction = target.transform.position - transform.position;
-            return Physics.Raycast(transform.position, direction, out var hit, _playerDetectionRadius) && hit.collider.gameObject.Equals(target);
+            bool isVisible = Physics.SphereCast(transform.position, 2f, direction, out RaycastHit hit, _playerDetectionRadius) &&
+                             hit.collider.gameObject == target;
+            return isVisible;
         }
 
         private void OnDrawGizmosSelected()
