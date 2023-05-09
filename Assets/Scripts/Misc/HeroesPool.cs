@@ -20,18 +20,16 @@ namespace Misc
             
             for (var i = 0; i < _botsCount; i++)
             {
-                Heroes.Add(Instantiate(_botPrefab));
+                // Random position in circle
+                var randomPosition = transform.position + Random.insideUnitSphere * 100f;
+                Vector3 spawnPosition = new Vector3(randomPosition.x, 0, randomPosition.z);
+                Heroes.Add(Instantiate(_botPrefab, spawnPosition, Quaternion.identity));
             }
-            
-            Debug.Log($"Heroes count: {GetHashCode()}");
         }
         
-        private void OnDestroy()
+        public void RemoveHero(GameObject hero)
         {
-            foreach (var hero in Heroes)
-            {
-                Destroy(hero);
-            }
+            Heroes.Remove(hero);
         }
     }
 }

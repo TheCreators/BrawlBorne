@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Misc;
+using UnityEngine;
 
 namespace Combat
 {
@@ -13,6 +14,7 @@ namespace Combat
 
             if (_healthPoints <= 0)
             {
+                HeroesPool.Instance.RemoveHero(gameObject);
                 Destroy(gameObject);
             }
         }
