@@ -453,7 +453,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3909827171621850472, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
       propertyPath: _botsCount
-      value: 200
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3909827171621850473, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
       propertyPath: m_RootOrder
