@@ -1,5 +1,5 @@
-using System;
-using Guns;
+using Combat;
+using Combat.Weapons;
 using JetBrains.Annotations;
 using Misc;
 using UnityEngine;
@@ -12,17 +12,35 @@ namespace Bot
     public class BotController : MonoBehaviour
     {
         [Header("Requirements")] [SerializeField]
-        private Gun _gun;
+        private Weapon _weapon;
 
         [Header("Movement")] [SerializeField] private float _randomPointMaxRadius = 10f;
         [SerializeField] private float _randomPointMinRadius = 5f;
         [SerializeField] private float _playerDetectionRadius = 7f;
         [SerializeField] private float _playerAttackRadius = 5f;
+        
+        [Header("Strafe")]
+        [SerializeField] private float _strafeSpeed = 1.0f;
+        [SerializeField] private float _strafeDistance = 1.0f;
+        private float _strafeDirection = 1.0f;
+        private float _currentStrafe = 0.0f;
 
         public NavMeshAgent Agent { get; private set; }
 
         [CanBeNull]
         public GameObject Target { get; private set; }
+
+        public Vector3? TargetShootPosition
+        {
+            get
+            {
+                if (Target == null) return null;
+                var shootAt = Target.GetComponentInChildren<ShootAt>();
+                Debug.Log(shootAt);
+                return shootAt == null ? Target.transform.position : shootAt.transform.position;
+
+            }
+        }
 
         public BotState CurrentState { get; private set; } = BotState.Wandering;
 
@@ -111,9 +129,25 @@ namespace Bot
 
             Agent.isStopped = true;
 
-            var lookDirection = Target.transform.position - transform.position;
+            var lookDirection = TargetShootPosition!.Value - transform.position;
             transform.rotation = Quaternion.LookRotation(lookDirection);
-            _gun.Shoot();
+            _weapon.TryUse();
+
+            Strafe();
+        }
+
+        private void Strafe()
+        {
+            float strafeStep = _strafeSpeed * Time.deltaTime * _strafeDirection;
+            _currentStrafe += strafeStep;
+
+            if (Mathf.Abs(_currentStrafe) >= _strafeDistance)
+            {
+                _strafeDirection = -_strafeDirection;
+                _currentStrafe = 0.0f;
+            }
+
+            transform.position += transform.right * strafeStep;
         }
 
         private Vector3 GetRandomDestination()
@@ -136,8 +170,6 @@ namespace Bot
 
         private bool IsAnyHeroInRange(float range)
         {
-            Debug.Log($"Heroes count: {HeroesPool.Instance.Heroes.Count}");
-
             foreach (var hero in HeroesPool.Instance.Heroes)
             {
                 if (hero == gameObject) continue;
