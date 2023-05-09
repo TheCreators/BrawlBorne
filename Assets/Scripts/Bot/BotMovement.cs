@@ -20,6 +20,16 @@ namespace Bot
         private NavMeshAgent _agent;
         public Vector3 Destination => _agent.destination;
 
+        public float WalkSpeed
+        {
+            get => _agent.speed;
+            set
+            {
+                Debug.Log(value);
+                _agent.speed = value;
+            }
+        }
+
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
@@ -60,6 +70,7 @@ namespace Bot
 
         public void Strafe()
         {
+            Stop();
             float strafeStep = _strafeSpeed * Time.deltaTime * _strafeDirection;
             _currentStrafe += strafeStep;
 

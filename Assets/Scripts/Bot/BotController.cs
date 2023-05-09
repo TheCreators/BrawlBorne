@@ -87,7 +87,6 @@ namespace Bot
                 return;
             }
 
-            _botMovement.Stop();
             _botCombat.AimAndTryUseWeapon();
             _botMovement.Strafe();
         }
@@ -114,7 +113,7 @@ namespace Bot
                         break;
                 }
             }
-            catch (NullReferenceException)
+            catch (SystemException)
             {
             }
         }
