@@ -16,15 +16,20 @@ namespace Bot
             get => _target;
             set
             {
-                if (value == null) return;
                 _target = value;
+                
+                if (_target is null)
+                {
+                    TargetShootPosition = null;
+                    return;
+                }
                 
                 var shootAt = _target.GetComponentInChildren<ShootAt>();
                 TargetShootPosition = shootAt == null ? Target.transform.position : shootAt.transform.position;
             }
         }
 
-        public Vector3 TargetShootPosition {get; private set; }
+        public Vector3? TargetShootPosition {get; private set; }
 
         private void Awake()
         {
@@ -34,7 +39,9 @@ namespace Bot
 
         public void AimAndTryUseWeapon()
         {
-            var lookDirection = TargetShootPosition - transform.position;
+            if (TargetShootPosition is null) return;
+            
+            var lookDirection = TargetShootPosition!.Value - transform.position;
             transform.rotation = Quaternion.LookRotation(lookDirection);
             _weapon.TryUse();
             _ultimate.Use();

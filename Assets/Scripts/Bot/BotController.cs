@@ -74,7 +74,7 @@ namespace Bot
 
         private void HandleAttackingState()
         {
-            if (!_botSensor.IsAnyHeroInDetectionRange)
+            if (_botSensor.IsAnyHeroInDetectionRange is false)
             {
                 _currentState = BotState.Wandering;
                 return;
@@ -110,7 +110,7 @@ namespace Bot
 
                     case BotState.Attacking:
                         Gizmos.color = Color.red;
-                        Gizmos.DrawLine(transform.position, _botCombat.TargetShootPosition);
+                        Gizmos.DrawLine(transform.position, _botCombat.TargetShootPosition!.Value);
                         break;
                 }
             }
