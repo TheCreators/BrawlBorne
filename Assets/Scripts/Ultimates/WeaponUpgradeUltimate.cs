@@ -1,10 +1,9 @@
-using Combat.Weapons;
+﻿using Combat.Weapons;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Ultimates
 {
-    public class BatsUltimate : Ultimate
+    public class WeaponUpgradeUltimate : Ultimate
     {
         [Header("Requirements")]
         [SerializeField] private Weapon _weapon;
