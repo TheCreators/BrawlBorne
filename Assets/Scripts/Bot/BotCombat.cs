@@ -1,5 +1,6 @@
 ﻿using Combat;
 using Combat.Weapons;
+using Ultimates;
 using UnityEngine;
 
 namespace Bot
@@ -7,6 +8,7 @@ namespace Bot
     public class BotCombat : MonoBehaviour
     {
         [SerializeField] private Weapon _weapon;
+        [SerializeField] private Ultimate _ultimate;
         
         private GameObject _target;
         public GameObject Target
@@ -35,6 +37,7 @@ namespace Bot
             var lookDirection = TargetShootPosition - transform.position;
             transform.rotation = Quaternion.LookRotation(lookDirection);
             _weapon.TryUse();
+            _ultimate.Use();
         }
     }
 }
