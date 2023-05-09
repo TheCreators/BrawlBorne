@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace Ultimates
 {
     [RequireComponent(typeof(Health))]
-    public class HealingUltimate : MonoBehaviour
+    public class HealingUltimate : Ultimate
     {
         [SerializeField, Range(0, 100)] private float _healingPointsPercent = 50f;
         
@@ -15,12 +15,9 @@ namespace Ultimates
             _health = GetComponent<Health>();
         }
 
-        public void OnUltimate(InputAction.CallbackContext context)
+        public override void Use()
         {
-            if (context.performed is true)
-            {
-                _health.Heal(_healingPointsPercent);
-            }
+            _health.Heal(_healingPointsPercent);
         }
     }
 }
