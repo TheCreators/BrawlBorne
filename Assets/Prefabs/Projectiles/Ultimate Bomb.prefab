@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitLayers:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 329
   _timeToExplode: 2
   _damage: 50
   _explosionRadius: 7
