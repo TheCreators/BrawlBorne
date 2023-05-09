@@ -6,10 +6,11 @@ namespace Combat.Weapons
     public abstract class Weapon : MonoBehaviour
     {
         [SerializeField] protected UnityEvent _onUse;
-        
+
         protected bool CanBeUsed = true;
 
-        public void TryUse() {
+        public void TryUse()
+        {
             if (CanBeUsed is false)
             {
                 return;
@@ -18,7 +19,7 @@ namespace Combat.Weapons
             _onUse.Invoke();
             Use();
         }
-        
+
         protected abstract void Use();
     }
 }
