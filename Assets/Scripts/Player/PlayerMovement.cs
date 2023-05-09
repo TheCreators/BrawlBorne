@@ -22,6 +22,12 @@ namespace Player
         private bool _sneakHeld;
         private const int SpeedMultiplier = 10;
 
+        public float WalkSpeed
+        {
+            get => _walkSpeed;
+            set => _walkSpeed = value;
+        }
+
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -95,16 +101,6 @@ namespace Player
             {
                 _moveSpeed = _sneakHeld ? _sneakSpeed : _walkSpeed;
             }
-        }
-
-        public void ChangeWalkSpeed(float speed)
-        {
-            _walkSpeed = speed;
-        }
-
-        public float GetCurrentWalkSpeed()
-        {
-            return _walkSpeed;
         }
     }
 }
