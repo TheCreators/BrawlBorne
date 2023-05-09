@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapon: {fileID: 1613903837751180537}
-  _ultimate: {fileID: 0}
+  _ultimate: {fileID: 6221751584909315273}
 --- !u!114 &1835581549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,6 +1077,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6762660092969063664}
     - target: {fileID: 8243654654196240166, guid: d0be376d70cb4d94b955cd24740cc60e, type: 3}
+      propertyPath: _projectile
+      value: 
+      objectReference: {fileID: 3430874567808542318, guid: fd293bc42d88c47489c068142cd36aae, type: 3}
+    - target: {fileID: 8243654654196240166, guid: d0be376d70cb4d94b955cd24740cc60e, type: 3}
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 6942594267192523694}
@@ -1439,6 +1443,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6942594267589458436}
     m_Modifications:
+    - target: {fileID: 4410859511930296668, guid: f8cb763736a3adb4b9d25248a7d87bca, type: 3}
+      propertyPath: _shootingDirection
+      value: 
+      objectReference: {fileID: 6942594267192523694}
     - target: {fileID: 7314872290901758410, guid: f8cb763736a3adb4b9d25248a7d87bca, type: 3}
       propertyPath: m_Name
       value: Bat Gun
