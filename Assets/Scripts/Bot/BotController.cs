@@ -1,69 +1,29 @@
-using Combat;
-using Combat.Weapons;
-using JetBrains.Annotations;
-using Misc;
+﻿using System;
 using UnityEngine;
-using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace Bot
 {
-    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(BotMovement))]
+    [RequireComponent(typeof(BotSensor))]
+    [RequireComponent(typeof(BotCombat))]
     public class BotController : MonoBehaviour
     {
-        [Header("Requirements")] [SerializeField]
-        private Weapon _weapon;
+        private BotMovement _botMovement;
+        private BotSensor _botSensor;
+        private BotCombat _botCombat;
 
-        [Header("Movement")] [SerializeField] private float _randomPointMaxRadius = 10f;
-        [SerializeField] private float _randomPointMinRadius = 5f;
-        [SerializeField] private float _playerDetectionRadius = 7f;
-        [SerializeField] private float _playerAttackRadius = 5f;
-        
-        [Header("Strafe")]
-        [SerializeField] private float _strafeSpeed = 1.0f;
-        [SerializeField] private float _strafeDistance = 1.0f;
-        private float _strafeDirection = 1.0f;
-        private float _currentStrafe = 0.0f;
-
-        public NavMeshAgent Agent { get; private set; }
-
-        [CanBeNull]
-        public GameObject Target { get; private set; }
-
-        public Vector3? TargetShootPosition
-        {
-            get
-            {
-                if (Target == null) return null;
-                var shootAt = Target.GetComponentInChildren<ShootAt>();
-                Debug.Log(shootAt);
-                return shootAt == null ? Target.transform.position : shootAt.transform.position;
-
-            }
-        }
-
-        public BotState CurrentState { get; private set; } = BotState.Wandering;
-
-        public float RandomPointMaxRadius => _randomPointMaxRadius;
-        public float RandomPointMinRadius => _randomPointMinRadius;
-        public float PlayerDetectionRadius => _playerDetectionRadius;
-        public float PlayerAttackRadius => _playerAttackRadius;
-
+        [SerializeField] private BotState _currentState = BotState.Wandering;
 
         private void Awake()
         {
-            Agent = GetComponent<NavMeshAgent>();
-            Target = gameObject;
-        }
-
-        private void Start()
-        {
-            Agent.SetDestination(GetRandomDestination());
+            _botMovement = GetComponent<BotMovement>();
+            _botSensor = GetComponent<BotSensor>();
+            _botCombat = GetComponent<BotCombat>();
         }
 
         private void Update()
         {
-            switch (CurrentState)
+            switch (_currentState)
             {
                 case BotState.Wandering:
                     HandleWanderingState();
@@ -81,131 +41,82 @@ namespace Bot
 
         private void HandleWanderingState()
         {
-            if (IsAnyHeroInRange(_playerDetectionRadius))
+            if (_botSensor.IsAnyHeroInDetectionRange)
             {
-                CurrentState = BotState.Chasing;
+                _currentState = BotState.Chasing;
                 return;
             }
+            
+            _botMovement.Resume();
+            if (!_botMovement.HasReachedDestination()) return;
 
-            if (HasReachedDestination() is false) return;
-
-            Agent.SetDestination(GetRandomDestination());
+            _botMovement.GoToRandomDestination();
         }
 
         private void HandleChasingState()
         {
-            var closestHero = GetClosestHeroInRange(_playerDetectionRadius);
+            var closestHero = _botSensor.ClosestHeroInDetectionRange;
             if (closestHero is null)
             {
-                CurrentState = BotState.Wandering;
+                _currentState = BotState.Wandering;
                 return;
             }
 
-            if (IsAnyHeroInRange(_playerAttackRadius))
+            
+            if (_botSensor.IsAnyHeroInAttackRange && _botSensor.IsVisible(_botSensor.ClosestHeroInAttackRange))
             {
-                CurrentState = BotState.Attacking;
+                _currentState = BotState.Attacking;
                 return;
             }
 
-            Agent.SetDestination(closestHero.transform.position);
+            _botMovement.GoToDestination(closestHero.transform.position);
         }
 
         private void HandleAttackingState()
         {
-            if (IsAnyHeroInRange(_playerDetectionRadius) is false)
+            if (!_botSensor.IsAnyHeroInDetectionRange)
             {
-                Agent.isStopped = false;
-                CurrentState = BotState.Wandering;
+                _currentState = BotState.Wandering;
                 return;
             }
 
-            Target = GetClosestHeroInRange(_playerAttackRadius);
-            if (Target is null)
+            _botCombat.Target = _botSensor.ClosestHeroInAttackRange;
+            if (_botCombat.Target is null || _botSensor.IsVisible(_botCombat.Target) is false)
             {
-                Agent.isStopped = false;
-                CurrentState = BotState.Chasing;
+                _currentState = BotState.Chasing;
                 return;
             }
 
-            Agent.isStopped = true;
-
-            var lookDirection = TargetShootPosition!.Value - transform.position;
-            transform.rotation = Quaternion.LookRotation(lookDirection);
-            _weapon.TryUse();
-
-            Strafe();
+            _botMovement.Stop();
+            _botCombat.AimAndTryUseWeapon();
+            _botMovement.Strafe();
         }
 
-        private void Strafe()
+        private void OnDrawGizmos()
         {
-            float strafeStep = _strafeSpeed * Time.deltaTime * _strafeDirection;
-            _currentStrafe += strafeStep;
-
-            if (Mathf.Abs(_currentStrafe) >= _strafeDistance)
+            try
             {
-                _strafeDirection = -_strafeDirection;
-                _currentStrafe = 0.0f;
-            }
-
-            transform.position += transform.right * strafeStep;
-        }
-
-        private Vector3 GetRandomDestination()
-        {
-            while (true)
-            {
-                var randomRadius = Random.Range(_randomPointMinRadius, _randomPointMaxRadius);
-                var randomDirection = Random.insideUnitSphere * randomRadius;
-                randomDirection += transform.position;
-                NavMesh.SamplePosition(randomDirection, out var navMeshHit, randomRadius, -1);
-                var distance = Vector3.Distance(transform.position, navMeshHit.position);
-                if (distance >= _randomPointMinRadius && distance <= _randomPointMaxRadius)
+                switch (_currentState)
                 {
-                    return navMeshHit.position;
+                    case BotState.Wandering:
+                        Gizmos.color = Color.green;
+                        Gizmos.DrawLine(transform.position, _botMovement.Destination);
+                        break;
+
+                    case BotState.Chasing:
+                        Gizmos.color = Color.yellow;
+                        Gizmos.DrawLine(transform.position, _botMovement.Destination);
+                        break;
+
+                    case BotState.Attacking:
+                        Gizmos.color = Color.red;
+                        Gizmos.DrawLine(transform.position, _botCombat.TargetShootPosition);
+                        break;
                 }
             }
-        }
-
-        private bool HasReachedDestination() => !Agent.pathPending && Agent.remainingDistance < 0.5f;
-
-        private bool IsAnyHeroInRange(float range)
-        {
-            foreach (var hero in HeroesPool.Instance.Heroes)
+            catch (NullReferenceException)
             {
-                if (hero == gameObject) continue;
-
-                var distance = Vector3.Distance(transform.position, hero.transform.position);
-
-                if (!(distance <= range)) continue;
-
-                return true;
             }
-
-            return false;
-        }
-
-
-        [CanBeNull]
-        private GameObject GetClosestHeroInRange(float range)
-        {
-            GameObject closestHero = null;
-            var closestDistance = Mathf.Infinity;
-
-            foreach (var hero in HeroesPool.Instance.Heroes)
-            {
-                if (hero == gameObject) continue;
-
-                var distance = Vector3.Distance(transform.position, hero.transform.position);
-
-                if (!(distance <= range)) continue;
-
-                if (!(distance < closestDistance)) continue;
-
-                closestHero = hero;
-                closestDistance = distance;
-            }
-
-            return closestHero;
         }
     }
 }
