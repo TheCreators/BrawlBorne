@@ -30,15 +30,6 @@ namespace Ultimates
             }
         }
 
-        public void OnUltimate(InputAction.CallbackContext context)
-        {
-            if (context.performed is false || _groundChecker.IsGrounded is false)
-            {
-                return;
-            }
-            StartCoroutine(FlyingRoutine());
-        }
-
         private IEnumerator FlyingRoutine()
         {
             ChangeAscendingSpeed(_ascendSpeed);
