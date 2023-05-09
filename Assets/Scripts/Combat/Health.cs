@@ -38,5 +38,19 @@ namespace Combat
                 _healthPoints = _maxHealthPoints;
             }
         }
+
+        public void IncreaseMaxHealth(float increasePercent)
+        {
+            _maxHealthPoints = _maxHealthPoints * (1 + increasePercent / 100);
+            float increasedCurrentHealth = _healthPoints * (1 + increasePercent / 100);
+            if (increasedCurrentHealth >= _maxHealthPoints)
+            {
+                _healthPoints = _maxHealthPoints;
+            }
+            else
+            {
+                _healthPoints = increasedCurrentHealth;
+            }
+        }
     }
 }
