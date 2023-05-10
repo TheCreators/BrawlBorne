@@ -1,3 +1,4 @@
+using System;
 using Combat;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,9 +16,17 @@ namespace Ultimates
             _health = GetComponent<Health>();
         }
 
+        private void Awake()
+        {
+            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
+        }
+
         public override void Use()
         {
+            if (_canBeUsed is false) return;
             _health.Heal(_healingPointsPercent);
+            _canBeUsed = false;
+            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
     }
 }

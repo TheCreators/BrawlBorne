@@ -18,12 +18,14 @@ namespace Ultimates
 
         private void Awake()
         {
+            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
             _rigidbody = GetComponent<Rigidbody>();
             _groundChecker = GetComponent<GroundChecker>();
         }
         
         public override void Use()
         {
+            if (_canBeUsed is false) return;
             if (_groundChecker.IsGrounded is true)
             {
                 StartCoroutine(FlyingRoutine());
@@ -38,6 +40,8 @@ namespace Ultimates
             ChangeAscendingSpeed(0f);
             yield return new WaitForSeconds(_flyDuration);
             _rigidbody.useGravity = true;
+            _canBeUsed = false;
+            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
 
         private void ChangeAscendingSpeed(float speed)

@@ -24,8 +24,14 @@ public class SpeedUltimate : Ultimate
         _playerMovement = GetComponent<PlayerMovement>();
     }
 
+    private void Awake()
+    {
+        Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
+    }
+
     public override void Use()
     {
+        if (_canBeUsed is false) return;
         StartCoroutine(HittingRoutine());
     }
 
@@ -41,6 +47,8 @@ public class SpeedUltimate : Ultimate
             count += 1;
         }
         _playerMovement.ChangeWalkSpeed(previousSpeed);
+        _canBeUsed = false;
+        Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
     }
     
     private void Hit()
