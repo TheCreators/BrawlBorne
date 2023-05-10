@@ -1,44 +1,29 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BattleField
+namespace Battlefield
 {
-    public int Rows { get; set; }
-    public int Cols { get; set; }
-    private int[,] field;
-
-    public BattleField(int rows, int cols)
+    public class BattleField
     {
-        Rows = rows;
-        Cols = cols;
-        field = new int[rows, cols];
-    }
+        public int Rows { get; }
+        public int Cols { get; }
+        private readonly int[,] _field;
 
-    public BattleField(int[,] matrix)
-    {
-        Rows = matrix.GetLength(0);
-        Cols = matrix.GetLength(1);
-        field = matrix;
-    }
-
-    public void PrintField()
-    {
-        for (int i = 0; i < Rows; i++)
+        public BattleField(int rows, int cols)
         {
-            for (int j = 0; j < Cols; j++)
-            {
-                Console.Write(field[i, j]);
-                Console.Write(' ');
-            }
-
-            Console.WriteLine();
+            Rows = rows;
+            Cols = cols;
+            _field = new int[rows, cols];
         }
-    }
 
-    public int this[int row, int col]
-    {
-        get { return field[row, col]; }
-        set { field[row, col] = value; }
+        public BattleField(int[,] matrix)
+        {
+            Rows = matrix.GetLength(0);
+            Cols = matrix.GetLength(1);
+            _field = matrix;
+        }
+
+        public int this[int row, int col]
+        {
+            get => _field[row, col];
+            set => _field[row, col] = value;
+        }
     }
 }

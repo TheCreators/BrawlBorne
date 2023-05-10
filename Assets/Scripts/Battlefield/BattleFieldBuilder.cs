@@ -1,89 +1,82 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BattleFieldBuilder : MonoBehaviour
+namespace Battlefield
 {
-    // Start is called before the first frame update
-    public GameObject wall;
-    public GameObject grass;
-    public GameObject bottle;
-    public GameObject obstacle;
-    public GameObject ground;
-
-    private int fieldLength = 30;
-    private int fieldWidth = 30;
-    private List<NavMeshSurface> navMeshSurfaces= new List <NavMeshSurface>();
-    void Start()
+    public class BattleFieldBuilder : MonoBehaviour
     {
-        Build();
-        BakeNavMesh();
-    }
+        [Header("Objects")] 
+        [SerializeField] private GameObject _wall;
+        [SerializeField] private GameObject _grass;
+        [SerializeField] private GameObject _bottle;
+        [SerializeField] private GameObject _ground;
 
-    void Build()
-    {
-        GameObject fiel = Instantiate(ground, new Vector3(0, 0, 0), Quaternion.identity);
-        navMeshSurfaces.Add(fiel.GetComponentInChildren<NavMeshSurface>());
-        float wallSize = 2;
+        [Header("Settings")] 
+        [SerializeField] private int _fieldLength = 30;
+        [SerializeField] private int _fieldWidth = 30;
+        [SerializeField] private int _tileSize = 2;
 
-        BattleField map = new BattleFieldGenerator(new BattleField(fieldLength, fieldWidth)).GenerateExternalWalls()
-            .GenerateWalls()
-            .DeleteSingleWalls().AddBushes().AddPots().BuildMap();
+        private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
 
-        float xCorrection = -fieldLength * wallSize;
-        float zCorrection = -fieldWidth * wallSize;
-
-
-        GameObject createdObject;
-        for (int i = 0; i < map.Cols; i++)
+        private void Start()
         {
-            for (int j = 0; j < map.Rows; j++)
+            Build();
+            BakeNavMesh();
+        }
+
+        private void Build()
+        {
+            GameObject field = Instantiate(_ground, new Vector3(0, 0, 0), Quaternion.identity);
+            _navMeshSurfaces.Add(field.GetComponentInChildren<NavMeshSurface>());
+
+            BattleField map = new BattleFieldGenerator(new BattleField(_fieldLength, _fieldWidth))
+                .GenerateExternalWalls()
+                .GenerateWalls()
+                .DeleteSingleWalls()
+                .AddBushes()
+                .AddPots()
+                .BuildMap();
+
+            float xCorrection = -_fieldLength * _tileSize;
+            float zCorrection = -_fieldWidth * _tileSize;
+
+            for (int i = 0; i < map.Cols; i++)
             {
-                switch (map[i, j])
+                for (int j = 0; j < map.Rows; j++)
                 {
-                    case 1:
-                        createdObject = Instantiate(wall,
-                            new Vector3(xCorrection + i * wallSize, 0, zCorrection + j * wallSize),
-                            Quaternion.identity);
-                        navMeshSurfaces.Add((createdObject.GetComponentInChildren<NavMeshSurface>()));
-                        break;
-                    case 2:
-                        createdObject = Instantiate(wall,
-                            new Vector3(xCorrection + i * wallSize, 0, zCorrection + j * wallSize),
-                            Quaternion.identity);
-                        navMeshSurfaces.Add((createdObject.GetComponentInChildren<NavMeshSurface>()));
-                        break;
-                    case 3:
-                        Instantiate(grass,
-                            new Vector3(xCorrection + i * wallSize, 0, zCorrection + j * wallSize),
-                            Quaternion.identity);
-                        break;
-                    case 5:
-                        Instantiate(bottle, new Vector3(xCorrection + i * wallSize, 0, zCorrection + j * wallSize),
-                            Quaternion.identity);
-                        break;
-                    case 6:
-                        createdObject = Instantiate(obstacle,
-                            new Vector3(xCorrection + i * wallSize, 0, zCorrection + j * wallSize),
-                            Quaternion.identity);
-                        navMeshSurfaces.Add((createdObject.GetComponentInChildren<NavMeshSurface>()));
-                        break;
+                    GameObject createdObject;
+                    switch (map[i, j])
+                    {
+                        case 1:
+                            createdObject = Instantiate(_wall, 
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize), Quaternion.identity);
+                            _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
+                            break;
+                        case 2:
+                            createdObject = Instantiate(_wall,
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize), Quaternion.identity);
+                            _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
+                            break;
+                        case 3:
+                            Instantiate(_grass,
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize), Quaternion.identity);
+                            break;
+                        case 5:
+                            Instantiate(_bottle, 
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize), Quaternion.identity);
+                            break;
+                    }
                 }
             }
         }
-    }
 
-    void BakeNavMesh()
-    {
-        for (int i = 0; i < navMeshSurfaces.Count; i++)
+        private void BakeNavMesh()
         {
-            navMeshSurfaces[i].BuildNavMesh();
+            foreach (var navMeshSurface in _navMeshSurfaces)
+            {
+                navMeshSurface.BuildNavMesh();
+            }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }
