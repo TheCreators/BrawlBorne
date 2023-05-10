@@ -114,5 +114,15 @@ namespace Player
                 _moveSpeed = _sneakHeld ? _sneakSpeed : _walkSpeed;
             }
         }
+
+        public void ChangeWalkSpeed(float speed)
+        {
+            _walkSpeed = speed;
+        }
+
+        public float GetCurrentWalkSpeed()
+        {
+            return _walkSpeed;
+        }
     }
 }

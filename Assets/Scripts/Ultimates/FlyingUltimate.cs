@@ -7,7 +7,7 @@ namespace Ultimates
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(GroundChecker))]
-    public class FlyingUltimate : MonoBehaviour
+    public class FlyingUltimate : Ultimate
     {
         [SerializeField, Range(5, 50)] private float _ascendSpeed = 10f;
         [SerializeField, Range(0, 5)] private float _ascendDuration = 1f;
@@ -21,14 +21,13 @@ namespace Ultimates
             _rigidbody = GetComponent<Rigidbody>();
             _groundChecker = GetComponent<GroundChecker>();
         }
-
-        public void OnUltimate(InputAction.CallbackContext context)
+        
+        public override void Use()
         {
-            if (context.performed is false || _groundChecker.IsGrounded is false)
+            if (_groundChecker.IsGrounded is true)
             {
-                return;
+                StartCoroutine(FlyingRoutine());
             }
-            StartCoroutine(FlyingRoutine());
         }
 
         private IEnumerator FlyingRoutine()
