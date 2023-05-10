@@ -1,8 +1,7 @@
+using Events;
 using Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -16,10 +15,10 @@ namespace Player
         [SerializeField, Range(0, 1)] private float _airSpeedMultiplier = 0.5f;
         
         [Header("Events")]
-        [SerializeField] private UnityEvent _onMove;
-        [SerializeField] private UnityEvent _onStopMoving;
-        [SerializeField] private UnityEvent _onSneak;
-        [SerializeField] private UnityEvent _onStopSneaking;
+        [SerializeField] private GameEvent _onMove;
+        [SerializeField] private GameEvent _onStopMoving;
+        [SerializeField] private GameEvent _onSneak;
+        [SerializeField] private GameEvent _onStopSneaking;
 
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
@@ -28,6 +27,12 @@ namespace Player
         private Vector2 _inputMoveDirection;
         private bool _sneakHeld;
         private const int SpeedMultiplier = 10;
+
+        public float WalkSpeed
+        {
+            get => _walkSpeed;
+            set => _walkSpeed = value;
+        }
 
         private void Start()
         {
@@ -53,11 +58,11 @@ namespace Player
             
             if (context.performed)
             {
-                _onMove.Invoke();
+                _onMove.Raise(this, null);
             }
             else if (context.canceled)
             {
-                _onStopMoving.Invoke();
+                _onStopMoving.Raise(this, null);
             }
         }
 
@@ -66,12 +71,12 @@ namespace Player
             if (context.performed)
             {
                 _sneakHeld = true;
-                _onSneak.Invoke();
+                _onSneak.Raise(this, null);
             }
             else if (context.canceled)
             {
                 _sneakHeld = false;
-                _onStopSneaking.Invoke();
+                _onStopSneaking.Raise(this, null);
             }
         }
 
@@ -113,16 +118,6 @@ namespace Player
             {
                 _moveSpeed = _sneakHeld ? _sneakSpeed : _walkSpeed;
             }
-        }
-
-        public void ChangeWalkSpeed(float speed)
-        {
-            _walkSpeed = speed;
-        }
-
-        public float GetCurrentWalkSpeed()
-        {
-            return _walkSpeed;
         }
     }
 }

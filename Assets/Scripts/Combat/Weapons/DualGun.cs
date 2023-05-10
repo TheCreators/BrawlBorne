@@ -32,7 +32,7 @@ namespace Combat.Weapons
                 bool isLastBullet = i == _bulletsPerShot - 1;
                 if (isLastBullet is false)
                 {
-                    _onUse.Invoke();
+                    _onUse.Raise(this, null);
                 }
                 
                 Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);

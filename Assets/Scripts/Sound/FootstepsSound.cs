@@ -33,41 +33,55 @@ namespace Sound
             _footstepDelay = _footstepWalkDelay;
         }
         
-        public void SetIsGroundedToFalse()
+        public void SetIsGroundedToFalse(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
+            
             _isGrounded = false;
         }
         
-        public void PlayFootstepsSound()
+        public void PlayFootstepsSound(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
+            
             _footstepCoroutine ??= StartCoroutine(FootstepCoroutine());
         }
         
-        public void StopFootstepsSound()
+        public void StopFootstepsSound(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
+            
             if (_footstepCoroutine == null) return;
             StopCoroutine(_footstepCoroutine);
             _footstepCoroutine = null;
         }
         
-        public void SetFootstepsDelayToSneaking()
+        public void SetFootstepsDelayToSneaking(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
+            
             _footstepDelay = _footstepSneakDelay;
         }
 
-        public void SetFootstepsDelayToWalking()
+        public void SetFootstepsDelayToWalking(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
+            
             _footstepDelay = _footstepWalkDelay;
         }
 
-        public void PlayLandingSound()
+        public void PlayLandingSound(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
+            
             _isGrounded = true;
             _audioSource.PlayOneShot(_landingSound);
         }
 
-        public void PlayJumpSound()
+        public void PlayJumpSound(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
+            
             _isGrounded = false;
             _audioSource.PlayOneShot(_jumpSound);
         }

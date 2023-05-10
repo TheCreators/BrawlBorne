@@ -1,4 +1,5 @@
 ﻿using System;
+using Misc;
 using UnityEngine;
 
 namespace Bot
@@ -36,6 +37,8 @@ namespace Bot
                 case BotState.Attacking:
                     HandleAttackingState();
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -55,13 +58,12 @@ namespace Bot
 
         private void HandleChasingState()
         {
-            var closestHero = _botSensor.ClosestHeroInDetectionRange;
-            if (closestHero is null)
+            Hero closestHeroInDetectionRange = _botSensor.ClosestHeroInDetectionRange;
+            if (closestHeroInDetectionRange is null)
             {
                 _currentState = BotState.Wandering;
                 return;
             }
-
             
             if (_botSensor.IsAnyHeroInAttackRange && _botSensor.IsVisible(_botSensor.ClosestHeroInAttackRange))
             {
@@ -69,7 +71,7 @@ namespace Bot
                 return;
             }
 
-            _botMovement.GoToDestination(closestHero.transform.position);
+            _botMovement.GoToDestination(closestHeroInDetectionRange.ShootAt);
         }
 
         private void HandleAttackingState()
@@ -80,15 +82,14 @@ namespace Bot
                 return;
             }
 
-            _botCombat.Target = _botSensor.ClosestHeroInAttackRange;
-            if (_botCombat.Target is null || _botSensor.IsVisible(_botCombat.Target) is false)
+            Hero closestHeroInAttackRange = _botSensor.ClosestHeroInAttackRange;
+            if (closestHeroInAttackRange is null || _botSensor.IsVisible(closestHeroInAttackRange) is false)
             {
                 _currentState = BotState.Chasing;
                 return;
             }
 
-            _botMovement.Stop();
-            _botCombat.AimAndTryUseWeapon();
+            _botCombat.Shoot(closestHeroInAttackRange);
             _botMovement.Strafe();
         }
 
@@ -107,14 +108,9 @@ namespace Bot
                         Gizmos.color = Color.yellow;
                         Gizmos.DrawLine(transform.position, _botMovement.Destination);
                         break;
-
-                    case BotState.Attacking:
-                        Gizmos.color = Color.red;
-                        Gizmos.DrawLine(transform.position, _botCombat.TargetShootPosition!.Value);
-                        break;
                 }
             }
-            catch (NullReferenceException)
+            catch (SystemException)
             {
             }
         }

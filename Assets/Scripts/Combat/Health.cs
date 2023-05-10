@@ -1,5 +1,4 @@
-using System;
-using Misc;
+using Events;
 using UnityEngine;
 
 namespace Combat
@@ -9,6 +8,8 @@ namespace Combat
         [Header("Settings")]
         [SerializeField, Min(0)] private float _maxHealthPoints = 100f;
         [SerializeField, Min(0)] private float _healthPoints = 100f;
+        
+        [SerializeField] private GameEvent _onDeath;
 
         private void Start()
         {
@@ -21,8 +22,7 @@ namespace Combat
 
             if (_healthPoints <= 0)
             {
-                HeroesPool.Instance.RemoveHero(gameObject);
-                Destroy(gameObject);
+                _onDeath.Raise(this, null);
             }
         }
 
