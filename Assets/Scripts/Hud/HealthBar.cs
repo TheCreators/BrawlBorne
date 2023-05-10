@@ -1,24 +1,27 @@
-using Combat;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Hud
 {
-    [RequireComponent(typeof(Health))]
+    [RequireComponent(typeof(Image))]
     public class HealthBar : MonoBehaviour
     {
-        [SerializeField] private Image _hpBar;
-
-        private Health _health;
-
-        private void Start()
+        private Image _hpBar;
+        
+        private void Awake()
         {
-            _health = GetComponent<Health>();
+            _hpBar = GetComponent<Image>();
         }
 
-        private void Update()
+        public void SetHealthBar(Component component, object data) 
         {
-            _hpBar.fillAmount = 100;
+            Debug.Log("SetHealthBar");
+            if (component.TryGetComponent(out PlayerMovement playerMovement))
+            {
+                var hpPercentage = (float) data;
+                _hpBar.fillAmount = hpPercentage / 100f;
+            }
         }
     }
 }
