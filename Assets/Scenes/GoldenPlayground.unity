@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44408497, g: 0.4934991, b: 0.57293195, a: 1}
+  m_IndirectSpecularColor: {r: 0.44408444, g: 0.49349856, b: 0.5729315, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1109,6 +1109,10 @@ PrefabInstance:
       propertyPath: _botsCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3909827171621850472, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
+      propertyPath: _onPlayerDeath
+      value: 
+      objectReference: {fileID: 11400000, guid: 68d23cd08d27b8e44b38090202c53f2f, type: 2}
     - target: {fileID: 3909827171621850473, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
       propertyPath: m_RootOrder
       value: 3
