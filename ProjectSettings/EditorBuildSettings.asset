@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GoldenPlayground.unity
     guid: eb43d85d3062561489ba3f9d793d45e0
+  - enabled: 1
+    path: Assets/Scenes/Game Over Scene.unity
+    guid: 5b06d8e92bb3b1d469deea1ab87b218e
   m_configObjects: {}
