@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Events;
+using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
@@ -13,6 +14,10 @@ namespace Bot
         [Header("Strafe")]
         [SerializeField] private float _strafeSpeed = 1.0f;
         [SerializeField] private float _strafeDistance = 1.0f;
+
+        [Header("Events")] 
+        [SerializeField] private GameEvent _onMove;
+        [SerializeField] private GameEvent _onStopMoving;
         
         private float _strafeDirection = 1.0f;
         private float _currentStrafe = 0.0f;
@@ -42,11 +47,13 @@ namespace Bot
         
         public void Stop()
         {
+            _onStopMoving.Raise(this, null);
             _agent.isStopped = true;
         }
         
         public void Resume()
         {
+            _onMove.Raise(this, null);
             _agent.isStopped = false;
         }
         
