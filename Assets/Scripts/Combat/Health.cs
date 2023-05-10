@@ -10,6 +10,7 @@ namespace Combat
         [SerializeField, Min(0)] private float _healthPoints = 100f;
         
         [SerializeField] private GameEvent _onDeath;
+        [SerializeField] private GameEvent _onHealthChanged;
 
         private void Start()
         {
@@ -19,6 +20,7 @@ namespace Combat
         public void TakeDamage(float damage)
         {
             _healthPoints -= damage;
+            _onHealthChanged.Raise(this, _healthPoints / _maxHealthPoints * 100);
 
             if (_healthPoints <= 0)
             {
