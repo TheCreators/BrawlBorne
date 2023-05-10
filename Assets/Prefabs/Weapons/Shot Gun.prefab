@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8156460348731439143}
   - component: {fileID: 4410859511930296668}
+  - component: {fileID: 8350063946199087737}
   m_Layer: 3
   m_Name: Shot Gun
   m_TagString: Untagged
@@ -44,6 +45,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6284ea602b8834d4dad00a195f7143b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onUse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8350063946199087737}
+        m_TargetAssemblyTypeName: Sound.WeaponSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _projectile: {fileID: 4434337982953079774, guid: 071aa03b589194944986faf6f66bd6f7, type: 3}
   _shootingDirection: {fileID: 0}
   _bulletSpawnDistance: 1
@@ -51,3 +67,17 @@ MonoBehaviour:
   _bulletsPerShot: 16
   _verticalSpread: 6
   _horizontalSpread: 6
+--- !u!114 &8350063946199087737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314872290901758410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dae91862bf3af4595a6503fcbece46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sound: {fileID: 8300000, guid: 3cf7f5cbe18a72a4abc5c6f173a11f0c, type: 3}
+  _audioSource: {fileID: 0}

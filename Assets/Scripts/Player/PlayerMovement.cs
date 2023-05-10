@@ -1,6 +1,7 @@
 using Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Player
@@ -13,6 +14,12 @@ namespace Player
         [SerializeField, Min(0)] private float _sneakSpeed = 7f;
         [SerializeField, Min(0)] private float _groundDrag = 5f;
         [SerializeField, Range(0, 1)] private float _airSpeedMultiplier = 0.5f;
+        
+        [Header("Events")]
+        [SerializeField] private UnityEvent _onMove;
+        [SerializeField] private UnityEvent _onStopMoving;
+        [SerializeField] private UnityEvent _onSneak;
+        [SerializeField] private UnityEvent _onStopSneaking;
 
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
@@ -49,6 +56,15 @@ namespace Player
         public void OnMove(InputAction.CallbackContext context)
         {
             _inputMoveDirection = context.ReadValue<Vector2>();
+            
+            if (context.performed)
+            {
+                _onMove.Invoke();
+            }
+            else if (context.canceled)
+            {
+                _onStopMoving.Invoke();
+            }
         }
 
         public void OnSneak(InputAction.CallbackContext context)
@@ -56,10 +72,12 @@ namespace Player
             if (context.performed)
             {
                 _sneakHeld = true;
+                _onSneak.Invoke();
             }
             else if (context.canceled)
             {
                 _sneakHeld = false;
+                _onStopSneaking.Invoke();
             }
         }
 
