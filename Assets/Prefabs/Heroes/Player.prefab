@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2098699420421557160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 846497453633432339}
+  m_Layer: 3
+  m_Name: Footsteps Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &846497453633432339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098699420421557160}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6942594267589458436}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2886871588467311804
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +183,14 @@ GameObject:
   - component: {fileID: 1307913016}
   - component: {fileID: 1835581549}
   - component: {fileID: 6221751584909315273}
-  - component: {fileID: 5740485527734952407}
+  - component: {fileID: 4340838794852804689}
+  - component: {fileID: 4764687585855434967}
+  - component: {fileID: 4648661493613600930}
+  - component: {fileID: 4260715386643248121}
+  - component: {fileID: 632081893114757642}
+  - component: {fileID: 4779849879955402722}
+  - component: {fileID: 3024373830178429953}
+  - component: {fileID: 6855535888617466851}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -184,6 +222,7 @@ Transform:
   - {fileID: 8875820040749194292}
   - {fileID: 1929746468828497117}
   - {fileID: 7632048028256500891}
+  - {fileID: 846497453633432339}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -504,36 +543,8 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
-  _onLand:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5740485527734952407}
-        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
-        m_MethodName: PlayLandingSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onAirborne:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5740485527734952407}
-        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
-        m_MethodName: SetIsGroundedToFalse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _onLand: {fileID: 11400000, guid: 1a93eb162b575d14ba22bfea07000ef3, type: 2}
+  _onAirborne: {fileID: 11400000, guid: d0d33419420935e4cb7d2166f54909c3, type: 2}
 --- !u!114 &1146891796700530722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,66 +574,10 @@ MonoBehaviour:
   _sneakSpeed: 7
   _groundDrag: 5
   _airSpeedMultiplier: 0.5
-  _onMove:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5740485527734952407}
-        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
-        m_MethodName: PlayFootstepsSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onStopMoving:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5740485527734952407}
-        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
-        m_MethodName: StopFootstepsSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onSneak:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5740485527734952407}
-        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
-        m_MethodName: SetFootstepsDelayToSneaking
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onStopSneaking:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5740485527734952407}
-        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
-        m_MethodName: SetFootstepsDelayToWalking
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _onMove: {fileID: 11400000, guid: bd6ab64eada019c409c422e42ec4c918, type: 2}
+  _onStopMoving: {fileID: 11400000, guid: a70a62ef516cea842a927b4d6e2fc81d, type: 2}
+  _onSneak: {fileID: 11400000, guid: 4d6f0a4fb84880245920e3ef4184a44a, type: 2}
+  _onStopSneaking: {fileID: 11400000, guid: f26c040e00102a44bb21304beafb5250, type: 2}
 --- !u!114 &6319289774936516497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,21 +592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpForce: 8
   _jumpCooldown: 0.5
-  _onJump:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5740485527734952407}
-        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
-        m_MethodName: PlayJumpSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _onJump: {fileID: 11400000, guid: 2b8b1434e3cc24a429404b99d9f49c75, type: 2}
 --- !u!114 &1650874961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,7 +653,7 @@ MonoBehaviour:
   _ascendSpeed: 20
   _ascendDuration: 1.5
   _flyDuration: 7
---- !u!114 &5740485527734952407
+--- !u!114 &4340838794852804689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -734,6 +675,202 @@ MonoBehaviour:
   _landingSound: {fileID: 8300000, guid: 3d8f480d252db9449b2f978284506f8e, type: 3}
   _footstepWalkDelay: 0.35
   _footstepSneakDelay: 0.52
+--- !u!114 &4764687585855434967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 2b8b1434e3cc24a429404b99d9f49c75, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4340838794852804689}
+        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
+        m_MethodName: PlayJumpSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4648661493613600930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: d0d33419420935e4cb7d2166f54909c3, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4340838794852804689}
+        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
+        m_MethodName: SetIsGroundedToFalse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4260715386643248121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 1a93eb162b575d14ba22bfea07000ef3, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4340838794852804689}
+        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
+        m_MethodName: PlayLandingSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &632081893114757642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: bd6ab64eada019c409c422e42ec4c918, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4340838794852804689}
+        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
+        m_MethodName: PlayFootstepsSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4779849879955402722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: a70a62ef516cea842a927b4d6e2fc81d, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4340838794852804689}
+        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
+        m_MethodName: StopFootstepsSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3024373830178429953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 4d6f0a4fb84880245920e3ef4184a44a, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4340838794852804689}
+        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
+        m_MethodName: SetFootstepsDelayToSneaking
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6855535888617466851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267589458447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: f26c040e00102a44bb21304beafb5250, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4340838794852804689}
+        m_TargetAssemblyTypeName: Sound.FootstepsSound, Assembly-CSharp
+        m_MethodName: SetFootstepsDelayToWalking
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7632048028256500890
 GameObject:
   m_ObjectHideFlags: 0

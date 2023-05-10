@@ -123,50 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 8448c2277d4c39547afad5f9e6f38b21, type: 2}
---- !u!1 &618212562 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3909827171621850475, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
-  m_PrefabInstance: {fileID: 3909827170602576898}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &618212563 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3909827171621850472, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
-  m_PrefabInstance: {fileID: 3909827170602576898}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618212562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c62c62021fbb4f4cbc816f8f1ea72c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &618212565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618212562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameEvent: {fileID: 11400000, guid: 68d23cd08d27b8e44b38090202c53f2f, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 618212563}
-        m_TargetAssemblyTypeName: Misc.HeroesPool, Assembly-CSharp
-        m_MethodName: RemoveHero
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &776695836
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,18 +451,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3909827171621850472, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
-      propertyPath: _botPrefab
-      value: 
-      objectReference: {fileID: 2026786720301705275, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
-    - target: {fileID: 3909827171621850472, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
-      propertyPath: _botsCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3909827171621850472, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
-      propertyPath: _playerPrefab
-      value: 
-      objectReference: {fileID: 1146891796700530722, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
     - target: {fileID: 3909827171621850473, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
       propertyPath: m_RootOrder
       value: 2
