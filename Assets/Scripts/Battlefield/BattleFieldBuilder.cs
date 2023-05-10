@@ -6,14 +6,13 @@ namespace Battlefield
 {
     public class BattleFieldBuilder : MonoBehaviour
     {
-        [Header("Objects")] 
-        [SerializeField] private GameObject _wall;
+        [Header("Objects")] [SerializeField] private GameObject _wall;
         [SerializeField] private GameObject _grass;
         [SerializeField] private GameObject _bottle;
         [SerializeField] private GameObject _ground;
+        [SerializeField] private GameObject _bot;
 
-        [Header("Settings")] 
-        [SerializeField] private int _fieldLength = 30;
+        [Header("Settings")] [SerializeField] private int _fieldLength = 30;
         [SerializeField] private int _fieldWidth = 30;
         [SerializeField] private int _tileSize = 2;
 
@@ -22,7 +21,7 @@ namespace Battlefield
         private void Start()
         {
             Build();
-            BakeNavMesh();
+            //BakeNavMesh();
         }
 
         private void Build()
@@ -36,6 +35,8 @@ namespace Battlefield
                 .DeleteSingleWalls()
                 .AddBushes()
                 .AddPots()
+                .MakeSymmetric()
+                .AddHeroesSpots()
                 .BuildMap();
 
             float xCorrection = -_fieldLength * _tileSize;
@@ -49,22 +50,31 @@ namespace Battlefield
                     switch (map[i, j])
                     {
                         case 1:
-                            createdObject = Instantiate(_wall, 
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize), Quaternion.identity);
+                            createdObject = Instantiate(_wall,
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                Quaternion.identity);
                             _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
                             break;
                         case 2:
                             createdObject = Instantiate(_wall,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize), Quaternion.identity);
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                Quaternion.identity);
                             _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
                             break;
                         case 3:
                             Instantiate(_grass,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize), Quaternion.identity);
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                Quaternion.identity);
+                            break;
+                        case 4:
+                            Instantiate(_bot,
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                Quaternion.identity);
                             break;
                         case 5:
-                            Instantiate(_bottle, 
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize), Quaternion.identity);
+                            Instantiate(_bottle,
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                Quaternion.identity);
                             break;
                     }
                 }
