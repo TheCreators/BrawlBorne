@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
 using Combat;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace Interface
+namespace Hud
 {
     [RequireComponent(typeof(Health))]
     public class HealthBar : MonoBehaviour
@@ -13,14 +11,14 @@ namespace Interface
 
         private Health _health;
 
-        void Start()
+        private void Start()
         {
             _health = GetComponent<Health>();
         }
 
-        void Update()
+        private void Update()
         {
-            _hpBar.fillAmount = _health.GetHealth / 100;
+            _hpBar.fillAmount = 100;
         }
     }
 }
