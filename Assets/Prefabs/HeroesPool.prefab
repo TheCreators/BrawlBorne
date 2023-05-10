@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 6942594267589458447, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
   _botPrefab: {fileID: 477042130070592955, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
-  _botsCount: 2
+  _botsCount: 10
