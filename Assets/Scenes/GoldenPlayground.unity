@@ -729,7 +729,7 @@ PrefabInstance:
       value: Boost Crate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c5c19a7db485f404c8fbb4e18e4d4b03, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
 --- !u!4 &1048135405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3890351838399573575, guid: ee02e9dcc36a35d40b520dca22e375f8, type: 3}
