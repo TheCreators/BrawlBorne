@@ -47,7 +47,6 @@ namespace Bot
         
         public void Stop()
         {
-            _onStopMoving.Raise(this, null);
             _agent.isStopped = true;
         }
         
