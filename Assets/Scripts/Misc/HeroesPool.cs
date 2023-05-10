@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Misc
 {
@@ -11,7 +13,7 @@ namespace Misc
         
         [Header("Settings")]
         [SerializeField] [Min(0)] private int _botsCount = 2;
-
+        
         public List<Hero> Heroes { get; private set; } = new ();
         
         private void Start()
@@ -34,7 +36,13 @@ namespace Misc
                 Heroes.Remove(hero);
                 Destroy(hero.gameObject);
             }
-            
+
+            if (hero.TryGetComponent(out PlayerMovement movement))
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 }
