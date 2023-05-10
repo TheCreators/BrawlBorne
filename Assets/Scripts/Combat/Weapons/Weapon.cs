@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Combat.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
+        [SerializeField] protected UnityEvent _onUse;
+
         protected bool CanBeUsed = true;
 
-        public bool IsUsing { get; set; }
-        
-        public void TryUse() {
+        public void TryUse()
+        {
             if (CanBeUsed is false)
             {
                 return;
             }
 
-            IsUsing = true;
+            _onUse.Invoke();
             Use();
         }
-        
+
         protected abstract void Use();
     }
 }
