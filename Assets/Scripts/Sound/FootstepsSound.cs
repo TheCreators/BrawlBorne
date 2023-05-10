@@ -21,8 +21,14 @@ namespace Sound
         private bool _isGrounded = true;
         private int _previousFootstepIndex = -1;
 
+        private readonly string _settingsKey = "volume";
+
         private void Awake()
         {
+            if (PlayerPrefs.HasKey(_settingsKey))
+            {
+                _audioSource.volume = PlayerPrefs.GetFloat(_settingsKey);
+            }
             _audioSource = GetComponent<AudioSource>();
             _footstepDelay = _footstepWalkDelay;
         }
