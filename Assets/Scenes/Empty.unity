@@ -501,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 2026786720301705275, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
     - target: {fileID: 3909827171621850472, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
       propertyPath: _botsCount
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3909827171621850472, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
       propertyPath: _playerPrefab
