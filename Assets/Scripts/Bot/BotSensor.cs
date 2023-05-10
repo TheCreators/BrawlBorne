@@ -12,18 +12,18 @@ namespace Bot
 
         public bool IsAnyHeroInDetectionRange => IsAnyHeroInRange(_playerDetectionRadius);
         public bool IsAnyHeroInAttackRange => IsAnyHeroInRange(_playerAttackRadius);
-        [CanBeNull] public GameObject ClosestHeroInDetectionRange => GetClosestHeroInRange(_playerDetectionRadius);
-        [CanBeNull] public GameObject ClosestHeroInAttackRange => GetClosestHeroInRange(_playerAttackRadius);
+        [CanBeNull] public Hero ClosestHeroInDetectionRange => GetClosestHeroInRange(_playerDetectionRadius);
+        [CanBeNull] public Hero ClosestHeroInAttackRange => GetClosestHeroInRange(_playerAttackRadius);
 
         private bool IsAnyHeroInRange(float range)
         {
-            foreach (var hero in HeroesPool.Instance.Heroes)
+            foreach (Hero hero in HeroesPool.Instance.Heroes)
             {
-                if (hero == transform.gameObject) continue;
+                if (hero.gameObject == transform.gameObject) continue;
 
-                var distance = Vector3.Distance(transform.position, hero.transform.position);
+                var distance = Vector3.Distance(transform.position, hero.ShootAt);
 
-                if (!(distance <= range)) continue;
+                if (distance > range) continue;
 
                 return true;
             }
@@ -32,20 +32,18 @@ namespace Bot
         }
 
         [CanBeNull]
-        private GameObject GetClosestHeroInRange(float range)
+        private Hero GetClosestHeroInRange(float range)
         {
-            GameObject closestHero = null;
+            Hero closestHero = null;
             var closestDistance = Mathf.Infinity;
 
-            foreach (var hero in HeroesPool.Instance.Heroes)
+            foreach (Hero hero in HeroesPool.Instance.Heroes)
             {
-                if (hero == transform.gameObject) continue;
+                if (hero.gameObject == transform.gameObject) continue;
 
-                var distance = Vector3.Distance(transform.position, hero.transform.position);
+                var distance = Vector3.Distance(transform.position, hero.ShootAt);
 
-                if (!(distance <= range)) continue;
-
-                if (!(distance < closestDistance)) continue;
+                if (distance > range || distance >= closestDistance) continue;
 
                 closestHero = hero;
                 closestDistance = distance;
@@ -54,13 +52,14 @@ namespace Bot
             return closestHero;
         }
 
-        public bool IsVisible(GameObject target)
+        public bool IsVisible(Hero hero)
         {
-            if (target == null) return false;
-
-            Vector3 direction = target.transform.position - transform.position;
-            bool isVisible = Physics.SphereCast(transform.position, 2f, direction, out RaycastHit hit, _playerDetectionRadius) &&
-                             hit.collider.gameObject == target;
+            if (hero == null) return false;
+            
+            Vector3 direction = hero.ShootAt - transform.position;
+            bool isVisible = Physics.SphereCast(transform.position, 0.5f, direction, out var hit, _playerDetectionRadius) &&
+                             hit.collider.gameObject == hero.gameObject;
+            
             return isVisible;
         }
 

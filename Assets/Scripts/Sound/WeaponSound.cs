@@ -8,8 +8,10 @@ namespace Sound
         [SerializeField] private AudioClip _sound;
         [SerializeField] private AudioSource _audioSource;
 
-        public void PlaySound()
+        public void PlaySound(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
+            
             _audioSource.PlayOneShot(_sound);
         }
     }

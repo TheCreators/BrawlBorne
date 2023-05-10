@@ -6,13 +6,13 @@ namespace Misc
     public class HeroesPool : MonoSingleton<HeroesPool>
     {
         [Header("Requirements")]
-        [SerializeField] private GameObject _playerPrefab;
-        [SerializeField] private GameObject _botPrefab;
+        [SerializeField] private Hero _playerPrefab;
+        [SerializeField] private Hero _botPrefab;
         
         [Header("Settings")]
         [SerializeField] [Min(0)] private int _botsCount = 2;
 
-        public List<GameObject> Heroes { get; private set; } = new ();
+        public List<Hero> Heroes { get; private set; } = new ();
         
         private void Start()
         {
@@ -27,9 +27,14 @@ namespace Misc
             }
         }
         
-        public void RemoveHero(GameObject hero)
+        public void RemoveHero(Component sender, object data)
         {
-            Heroes.Remove(hero);
+            if (sender.TryGetComponent(out Hero hero) && Heroes.Contains(hero))
+            {
+                Heroes.Remove(hero);
+                Destroy(hero.gameObject);
+            }
+            
         }
     }
 }

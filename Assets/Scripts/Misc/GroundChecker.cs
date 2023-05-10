@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using Events;
+using UnityEngine;
 
 namespace Misc
 {
@@ -11,8 +11,8 @@ namespace Misc
         [Header("Settings")]
         [SerializeField, Range(0, 5)] private float _checkRadius = 0.4f;
         [SerializeField] private LayerMask _groundMask;
-        [SerializeField] private UnityEvent _onLand;
-        [SerializeField] private UnityEvent _onAirborne;
+        [SerializeField] private GameEvent _onLand;
+        [SerializeField] private GameEvent _onAirborne;
 
         public bool IsGrounded { get; private set; }
         private bool _wasGrounded = false;
@@ -23,12 +23,12 @@ namespace Misc
 
             if (IsGrounded && !_wasGrounded)
             {
-                _onLand.Invoke();
+                _onLand.Raise(this, null);
             }
 
             if (!IsGrounded && _wasGrounded)
             {
-                _onAirborne.Invoke();
+                _onAirborne.Raise(this, null);
             }
 
             _wasGrounded = IsGrounded;
