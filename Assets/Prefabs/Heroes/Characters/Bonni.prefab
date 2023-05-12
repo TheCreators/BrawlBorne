@@ -862,7 +862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeUsed: 0
   _cooldown: 10
-  _ascendSpeed: 10
+  _ascendSpeed: 20
   _ascendDuration: 1
   _flyDuration: 5
 --- !u!1 &7632048028256500890
