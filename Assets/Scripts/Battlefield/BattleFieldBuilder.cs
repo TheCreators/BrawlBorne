@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Misc;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = System.Random;
 
 namespace Battlefield
 {
@@ -11,7 +12,7 @@ namespace Battlefield
         [SerializeField] private GameObject _grass;
         [SerializeField] private GameObject _bottle;
         [SerializeField] private GameObject _ground;
-        [SerializeField] private Hero _bot;
+        [SerializeField] private List<Hero> _bot;
 
         [Header("Settings")] [SerializeField] private int _fieldLength = 30;
         [SerializeField] private int _fieldWidth = 30;
@@ -20,7 +21,7 @@ namespace Battlefield
         private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
         public List<Hero> Heroes { get; private set; } = new();
         private BattleField map;
-
+        Random rnd = new Random();
         private void Start()
         {
             BuildTerrain();
@@ -80,7 +81,9 @@ namespace Battlefield
                 }
             }
         }
-        
+        private Hero GetRandomHero(){
+            return Heroes[rnd.Next(Heroes.Count)];
+        }
         private void PlaceBots()
         {
             float xCorrection = -_fieldLength * _tileSize;
@@ -91,7 +94,7 @@ namespace Battlefield
                 {
                     if (map[i, j] == 4)
                     {
-                        Heroes.Add(Instantiate(_bot,
+                        Heroes.Add(Instantiate(GetRandomHero(),
                             new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
                             Quaternion.identity));
                         break;
