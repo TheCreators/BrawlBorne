@@ -43,6 +43,13 @@ namespace Misc
                 Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
+
+            else if (Heroes.Count == 1)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            }
         }
     }
 }
