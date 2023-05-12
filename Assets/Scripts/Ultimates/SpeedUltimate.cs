@@ -35,6 +35,7 @@ namespace Ultimates
 
         private IEnumerator HittingRoutine()
         {
+            _canBeUsed = false;
             float previousSpeed = _playerMovement.WalkSpeed;
             _playerMovement.WalkSpeed = _speed;
             int count = 0;
@@ -46,7 +47,6 @@ namespace Ultimates
             }
 
             _playerMovement.WalkSpeed = previousSpeed;
-            _canBeUsed = false;
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
     

@@ -1,19 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Menu
 {
+    [RequireComponent(typeof(Slider))]
     public class SettingsSaver : MonoBehaviour
     {
+        [SerializeField] private string _settingsKey;
+
         private void Start()
         {
-            PlayerPrefs.SetFloat("volume", 1);
-            PlayerPrefs.Save();
+            if (PlayerPrefs.HasKey(_settingsKey))
+            {
+                GetComponent<Slider>().value = PlayerPrefs.GetFloat(_settingsKey);
+            }
         }
 
-        public void SetVolumeSetting(float value)
+        public void SetSettingValue(float value)
         {
-            PlayerPrefs.SetFloat("volume", value);
+            PlayerPrefs.SetFloat(_settingsKey, value);
             PlayerPrefs.Save();
         }
     }

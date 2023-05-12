@@ -34,13 +34,13 @@ namespace Ultimates
 
         private IEnumerator FlyingRoutine()
         {
+            _canBeUsed = false;
             ChangeAscendingSpeed(_ascendSpeed);
             yield return new WaitForSeconds(_ascendDuration);
             _rigidbody.useGravity = false;
             ChangeAscendingSpeed(0f);
             yield return new WaitForSeconds(_flyDuration);
             _rigidbody.useGravity = true;
-            _canBeUsed = false;
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
 
