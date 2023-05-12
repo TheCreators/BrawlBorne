@@ -9,8 +9,13 @@ namespace Player
 
         private Quaternion _rotation;
 
+        private const string SettingsKey = "sens";
         private void Start()
         {
+            if (PlayerPrefs.HasKey(SettingsKey))
+            {
+                _sensitivity = PlayerPrefs.GetFloat(SettingsKey);
+            }
             Cursor.lockState = CursorLockMode.Locked;
         }
 
