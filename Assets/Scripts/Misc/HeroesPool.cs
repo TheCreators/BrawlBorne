@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,12 +21,13 @@ namespace Misc
                 Destroy(hero.gameObject);
             }
         }
-        public void GetHeroes(List<Hero> heroes)
+
+
+        public void SetHeroes(List<Hero> heroes)
         {
             Heroes.Add(Instantiate(_playerPrefab));
 
             Heroes.AddRange(heroes);
-
         }
     }
 }
