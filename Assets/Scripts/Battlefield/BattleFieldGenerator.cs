@@ -4,11 +4,12 @@ namespace Battlefield
 {
     public class BattleFieldGenerator
     {
-        private readonly BattleField _battleField;
+        private BattleField _battleField;
         private const double WallDensity = 0.05;
         private const double BushesDensity = 0.03;
         private const int MaxBushSize = 3;
         private const int PotsCount = 9;
+        private const int HeroesCount = 15;
         private readonly Random _random = new Random();
 
         public BattleFieldGenerator(BattleField battleField)
@@ -75,7 +76,8 @@ namespace Battlefield
                 {
                     if (_battleField[i, j] == 1)
                     {
-                        if (_battleField[i - 1, j] == 0 && _battleField[i, j - 1] == 0 && _battleField[i + 1, j] == 0 && _battleField[i, j + 1] == 0)
+                        if (_battleField[i - 1, j] == 0 && _battleField[i, j - 1] == 0 && _battleField[i + 1, j] == 0 &&
+                            _battleField[i, j + 1] == 0)
                         {
                             _battleField[i, j] = 0;
                         }
@@ -88,7 +90,6 @@ namespace Battlefield
 
         public BattleFieldGenerator AddBushes()
         {
-            
             int rows = _battleField.Cols;
             int columns = _battleField.Rows;
             int cellsCount = rows * columns;
@@ -99,7 +100,7 @@ namespace Battlefield
             {
                 int row = _random.Next(rows);
                 int column = _random.Next(columns);
-                
+
                 int bushSize = _random.Next(MaxBushSize - 1) + 2;
                 for (int j = 0; j < bushSize; j++)
                 {
@@ -141,7 +142,55 @@ namespace Battlefield
             return this;
         }
 
-        public BattleField BuildMap()
+        public BattleFieldGenerator AddHeroesSpots()
+        {
+            int firstSpotX = _battleField.Cols / 4;
+            int firstSpotY = _battleField.Rows / 4;
+            int squareSizeX = _battleField.Cols - 2 * firstSpotX;
+            int squareSizeY = _battleField.Rows - 2 * firstSpotY;
+            int spacing = (2 * firstSpotX + 2 * firstSpotY) / HeroesCount;
+            int x = 0, y = 0;
+            for (int i = 0; i < HeroesCount; i++)
+            {
+                _battleField[firstSpotX + x, firstSpotY + y] = 4;
+                if (y == 0)
+                {
+                    x += spacing;
+                    if (x >= squareSizeX)
+                    {
+                        y = x - squareSizeX;
+                        x = squareSizeX;
+                    }
+                }
+                else if (x == squareSizeX)
+                {
+                    y += spacing;
+                    if (y >= squareSizeY)
+                    {
+                        x = squareSizeX - (y - squareSizeY);
+                        y = squareSizeY;
+                    }
+                }
+                else if (y == squareSizeY)
+                {
+                    x -= spacing;
+                    if (x < 0)
+                    {
+                        y = squareSizeY + x;
+                        x = 0;
+                    }
+                }
+                else
+
+                {
+                    y -= spacing;
+                }
+            }
+
+            return this;
+        }
+
+        public BattleFieldGenerator MakeSymmetric()
         {
             int rows = _battleField.Rows;
             int cols = _battleField.Cols;
@@ -159,7 +208,13 @@ namespace Battlefield
                 }
             }
 
-            return new BattleField(symmetricMatrix);
+            _battleField = new BattleField(symmetricMatrix);
+            return this;
+        }
+
+        public BattleField BuildMap()
+        {
+            return _battleField;
         }
     }
 }
