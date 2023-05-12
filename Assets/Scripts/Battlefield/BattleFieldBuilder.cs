@@ -19,20 +19,22 @@ namespace Battlefield
 
         private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
         public List<Hero> Heroes { get; private set; } = new();
+        private BattleField map;
 
         private void Start()
         {
-            Build();
-            //BakeNavMesh();
-            HeroesPool.Instance.GetHeroes(Heroes);
+            BuildTerrain();
+            BakeNavMesh();
+            PlaceBots();
+            HeroesPool.Instance.SetHeroes(Heroes);
         }
 
-        private void Build()
+        private void BuildTerrain()
         {
             GameObject field = Instantiate(_ground, new Vector3(0, 0, 0), Quaternion.identity);
             _navMeshSurfaces.Add(field.GetComponentInChildren<NavMeshSurface>());
 
-            BattleField map = new BattleFieldGenerator(new BattleField(_fieldLength, _fieldWidth))
+            map = new BattleFieldGenerator(new BattleField(_fieldLength, _fieldWidth))
                 .GenerateExternalWalls()
                 .GenerateWalls()
                 .DeleteSingleWalls()
@@ -69,17 +71,32 @@ namespace Battlefield
                                 new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
                                 Quaternion.identity);
                             break;
-                        case 4:
-                            Heroes.Add(Instantiate(_bot,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
-                                Quaternion.identity));
-                            break;
                         case 5:
                             Instantiate(_bottle,
                                 new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
                                 Quaternion.identity);
                             break;
                     }
+                }
+            }
+        }
+        
+        private void PlaceBots()
+        {
+            float xCorrection = -_fieldLength * _tileSize;
+            float zCorrection = -_fieldWidth * _tileSize;
+            for (int i = 0; i < map.Cols; i++)
+            {
+                for (int j = 0; j < map.Rows; j++)
+                {
+                    if (map[i, j] == 4)
+                    {
+                        Heroes.Add(Instantiate(_bot,
+                            new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                            Quaternion.identity));
+                        break;
+                    }
+                    
                 }
             }
         }
