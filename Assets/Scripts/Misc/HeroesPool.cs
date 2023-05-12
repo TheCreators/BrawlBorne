@@ -20,6 +20,19 @@ namespace Misc
                 Heroes.Remove(hero);
                 Destroy(hero.gameObject);
             }
+            if (hero.TryGetComponent(out PlayerMovement movement))
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+
+            else if (Heroes.Count == 1)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            }
         }
 
 
