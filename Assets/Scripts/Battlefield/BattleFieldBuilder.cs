@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Misc;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,18 +11,20 @@ namespace Battlefield
         [SerializeField] private GameObject _grass;
         [SerializeField] private GameObject _bottle;
         [SerializeField] private GameObject _ground;
-        [SerializeField] private GameObject _bot;
+        [SerializeField] private Hero _bot;
 
         [Header("Settings")] [SerializeField] private int _fieldLength = 30;
         [SerializeField] private int _fieldWidth = 30;
         [SerializeField] private int _tileSize = 2;
 
         private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
+        public List<Hero> Heroes { get; private set; } = new();
 
         private void Start()
         {
             Build();
             //BakeNavMesh();
+            HeroesPool.Instance.GetHeroes(Heroes);
         }
 
         private void Build()
@@ -67,9 +70,9 @@ namespace Battlefield
                                 Quaternion.identity);
                             break;
                         case 4:
-                            Instantiate(_bot,
+                            Heroes.Add(Instantiate(_bot,
                                 new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
-                                Quaternion.identity);
+                                Quaternion.identity));
                             break;
                         case 5:
                             Instantiate(_bottle,
