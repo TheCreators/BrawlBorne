@@ -467,6 +467,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 477042130070592946}
     m_Modifications:
+    - target: {fileID: 4410859511930296668, guid: 57a83ca9f4eb2c542a5cba000966bda9, type: 3}
+      propertyPath: _shootingDirection
+      value: 
+      objectReference: {fileID: 477042130070592946}
     - target: {fileID: 7314872290901758410, guid: 57a83ca9f4eb2c542a5cba000966bda9, type: 3}
       propertyPath: m_Name
       value: Shot Gun
@@ -515,6 +519,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8350063946199087737, guid: 57a83ca9f4eb2c542a5cba000966bda9, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 8344269675317444000}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57a83ca9f4eb2c542a5cba000966bda9, type: 3}
 --- !u!114 &3755712373764578018 stripped
@@ -540,10 +548,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 477042130070592946}
     m_Modifications:
+    - target: {fileID: -4142159789061123195, guid: dc6aba4809920654484cd8ba29c18ddb, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 8344269675317444000}
     - target: {fileID: 936402671515005356, guid: dc6aba4809920654484cd8ba29c18ddb, type: 3}
       propertyPath: m_Name
       value: Ultimate Shot Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 2272433378319431140, guid: dc6aba4809920654484cd8ba29c18ddb, type: 3}
+      propertyPath: _shootingDirection
+      value: 
+      objectReference: {fileID: 477042130070592946}
     - target: {fileID: 8039073245070755080, guid: dc6aba4809920654484cd8ba29c18ddb, type: 3}
       propertyPath: m_RootOrder
       value: 2

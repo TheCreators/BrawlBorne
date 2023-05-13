@@ -515,6 +515,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ultimate Ballistic Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 7833722499758689869, guid: d0be376d70cb4d94b955cd24740cc60e, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 8344269675317444000}
+    - target: {fileID: 8243654654196240166, guid: d0be376d70cb4d94b955cd24740cc60e, type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 477042130070592950}
+    - target: {fileID: 8243654654196240166, guid: d0be376d70cb4d94b955cd24740cc60e, type: 3}
+      propertyPath: _shootingDirection
+      value: 
+      objectReference: {fileID: 477042130070592946}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0be376d70cb4d94b955cd24740cc60e, type: 3}
 --- !u!114 &1639522804392854630 stripped
