@@ -142,53 +142,53 @@ namespace Battlefield
             return this;
         }
 
-        public BattleFieldGenerator AddHeroesSpots()
-        {
-            int firstSpotX = _battleField.Cols / 4;
-            int firstSpotY = _battleField.Rows / 4;
-            int squareSizeX = _battleField.Cols - 2 * firstSpotX;
-            int squareSizeY = _battleField.Rows - 2 * firstSpotY;
-            int spacing = (2 * firstSpotX + 2 * firstSpotY) / HeroesCount;
-            int x = 0, y = 0;
-            for (int i = 0; i < HeroesCount; i++)
+            public BattleFieldGenerator AddHeroesSpots()
             {
-                _battleField[firstSpotX + x, firstSpotY + y] = 4;
-                if (y == 0)
+                int squareSize = _battleField.Cols / 2;
+                int firstSpotX = _battleField.Cols / 4;
+                int firstSpotY = _battleField.Rows / 4;
+                int spacing = squareSize*4 / HeroesCount;
+                int x = 0, y = 0;
+                for (int i = 0; i < HeroesCount; i++)
                 {
-                    x += spacing;
-                    if (x >= squareSizeX)
-                    {
-                        y = x - squareSizeX;
-                        x = squareSizeX;
-                    }
-                }
-                else if (x == squareSizeX)
-                {
-                    y += spacing;
-                    if (y >= squareSizeY)
-                    {
-                        x = squareSizeX - (y - squareSizeY);
-                        y = squareSizeY;
-                    }
-                }
-                else if (y == squareSizeY)
-                {
-                    x -= spacing;
-                    if (x < 0)
-                    {
-                        y = squareSizeY + x;
-                        x = 0;
-                    }
-                }
-                else
 
-                {
-                    y -= spacing;
+                    _battleField[firstSpotX +x ,firstSpotY+ y] = 4;
+                    if (y == 0) 
+                    {
+                        x += spacing; 
+                        if (x >= squareSize)
+                        {
+                            y = x - squareSize;
+                            x = squareSize; 
+                        }
+                    }
+                    else if (x == squareSize) 
+                    {
+                        y += spacing; 
+                        if (y >= squareSize)
+                        {
+                            x = squareSize-(y-squareSize);
+                            y = squareSize;
+                        }
+                    }
+                    else if (y == squareSize) 
+                    {
+                        x -= spacing;
+                        if (x < 0)
+                        {
+                            y = squareSize+x;
+                            x = 0; 
+
+                        }
+                    }
+                    else 
+                    {
+                        y -= spacing;
+                    }
                 }
+                return this;
             }
 
-            return this;
-        }
 
         public BattleFieldGenerator MakeSymmetric()
         {
