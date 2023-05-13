@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8830530530166940497}
   - component: {fileID: 708521868062827603}
   - component: {fileID: 1915759271517685591}
+  - component: {fileID: -6817648966148636139}
   m_Layer: 9
   m_Name: Boost Crate
   m_TagString: Untagged
@@ -130,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoints: 100
   _healthPoints: 100
+  _onDeath: {fileID: 11400000, guid: 80d7fcd566e08834d807313e7f84ac5e, type: 2}
+  _onHealthChanged: {fileID: 11400000, guid: 48d790a501997594ca9f11b485fd2f22, type: 2}
 --- !u!114 &1915759271517685591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +146,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boost: {fileID: 187741752577437644, guid: 3b61dd29d483b5b44ae7d9296d7da664, type: 3}
+--- !u!114 &-6817648966148636139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305912507053142902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 80d7fcd566e08834d807313e7f84ac5e, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1915759271517685591}
+        m_TargetAssemblyTypeName: Environment.Crate, Assembly-CSharp
+        m_MethodName: OnDie
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
