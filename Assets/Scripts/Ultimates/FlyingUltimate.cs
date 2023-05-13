@@ -18,26 +18,28 @@ namespace Ultimates
 
         private void Awake()
         {
+            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
             _rigidbody = GetComponent<Rigidbody>();
             _groundChecker = GetComponent<GroundChecker>();
         }
         
         public override void Use()
         {
-            if (_groundChecker.IsGrounded is true)
-            {
-                StartCoroutine(FlyingRoutine());
-            }
+            if (_canBeUsed is false || _groundChecker.IsGrounded is false) return;
+            _onUse.Raise(this, null);
+            StartCoroutine(FlyingRoutine());
         }
 
         private IEnumerator FlyingRoutine()
         {
+            _canBeUsed = false;
             ChangeAscendingSpeed(_ascendSpeed);
             yield return new WaitForSeconds(_ascendDuration);
             _rigidbody.useGravity = false;
             ChangeAscendingSpeed(0f);
             yield return new WaitForSeconds(_flyDuration);
             _rigidbody.useGravity = true;
+            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
 
         private void ChangeAscendingSpeed(float speed)

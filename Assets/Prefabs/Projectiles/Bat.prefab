@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitLayers:
     serializedVersion: 2
-    m_Bits: 329
+    m_Bits: 841
   _speed: 9
   _maxDistance: 25
   _damage: 10

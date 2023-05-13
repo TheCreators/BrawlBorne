@@ -29,6 +29,12 @@ namespace Combat.Weapons
                                         _shootingDirection.up * _bulletSpawnHeight + // Height from camera
                                         _bulletsSpread * positionShiftAmount * transform.right; // Spread (left or right)
 
+                bool isLastBullet = i == _bulletsPerShot - 1;
+                if (isLastBullet is false)
+                {
+                    _onUse.Raise(this, null);
+                }
+                
                 Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);
 
                 positionShiftAmount *= -1;

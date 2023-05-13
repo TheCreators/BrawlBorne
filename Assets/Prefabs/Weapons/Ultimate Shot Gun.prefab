@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8039073245070755080}
   - component: {fileID: 2272433378319431140}
+  - component: {fileID: -4142159789061123195}
+  - component: {fileID: -6334831206539927553}
   m_Layer: 3
   m_Name: Ultimate Shot Gun
   m_TagString: Untagged
@@ -44,6 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6284ea602b8834d4dad00a195f7143b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onUse: {fileID: 11400000, guid: d18531d1412b2e141b1aa986c753afa0, type: 2}
+  _maxCells: 3
+  _currentCells: 3
+  _refillTime: 2
+  _onCellsAmountChanged: {fileID: 11400000, guid: c6c7094979ac94d47b11bd361c323c77, type: 2}
   _projectile: {fileID: 4434337982953079774, guid: 071aa03b589194944986faf6f66bd6f7, type: 3}
   _shootingDirection: {fileID: 0}
   _bulletSpawnDistance: 1
@@ -51,3 +58,45 @@ MonoBehaviour:
   _bulletsPerShot: 32
   _verticalSpread: 6
   _horizontalSpread: 6
+--- !u!114 &-4142159789061123195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936402671515005356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dae91862bf3af4595a6503fcbece46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sound: {fileID: 8300000, guid: 3cf7f5cbe18a72a4abc5c6f173a11f0c, type: 3}
+  _audioSource: {fileID: 0}
+--- !u!114 &-6334831206539927553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936402671515005356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: d18531d1412b2e141b1aa986c753afa0, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4142159789061123195}
+        m_TargetAssemblyTypeName: Sound.WeaponSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

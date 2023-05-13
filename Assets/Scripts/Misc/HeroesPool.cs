@@ -1,35 +1,58 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using Events;
+using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Misc
 {
     public class HeroesPool : MonoSingleton<HeroesPool>
     {
-        [Header("Requirements")]
-        [SerializeField] private GameObject _playerPrefab;
-        [SerializeField] private GameObject _botPrefab;
-        
-        [Header("Settings")]
-        [SerializeField] [Min(0)] private int _botsCount = 2;
+        [SerializeField] private GameEvent _onHeroesAmountChanged;
 
-        public List<GameObject> Heroes { get; private set; } = new ();
+        private Hero _playerPrefab;
+
+        public List<Hero> Heroes { get; private set; } = new();
         
         private void Start()
         {
-            Heroes.Add(Instantiate(_playerPrefab));
-            
-            for (var i = 0; i < _botsCount; i++)
+            _onHeroesAmountChanged.Raise(this, Heroes.Count);
+        }
+
+        public void SetPlayerPrefab(Hero playerPrefab)
+        {
+            _playerPrefab = playerPrefab;
+        }
+
+        public void RemoveHero(Component sender, object data)
+        {
+            if (sender.TryGetComponent(out Hero hero) && Heroes.Contains(hero))
             {
-                // Random position in circle
-                var randomPosition = transform.position + Random.insideUnitSphere * 100f;
-                Vector3 spawnPosition = new Vector3(randomPosition.x, 0, randomPosition.z);
-                Heroes.Add(Instantiate(_botPrefab, spawnPosition, Quaternion.identity));
+                _onHeroesAmountChanged.Raise(this, Heroes.Count - 1);
+                Heroes.Remove(hero);
+                Destroy(hero.gameObject);
+            }
+
+            if (hero.TryGetComponent(out PlayerMovement _))
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else if (Heroes.Count == 1)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             }
         }
-        
-        public void RemoveHero(GameObject hero)
+
+
+        public void SetHeroes(List<Hero> heroes)
         {
-            Heroes.Remove(hero);
+            Heroes.Add(Instantiate(_playerPrefab));
+
+            Heroes.AddRange(heroes);
         }
     }
 }

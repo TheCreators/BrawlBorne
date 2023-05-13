@@ -1,103 +1,122 @@
-using Misc;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Sound
 {
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(GroundChecker))]
+    [RequireComponent(typeof(AudioSource))]
     public class FootstepsSound : MonoBehaviour
     {
-        [Header("Requirements")] [SerializeField]
-        private AudioClip _footstepsSound;
-
+        [SerializeField] private List<AudioClip> _footstepSounds;
         [SerializeField] private AudioClip _jumpSound;
         [SerializeField] private AudioClip _landingSound;
-        [SerializeField] private AudioSource _audioSource;
-        private Rigidbody _character;
-        private GroundChecker _groundChecker;
-        private bool _wasGrounded;
+        
+        [Header("Footsteps Settings")]
+        [SerializeField] private float _footstepWalkDelay = 0.35f;
+        [SerializeField] private float _footstepSneakDelay = 0.5f;
+        
+        private AudioSource _audioSource;
+        private Coroutine _footstepCoroutine;
+        private float _footstepDelay;
+        private bool _isGrounded = true;
+        private int _previousFootstepIndex = -1;
 
-        private void Start()
+        private const string SettingsKey = "volume";
+
+        private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
-            _character = GetComponent<Rigidbody>();
-            _groundChecker = GetComponent<GroundChecker>();
+            _footstepDelay = _footstepWalkDelay;
         }
 
-        private void Update()
+        public void Start()
         {
-            bool isGrounded = _groundChecker.IsGrounded;
-            bool isMoving = _character.velocity.sqrMagnitude > 0f;
-            bool isPlaying = _audioSource.isPlaying;
-
-            if (isGrounded)
+            if (PlayerPrefs.HasKey(SettingsKey))
             {
-                HandleGroundedState(isMoving, isPlaying);
-            }
-            else
-            {
-                HandleAirborneState(isPlaying);
+                _audioSource.volume = PlayerPrefs.GetFloat(SettingsKey);
             }
         }
 
-        private void HandleGroundedState(bool isMoving, bool isPlaying)
+        public void SetIsGroundedToFalse(Component component, object data)
         {
-            if (isMoving)
-            {
-                PlayFootstepsSound(isPlaying);
-            }
-            else
-            {
-                StopNonJumpOrLandingSounds(isPlaying);
-            }
-
-            if (_groundChecker.IsGrounded != _wasGrounded)
-            {
-                PlayLandingSound();
-            }
-
-            _wasGrounded = true;
+            if (component.gameObject != gameObject) return;
+            
+            _isGrounded = false;
+        }
+        
+        public void PlayFootstepsSound(Component component, object data)
+        {
+            if (component.gameObject != gameObject) return;
+            
+            _footstepCoroutine ??= StartCoroutine(FootstepCoroutine());
+        }
+        
+        public void StopFootstepsSound(Component component, object data)
+        {
+            if (component.gameObject != gameObject) return;
+            
+            if (_footstepCoroutine == null) return;
+            StopCoroutine(_footstepCoroutine);
+            _footstepCoroutine = null;
+        }
+        
+        public void SetFootstepsDelayToSneaking(Component component, object data)
+        {
+            if (component.gameObject != gameObject) return;
+            
+            _footstepDelay = _footstepSneakDelay;
         }
 
-        private void HandleAirborneState(bool isPlaying)
+        public void SetFootstepsDelayToWalking(Component component, object data)
         {
-            StopNonJumpOrLandingSounds(isPlaying);
+            if (component.gameObject != gameObject) return;
+            
+            _footstepDelay = _footstepWalkDelay;
+        }
 
-            if (_groundChecker.IsGrounded != _wasGrounded)
+        public void PlayLandingSound(Component component, object data)
+        {
+            if (component.gameObject != gameObject) return;
+            
+            _isGrounded = true;
+            _audioSource.PlayOneShot(_landingSound);
+        }
+
+        public void PlayJumpSound(Component component, object data)
+        {
+            if (component.gameObject != gameObject) return;
+            
+            _isGrounded = false;
+            _audioSource.PlayOneShot(_jumpSound);
+        }
+        
+        private IEnumerator FootstepCoroutine()
+        {
+            while (true)
             {
-                PlayJumpSound();
+                if (_isGrounded is false)
+                {
+                    yield return null;
+                    continue;
+                }
+                
+                int index = GenerateRandomFootstepIndex();
+                _audioSource.PlayOneShot(_footstepSounds[index]);
+                yield return new WaitForSeconds(_footstepDelay);
             }
-
-            _wasGrounded = false;
         }
 
-        private void PlayFootstepsSound(bool isPlaying)
+        private int GenerateRandomFootstepIndex()
         {
-            if (isPlaying) return;
-            _audioSource.clip = _footstepsSound;
-            _audioSource.Play();
-        }
-
-        private void StopNonJumpOrLandingSounds(bool isPlaying)
-        {
-            if (_audioSource.clip != _jumpSound && _audioSource.clip != _landingSound && isPlaying)
+            int index = Random.Range(0, _footstepSounds.Count);
+            while (index == _previousFootstepIndex)
             {
-                _audioSource.Stop();
+                index = Random.Range(0, _footstepSounds.Count);
             }
-        }
-
-        private void PlayLandingSound()
-        {
-            _audioSource.Stop();
-            _audioSource.clip = _landingSound;
-            _audioSource.Play();
-        }
-
-        private void PlayJumpSound()
-        {
-            _audioSource.Stop();
-            _audioSource.clip = _jumpSound;
-            _audioSource.Play();
+            _previousFootstepIndex = index;
+            return index;
         }
     }
 }

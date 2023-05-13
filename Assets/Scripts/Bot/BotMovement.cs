@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Events;
+using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
@@ -13,12 +14,26 @@ namespace Bot
         [Header("Strafe")]
         [SerializeField] private float _strafeSpeed = 1.0f;
         [SerializeField] private float _strafeDistance = 1.0f;
+
+        [Header("Events")] 
+        [SerializeField] private GameEvent _onMove;
+        [SerializeField] private GameEvent _onStopMoving;
         
         private float _strafeDirection = 1.0f;
         private float _currentStrafe = 0.0f;
 
         private NavMeshAgent _agent;
         public Vector3 Destination => _agent.destination;
+
+        public float WalkSpeed
+        {
+            get => _agent.speed;
+            set
+            {
+                Debug.Log(value);
+                _agent.speed = value;
+            }
+        }
 
         private void Awake()
         {
@@ -37,6 +52,7 @@ namespace Bot
         
         public void Resume()
         {
+            _onMove.Raise(this, null);
             _agent.isStopped = false;
         }
         
@@ -60,6 +76,7 @@ namespace Bot
 
         public void Strafe()
         {
+            Stop();
             float strafeStep = _strafeSpeed * Time.deltaTime * _strafeDirection;
             _currentStrafe += strafeStep;
 

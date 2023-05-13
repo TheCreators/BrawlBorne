@@ -131,10 +131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitLayers:
     serializedVersion: 2
-    m_Bits: 329
+    m_Bits: 841
   _speed: 30
   _maxDistance: 30
-  _damage: 8
+  _damage: 13
 --- !u!1 &7373508322447419499
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
-using System;
-using Misc;
+using Events;
+using Models;
 using UnityEngine;
 
 namespace Combat
@@ -9,20 +9,24 @@ namespace Combat
         [Header("Settings")]
         [SerializeField, Min(0)] private float _maxHealthPoints = 100f;
         [SerializeField, Min(0)] private float _healthPoints = 100f;
+        
+        [SerializeField] private GameEvent _onDeath;
+        [SerializeField] private GameEvent _onHealthChanged;
 
         private void Start()
         {
             _healthPoints = _maxHealthPoints;
+            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
         }
 
         public void TakeDamage(float damage)
         {
             _healthPoints -= damage;
+            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
 
             if (_healthPoints <= 0)
             {
-                HeroesPool.Instance.RemoveHero(gameObject);
-                Destroy(gameObject);
+                _onDeath.Raise(this, null);
             }
         }
 
@@ -37,6 +41,24 @@ namespace Combat
             {
                 _healthPoints = _maxHealthPoints;
             }
+            
+            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
+        }
+
+        public void IncreaseMaxHealth(float increasePercent)
+        {
+            _maxHealthPoints = _maxHealthPoints * (1 + increasePercent / 100);
+            float increasedCurrentHealth = _healthPoints * (1 + increasePercent / 100);
+            if (increasedCurrentHealth >= _maxHealthPoints)
+            {
+                _healthPoints = _maxHealthPoints;
+            }
+            else
+            {
+                _healthPoints = increasedCurrentHealth;
+            }
+            
+            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
         }
     }
 }

@@ -1,7 +1,7 @@
+using Events;
 using Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -13,6 +13,12 @@ namespace Player
         [SerializeField, Min(0)] private float _sneakSpeed = 7f;
         [SerializeField, Min(0)] private float _groundDrag = 5f;
         [SerializeField, Range(0, 1)] private float _airSpeedMultiplier = 0.5f;
+        
+        [Header("Events")]
+        [SerializeField] private GameEvent _onMove;
+        [SerializeField] private GameEvent _onStopMoving;
+        [SerializeField] private GameEvent _onSneak;
+        [SerializeField] private GameEvent _onStopSneaking;
 
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
@@ -21,6 +27,12 @@ namespace Player
         private Vector2 _inputMoveDirection;
         private bool _sneakHeld;
         private const int SpeedMultiplier = 10;
+
+        public float WalkSpeed
+        {
+            get => _walkSpeed;
+            set => _walkSpeed = value;
+        }
 
         private void Start()
         {
@@ -43,6 +55,15 @@ namespace Player
         public void OnMove(InputAction.CallbackContext context)
         {
             _inputMoveDirection = context.ReadValue<Vector2>();
+            
+            if (context.performed)
+            {
+                _onMove.Raise(this, null);
+            }
+            else if (context.canceled)
+            {
+                _onStopMoving.Raise(this, null);
+            }
         }
 
         public void OnSneak(InputAction.CallbackContext context)
@@ -50,15 +71,22 @@ namespace Player
             if (context.performed)
             {
                 _sneakHeld = true;
+                _onSneak.Raise(this, null);
             }
             else if (context.canceled)
             {
                 _sneakHeld = false;
+                _onStopSneaking.Raise(this, null);
             }
         }
 
         public Vector2 GetNormalizedRelativeVelocity()
         {
+            if (_rigidbody is null)
+            {
+                return Vector2.zero;
+            }
+            
             var forwardVelocity = Vector3.Dot(_rigidbody.velocity, transform.forward);
             var rightVelocity = Vector3.Dot(_rigidbody.velocity, transform.right);
             return new Vector2(forwardVelocity, rightVelocity) / _walkSpeed;
@@ -95,16 +123,6 @@ namespace Player
             {
                 _moveSpeed = _sneakHeld ? _sneakSpeed : _walkSpeed;
             }
-        }
-
-        public void ChangeWalkSpeed(float speed)
-        {
-            _walkSpeed = speed;
-        }
-
-        public float GetCurrentWalkSpeed()
-        {
-            return _walkSpeed;
         }
     }
 }

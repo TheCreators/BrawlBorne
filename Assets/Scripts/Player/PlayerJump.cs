@@ -1,5 +1,8 @@
+using System.Collections;
+using Events;
 using Misc;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Player
@@ -10,6 +13,8 @@ namespace Player
     {
         [SerializeField, Min(0)] private float _jumpForce = 8f;
         [SerializeField, Min(0)] private float _jumpCooldown = 0.5f;
+        [SerializeField] private GameEvent _onJump;
+        
         private bool _readyToJump = true;
         private bool _jumpHeld = false;
 
@@ -26,6 +31,7 @@ namespace Player
         {
             if (_jumpHeld && _readyToJump && _groundChecker.IsGrounded)
             {
+                _onJump.Raise(this, null);
                 _readyToJump = false;
                 Jump();
                 Invoke(nameof(ResetJump), _jumpCooldown);
