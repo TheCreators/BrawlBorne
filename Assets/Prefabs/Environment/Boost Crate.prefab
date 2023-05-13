@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 708521868062827603}
   - component: {fileID: 1915759271517685591}
   - component: {fileID: -6817648966148636139}
+  - component: {fileID: 7888813566713819097}
   m_Layer: 9
   m_Name: Boost Crate
   m_TagString: Untagged
@@ -174,3 +175,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7888813566713819097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305912507053142902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
