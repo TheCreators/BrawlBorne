@@ -7,11 +7,14 @@ namespace Misc
 {
     public class HeroesPool : MonoSingleton<HeroesPool>
     {
-        [Header("Requirements")] [SerializeField]
         private Hero _playerPrefab;
 
         public List<Hero> Heroes { get; private set; } = new();
 
+        public void SetPlayerPrefab(Hero playerPrefab)
+        {
+            _playerPrefab = playerPrefab;
+        }
 
         public void RemoveHero(Component sender, object data)
         {
