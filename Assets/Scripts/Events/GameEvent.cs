@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Events
@@ -10,7 +11,7 @@ namespace Events
         
         public void Raise(Component component, object data)
         {
-            foreach (var listener in Listeners)
+            foreach (var listener in Listeners.ToList())
             {
                 listener.OnEventRaised(component, data);
             }
