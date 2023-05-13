@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Environment
@@ -6,9 +5,12 @@ namespace Environment
     public class Crate : MonoBehaviour
     {
         [SerializeField] private GameObject _boost;
-        private void OnDestroy()
+
+        public void OnDie(Component component, object data)
         {
+            if (component.gameObject != gameObject) return;
             if (gameObject.scene.isLoaded is false) return;
+            Destroy(gameObject);
             Instantiate(_boost, transform.position, transform.rotation);
         }
     }

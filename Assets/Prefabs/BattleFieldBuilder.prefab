@@ -48,12 +48,13 @@ MonoBehaviour:
   _grass: {fileID: 7870303803443953017, guid: 94f42d40122c2d84980c7ecad7ca6741, type: 3}
   _bottle: {fileID: 180297059882184176, guid: 8b5ad2bfe9e36d848b098bfcba2a7b60, type: 3}
   _ground: {fileID: 3321912436738672957, guid: df9ecbb0971409f458bf699f3860efae, type: 3}
+  _bot: {fileID: 2026786720301705275, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+  _fieldLength: 30
+  _fieldWidth: 30
+  _tileSize: 2
   _bots:
   - {fileID: 2026786720301705275, guid: b673ae67d34d8a14c97fc33ad0f33d21, type: 3}
   - {fileID: 2026786720301705275, guid: 4aaf9f58bd7c2654897f79b0f2bf9e4a, type: 3}
   - {fileID: 2026786720301705275, guid: 26317bd06064c0a4c9506434d29a97cc, type: 3}
   - {fileID: 2026786720301705275, guid: ec4650bd8e22e1849a02cfc251f2f36f, type: 3}
   - {fileID: 2026786720301705275, guid: de8fe8caae7b5f541b72f232b9e16b9b, type: 3}
-  _fieldLength: 30
-  _fieldWidth: 30
-  _tileSize: 2
