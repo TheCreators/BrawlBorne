@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Misc
+namespace CharacterSelection
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class ButtonCharacterName : MonoBehaviour

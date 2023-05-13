@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Events;
+using Misc;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-namespace Misc
+namespace CharacterSelection
 {
     public class CharacterSelector : MonoBehaviour
     {
