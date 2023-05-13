@@ -1,7 +1,7 @@
-﻿namespace Misc
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace CharacterSelection
+{
     public class CameraMovement : MonoBehaviour
     {
         [SerializeField] private Transform _startPosition;
