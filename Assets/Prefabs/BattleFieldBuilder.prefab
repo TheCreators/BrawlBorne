@@ -44,8 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68be76e52482fc4581a5f8a94545ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 4459002749115364136, guid: 9a858fcb619e96f41b5168a0005fea88, type: 3}
-  grass: {fileID: 7870303803443953017, guid: 94f42d40122c2d84980c7ecad7ca6741, type: 3}
-  bottle: {fileID: 180297059882184176, guid: 8b5ad2bfe9e36d848b098bfcba2a7b60, type: 3}
-  obstacle: {fileID: 7823212099815644231, guid: 4bba06a307d82d240b373ec572b13ba2, type: 3}
-  ground: {fileID: 3321912436738672957, guid: df9ecbb0971409f458bf699f3860efae, type: 3}
+  _wall: {fileID: 4459002749115364136, guid: 9a858fcb619e96f41b5168a0005fea88, type: 3}
+  _grass: {fileID: 7870303803443953017, guid: 94f42d40122c2d84980c7ecad7ca6741, type: 3}
+  _bottle: {fileID: 180297059882184176, guid: 8b5ad2bfe9e36d848b098bfcba2a7b60, type: 3}
+  _ground: {fileID: 3321912436738672957, guid: df9ecbb0971409f458bf699f3860efae, type: 3}
+  _bots:
+  - {fileID: 2026786720301705275, guid: b673ae67d34d8a14c97fc33ad0f33d21, type: 3}
+  - {fileID: 2026786720301705275, guid: 4aaf9f58bd7c2654897f79b0f2bf9e4a, type: 3}
+  - {fileID: 2026786720301705275, guid: 26317bd06064c0a4c9506434d29a97cc, type: 3}
+  - {fileID: 2026786720301705275, guid: ec4650bd8e22e1849a02cfc251f2f36f, type: 3}
+  - {fileID: 2026786720301705275, guid: de8fe8caae7b5f541b72f232b9e16b9b, type: 3}
+  _fieldLength: 30
+  _fieldWidth: 30
+  _tileSize: 2
