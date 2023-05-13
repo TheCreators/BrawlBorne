@@ -131,5 +131,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 776
   _timeToExplode: 2
-  _damage: 20
+  _damage: 60
   _explosionRadius: 5
