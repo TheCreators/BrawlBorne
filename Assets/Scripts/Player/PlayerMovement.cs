@@ -82,6 +82,11 @@ namespace Player
 
         public Vector2 GetNormalizedRelativeVelocity()
         {
+            if (_rigidbody is null)
+            {
+                return Vector2.zero;
+            }
+            
             var forwardVelocity = Vector3.Dot(_rigidbody.velocity, transform.forward);
             var rightVelocity = Vector3.Dot(_rigidbody.velocity, transform.right);
             return new Vector2(forwardVelocity, rightVelocity) / _walkSpeed;

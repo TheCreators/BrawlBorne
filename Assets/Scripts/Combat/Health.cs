@@ -1,4 +1,5 @@
 using Events;
+using Models;
 using UnityEngine;
 
 namespace Combat
@@ -15,12 +16,13 @@ namespace Combat
         private void Start()
         {
             _healthPoints = _maxHealthPoints;
+            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
         }
 
         public void TakeDamage(float damage)
         {
             _healthPoints -= damage;
-            _onHealthChanged.Raise(this, _healthPoints / _maxHealthPoints * 100);
+            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
 
             if (_healthPoints <= 0)
             {
@@ -39,6 +41,8 @@ namespace Combat
             {
                 _healthPoints = _maxHealthPoints;
             }
+            
+            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
         }
 
         public void IncreaseMaxHealth(float increasePercent)
@@ -53,6 +57,8 @@ namespace Combat
             {
                 _healthPoints = increasedCurrentHealth;
             }
+            
+            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
         }
     }
 }
