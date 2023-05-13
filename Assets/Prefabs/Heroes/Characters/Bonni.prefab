@@ -863,6 +863,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeUsed: 0
   _cooldown: 10
+  _onUse: {fileID: 11400000, guid: 6365880e29c1acb478df347cf660ed17, type: 2}
+  _onReady: {fileID: 11400000, guid: fd58774d0cfd2244fab7022c71190b7c, type: 2}
   _ascendSpeed: 20
   _ascendDuration: 1
   _flyDuration: 5

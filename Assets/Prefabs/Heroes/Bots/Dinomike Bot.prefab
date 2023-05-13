@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootAt: {fileID: 4907142902796656471}
+  _name: 
 --- !u!114 &8606340750331939890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeUsed: 0
   _cooldown: 10
+  _onUse: {fileID: 11400000, guid: 6365880e29c1acb478df347cf660ed17, type: 2}
+  _onReady: {fileID: 11400000, guid: fd58774d0cfd2244fab7022c71190b7c, type: 2}
   _weapon: {fileID: 1639522804392854630}
 --- !u!114 &6604856619764781148
 MonoBehaviour:

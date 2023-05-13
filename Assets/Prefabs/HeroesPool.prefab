@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c62021fbb4f4cbc816f8f1ea72c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 1146891796700530722, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
-  _botPrefab: {fileID: 2026786720301705275, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
-  _botsCount: 8
+  _onHeroesAmountChanged: {fileID: 11400000, guid: 9b87bdb8815c65449956104eee287bcd, type: 2}
 --- !u!114 &618212565
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ MonoBehaviour:
   _maxCells: 3
   _currentCells: 3
   _refillTime: 2
+  _onCellsAmountChanged: {fileID: 11400000, guid: c6c7094979ac94d47b11bd361c323c77, type: 2}
   _projectile: {fileID: 3430874567808542318, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
   _shootingDirection: {fileID: 0}
   _bulletSpawnDistance: 1
