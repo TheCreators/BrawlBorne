@@ -628,8 +628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27626dbb1b1e46aebdd4bbab6ae8858d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 100
-  _healthPoints: 100
+  _maxHealthPoints: 200
+  _healthPoints: 200
   _onDeath: {fileID: 11400000, guid: 68d23cd08d27b8e44b38090202c53f2f, type: 2}
   _onHealthChanged: {fileID: 11400000, guid: eddf2d5640e89e646a041d096b9c5341, type: 2}
 --- !u!114 &4340838794852804689
@@ -864,6 +864,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeUsed: 0
   _cooldown: 10
+  _onUse: {fileID: 11400000, guid: 6365880e29c1acb478df347cf660ed17, type: 2}
+  _onReady: {fileID: 11400000, guid: fd58774d0cfd2244fab7022c71190b7c, type: 2}
   _weapon: {fileID: 8069274110653931876}
 --- !u!1 &7632048028256500890
 GameObject:

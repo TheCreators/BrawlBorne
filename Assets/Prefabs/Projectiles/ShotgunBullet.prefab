@@ -134,7 +134,7 @@ MonoBehaviour:
     m_Bits: 841
   _speed: 30
   _maxDistance: 10
-  _damage: 4
+  _damage: 7
 --- !u!1 &7373508322447419499
 GameObject:
   m_ObjectHideFlags: 0

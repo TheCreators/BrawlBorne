@@ -30,6 +30,7 @@ namespace Ultimates
         public override void Use()
         {
             if (_canBeUsed is false) return;
+            _onUse.Raise(this, null);
             StartCoroutine(HittingRoutine());
         }
 

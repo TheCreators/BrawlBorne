@@ -25,11 +25,9 @@ namespace Ultimates
         
         public override void Use()
         {
-            if (_canBeUsed is false) return;
-            if (_groundChecker.IsGrounded is true)
-            {
-                StartCoroutine(FlyingRoutine());
-            }
+            if (_canBeUsed is false || _groundChecker.IsGrounded is false) return;
+            _onUse.Raise(this, null);
+            StartCoroutine(FlyingRoutine());
         }
 
         private IEnumerator FlyingRoutine()

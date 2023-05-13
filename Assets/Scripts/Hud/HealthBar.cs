@@ -1,26 +1,23 @@
+using Models;
 using Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Hud
 {
-    [RequireComponent(typeof(Image))]
     public class HealthBar : MonoBehaviour
     {
-        private Image _hpBar;
-        
-        private void Awake()
-        {
-            _hpBar = GetComponent<Image>();
-        }
+        [SerializeField] private Image _bar;
+        [SerializeField] private TextMeshProUGUI _text;
 
         public void SetHealthBar(Component component, object data) 
         {
-            Debug.Log("SetHealthBar");
-            if (component.TryGetComponent(out PlayerMovement playerMovement))
+            if (component.TryGetComponent(out PlayerMovement _))
             {
-                var hpPercentage = (float) data;
-                _hpBar.fillAmount = hpPercentage / 100f;
+                HealthAmount healthAmount = (HealthAmount) data;
+                _bar.fillAmount = healthAmount.CurrentHealth / healthAmount.MaxHealth;
+                if (_text != null) _text.text = $"{Mathf.RoundToInt(healthAmount.CurrentHealth)} / {Mathf.RoundToInt(healthAmount.MaxHealth)}";
             }
         }
     }

@@ -24,6 +24,7 @@ namespace Ultimates
         public override void Use()
         {
             if (_canBeUsed is false) return;
+            _onUse.Raise(this, null);
             _health.Heal(_healingPointsPercent);
             _canBeUsed = false;
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
