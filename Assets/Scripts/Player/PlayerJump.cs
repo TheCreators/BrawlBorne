@@ -26,7 +26,7 @@ namespace Player
             this.CheckIfNull(_onJump);
         }
         
-        private void Start()
+        private void Awake()
         {
             _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();
             _groundChecker = this.GetComponentWithNullCheck<GroundChecker>();

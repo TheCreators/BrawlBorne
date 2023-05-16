@@ -39,7 +39,7 @@ namespace Player
             this.CheckIfNull(_onMove, _onStopMoving, _onSneak, _onStopSneaking);
         }
 
-        private void Start()
+        private void Awake()
         {
             _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();
             _groundChecker = this.GetComponentWithNullCheck<GroundChecker>();
