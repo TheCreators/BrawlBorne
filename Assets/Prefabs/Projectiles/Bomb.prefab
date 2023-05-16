@@ -130,6 +130,7 @@ MonoBehaviour:
   _hitLayers:
     serializedVersion: 2
     m_Bits: 776
+  _explosion: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   _timeToExplode: 2
   _damage: 60
   _explosionRadius: 5
