@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Ultimates
 {
-    [RequireComponent(typeof(PlayerMovement))]
     public class SpeedUltimate : Ultimate
     {
         [SerializeField] private LayerMask _hitLayers;
@@ -17,28 +16,23 @@ namespace Ultimates
         [SerializeField, Min(0)] private float _hitRadius = 3f;
     
         private PlayerMovement _playerMovement;
-        private void Start()
-        {
-            _playerMovement = GetComponent<PlayerMovement>();
-        }
 
         private void Awake()
         {
-            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
+            _playerMovement = GetComponentInParent<PlayerMovement>();
+            if (_playerMovement is null) Debug.LogError("PlayerMovement is null for " + gameObject.name);
         }
 
-        public override void Use()
+        protected override void Use()
         {
-            if (_canBeUsed is false) return;
-            _onUse.Raise(this, null);
             StartCoroutine(HittingRoutine());
         }
 
         private IEnumerator HittingRoutine()
         {
-            _canBeUsed = false;
             float previousSpeed = _playerMovement.WalkSpeed;
             _playerMovement.WalkSpeed = _speed;
+            
             int count = 0;
             while (_timeBetweenHits * count <= _ultimateDuration)
             {
@@ -48,6 +42,7 @@ namespace Ultimates
             }
 
             _playerMovement.WalkSpeed = previousSpeed;
+            
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
     

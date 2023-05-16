@@ -1,5 +1,4 @@
-﻿using System;
-using Combat.Weapons;
+﻿using Combat.Weapons;
 using UnityEngine;
 
 namespace Ultimates
@@ -9,17 +8,14 @@ namespace Ultimates
         [Header("Requirements")]
         [SerializeField] private Weapon _weapon;
 
-        private void Awake()
+        protected void Awake()
         {
-            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
+            if (_weapon is null) Debug.LogError("Weapon is null for " + gameObject.name);
         }
 
-        public override void Use()
+        protected override void Use()
         {
-            if (_canBeUsed is false) return;
-            _onUse.Raise(this, null);
             _weapon.TryUse();
-            _canBeUsed = false;
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
     }
