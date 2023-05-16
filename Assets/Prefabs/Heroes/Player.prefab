@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 6942594267192523695}
   - component: {fileID: 6942594267192523692}
   - component: {fileID: 6942594267192523693}
+    - component: {fileID: 2766278476205009507}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -160,6 +161,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sensitivity: 9
+--- !u!114 &2766278476205009507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942594267192523346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 6942594267192523694}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 3
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &6942594267589458447
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootAt: {fileID: 7632048028256500891}
+  _name: 
 --- !u!114 &4703306833235520587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,6 +714,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeUsed: 0
   _cooldown: 10
+  _onUse: {fileID: 0}
+  _onReady: {fileID: 0}
   _ascendSpeed: 20
   _ascendDuration: 1.5
   _flyDuration: 7
@@ -887,6 +951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canBeUsed: 0
   _cooldown: 10
+  _onUse: {fileID: 0}
+  _onReady: {fileID: 0}
   _weapon: {fileID: 4823072056508290404}
 --- !u!1 &7632048028256500890
 GameObject:
