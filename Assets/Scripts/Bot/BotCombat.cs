@@ -1,6 +1,5 @@
-﻿using Combat;
+﻿using System;
 using Combat.Weapons;
-using JetBrains.Annotations;
 using Misc;
 using Ultimates;
 using UnityEngine;
@@ -11,6 +10,12 @@ namespace Bot
     {
         [SerializeField] private Weapon _weapon;
         [SerializeField] private Ultimate _ultimate;
+
+        private void OnValidate()
+        {
+            this.CheckIfNull(_weapon);
+            this.CheckIfNull(_ultimate);
+        }
 
         public void Shoot(Hero hero)
         {

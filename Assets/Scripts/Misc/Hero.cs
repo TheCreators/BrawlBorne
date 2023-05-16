@@ -10,5 +10,11 @@ namespace Misc
         public Vector3 ShootAt => _shootAt.position;
         
         public string Name => _name;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_shootAt);
+            this.CheckIfNull(_name);
+        }
     }
 }

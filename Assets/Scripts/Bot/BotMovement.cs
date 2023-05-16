@@ -1,10 +1,12 @@
 ﻿using Events;
+using Misc;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace Bot
 {
+    [RequireComponent(typeof(NavMeshAgent))]
     public class BotMovement : MonoBehaviour
     {
         [Header("Random Point")]
@@ -34,10 +36,15 @@ namespace Bot
                 _agent.speed = value;
             }
         }
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_onMove, _onStopMoving);
+        }
 
         private void Awake()
         {
-            _agent = GetComponent<NavMeshAgent>();
+            _agent = this.GetComponentWithNullCheck<NavMeshAgent>();
         }
 
         private void Start()

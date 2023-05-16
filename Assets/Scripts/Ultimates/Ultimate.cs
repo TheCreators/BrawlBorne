@@ -1,4 +1,5 @@
 ﻿using Events;
+using Misc;
 using UnityEngine;
 
 namespace Ultimates
@@ -13,6 +14,11 @@ namespace Ultimates
         [SerializeField] protected GameEvent _onReady;
 
         private bool _canBeUsed = false;
+        
+        protected virtual void OnValidate()
+        {
+            this.CheckIfNull(_onUse, _onReady);
+        }
         
         private void Start()
         {

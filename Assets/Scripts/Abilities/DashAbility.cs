@@ -1,4 +1,5 @@
 using System.Collections;
+using Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,7 @@ namespace Abilities
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();
         }
 
         public void Update()

@@ -1,3 +1,4 @@
+using Misc;
 using UnityEngine;
 
 namespace Combat.Projectiles
@@ -9,8 +10,12 @@ namespace Combat.Projectiles
         [SerializeField, Min(0)] private float _maxDistance = 100f;
         [SerializeField, Min(0)] private float _damage = 5f;
         
-
         private Vector3 _oldPosition;
+
+        private void OnValidate()
+        {
+            this.CheckIfNull(_hitLayers);
+        }
 
         private void Start()
         {

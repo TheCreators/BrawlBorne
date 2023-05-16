@@ -1,5 +1,6 @@
 ﻿using System;
 using Combat.Weapons;
+using Misc;
 using Ultimates;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,11 +12,11 @@ namespace Player
         [Header("Requirements")]
         [SerializeField] private Weapon _weapon;
         [SerializeField] private Ultimate _ultimate;
-
-        private void Start()
+        
+        private void OnValidate()
         {
-            if (_weapon is null) Debug.LogError("Weapon is null for " + gameObject.name);
-            if (_ultimate is null) Debug.LogError("Ultimate is null for " + gameObject.name);
+            this.CheckIfNull(_weapon);
+            this.CheckIfNull(_ultimate);
         }
 
         public void OnShoot(InputAction.CallbackContext context)

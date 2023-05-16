@@ -17,9 +17,9 @@ namespace Bot
 
         private void Awake()
         {
-            _botMovement = GetComponent<BotMovement>();
-            _botSensor = GetComponent<BotSensor>();
-            _botCombat = GetComponent<BotCombat>();
+            _botMovement = this.GetComponentWithNullCheck<BotMovement>();
+            _botSensor = this.GetComponentWithNullCheck<BotSensor>();
+            _botCombat = this.GetComponentWithNullCheck<BotCombat>();
         }
 
         private void Update()

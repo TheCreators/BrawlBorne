@@ -1,3 +1,4 @@
+using Misc;
 using Models;
 using Player;
 using TMPro;
@@ -10,6 +11,12 @@ namespace Hud
     {
         [SerializeField] private Image _bar;
         [SerializeField] private TextMeshProUGUI _text;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_bar);
+            this.CheckIfNull(_text);
+        }
 
         public void SetHealthBar(Component component, object data) 
         {

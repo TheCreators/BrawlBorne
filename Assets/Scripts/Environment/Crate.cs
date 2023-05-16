@@ -1,10 +1,16 @@
+using Misc;
 using UnityEngine;
 
 namespace Environment
 {
     public class Crate : MonoBehaviour
     {
-        [SerializeField] private GameObject _boost;
+        [SerializeField] private Boost _boost;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_boost);
+        }
 
         public void OnDie(Component component, object data)
         {

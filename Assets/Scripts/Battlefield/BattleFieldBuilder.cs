@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Misc;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Random = System.Random;
 
 namespace Battlefield
@@ -25,6 +24,12 @@ namespace Battlefield
         private List<Hero> Heroes { get; set; } = new();
         private BattleField _map;
         readonly Random _rnd = new Random();
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_wall, _grass, _bottle, _ground);
+        }
+        
         private void Start()
         {
             BuildTerrain();

@@ -1,5 +1,6 @@
 using System.Collections;
 using Combat;
+using Misc;
 using Player;
 using UnityEngine;
 
@@ -16,11 +17,17 @@ namespace Ultimates
         [SerializeField, Min(0)] private float _hitRadius = 3f;
     
         private PlayerMovement _playerMovement;
+        
+        protected override void OnValidate()
+        {
+            this.CheckIfNull(_hitLayers);
+            
+            base.OnValidate();
+        }
 
         private void Awake()
         {
-            _playerMovement = GetComponentInParent<PlayerMovement>();
-            if (_playerMovement is null) Debug.LogError("PlayerMovement is null for " + gameObject.name);
+            _playerMovement = this.GetComponentInParentWithNullCheck<PlayerMovement>();
         }
 
         protected override void Use()

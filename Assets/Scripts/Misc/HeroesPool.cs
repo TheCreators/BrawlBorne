@@ -14,6 +14,11 @@ namespace Misc
 
         public List<Hero> Heroes { get; private set; } = new();
         
+        private void OnValidate()
+        {
+            this.CheckIfNull(_onHeroesAmountChanged);
+        }
+        
         private void Start()
         {
             _onHeroesAmountChanged.Raise(this, Heroes.Count);

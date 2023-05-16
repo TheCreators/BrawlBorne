@@ -1,4 +1,5 @@
 ﻿using Combat.Projectiles;
+using Misc;
 using UnityEngine;
 
 namespace Combat.Weapons
@@ -13,6 +14,12 @@ namespace Combat.Weapons
         [SerializeField] protected float _bulletSpawnDistance = 1f;
         [SerializeField] protected float _bulletSpawnHeight = 0.5f;
         
+        protected virtual void OnValidate()
+        {
+            this.CheckIfNull(_projectile);
+            this.CheckIfNull(_shootingDirection);
+        }
+
         protected override void Use()
         {
             Shoot();
