@@ -17,7 +17,7 @@ namespace Bot
             var lookDirection = hero.ShootAt - transform.position;
             transform.rotation = Quaternion.LookRotation(lookDirection);
             _weapon.TryUse();
-            _ultimate.Use();
+            _ultimate.TryUse();
             
             Debug.DrawRay(transform.position, lookDirection, Color.red);
         }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Events;
 using UnityEngine;
@@ -7,14 +6,13 @@ namespace Combat.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
-        [SerializeField] protected GameEvent _onUse;
-
         [Header("Cells")] 
         [SerializeField, Min(1)] private int _maxCells = 3;
         [SerializeField, Min(0)] private int _currentCells = 3;
         [SerializeField, Min(0)] private float _refillTime = 2f;
         
         [Header("Events")]
+        [SerializeField] protected GameEvent _onUse;
         [SerializeField] protected GameEvent _onCellsAmountChanged;
 
         protected bool CanBeUsed = true;
