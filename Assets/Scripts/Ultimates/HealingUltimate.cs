@@ -1,4 +1,5 @@
 using Combat;
+using Misc;
 using UnityEngine;
 
 namespace Ultimates
@@ -11,8 +12,7 @@ namespace Ultimates
         
         private void Awake()
         {
-            _health = GetComponentInParent<Health>();
-            if (_health is null) Debug.LogError("Health is null for " + gameObject.name);
+            _health = this.GetComponentInParentWithNullCheck<Health>();
         }
 
         protected override void Use()

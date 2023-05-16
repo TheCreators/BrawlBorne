@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Misc;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -24,10 +25,16 @@ namespace Sound
         private int _previousFootstepIndex = -1;
 
         private const string SettingsKey = "volume";
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_jumpSound);
+            this.CheckIfNull(_landingSound);
+        }
 
         private void Awake()
         {
-            _audioSource = GetComponent<AudioSource>();
+            _audioSource = this.GetComponentWithNullCheck<AudioSource>();
             _footstepDelay = _footstepWalkDelay;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Misc;
 using UnityEngine;
 
 namespace Events
@@ -7,6 +8,12 @@ namespace Events
     {
         [SerializeField] private GameEvent _gameEvent;
         [SerializeField] private CustomUnityEvent _response;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_gameEvent);
+            this.CheckIfNull(_response);
+        }
 
         private void OnEnable()
         {

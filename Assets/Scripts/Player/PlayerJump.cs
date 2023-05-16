@@ -21,10 +21,15 @@ namespace Player
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
 
+        private void OnValidate()
+        {
+            this.CheckIfNull(_onJump);
+        }
+        
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            _groundChecker = GetComponent<GroundChecker>();
+            _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();
+            _groundChecker = this.GetComponentWithNullCheck<GroundChecker>();
         }
 
         private void FixedUpdate()

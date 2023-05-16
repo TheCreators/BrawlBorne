@@ -1,4 +1,5 @@
 ﻿using Combat.Weapons;
+using Misc;
 using UnityEngine;
 
 namespace Ultimates
@@ -7,10 +8,12 @@ namespace Ultimates
     {
         [Header("Requirements")]
         [SerializeField] private Weapon _weapon;
-
-        protected void Awake()
+        
+        protected override void OnValidate()
         {
-            if (_weapon is null) Debug.LogError("Weapon is null for " + gameObject.name);
+            this.CheckIfNull(_weapon);
+            
+            base.OnValidate();
         }
 
         protected override void Use()

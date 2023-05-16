@@ -33,11 +33,16 @@ namespace Player
             get => _walkSpeed;
             set => _walkSpeed = value;
         }
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_onMove, _onStopMoving, _onSneak, _onStopSneaking);
+        }
 
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            _groundChecker = GetComponent<GroundChecker>();
+            _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();
+            _groundChecker = this.GetComponentWithNullCheck<GroundChecker>();
         }
 
         private void Update()

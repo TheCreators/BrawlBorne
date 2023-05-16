@@ -22,10 +22,10 @@ namespace Player
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
-            _playerMovement = GetComponent<PlayerMovement>();
-            _playerJump = GetComponent<PlayerJump>();
-            _groundChecker = GetComponent<GroundChecker>();
+            _animator = this.GetComponentWithNullCheck<Animator>();
+            _playerMovement = this.GetComponentWithNullCheck<PlayerMovement>();
+            _playerJump = this.GetComponentWithNullCheck<PlayerJump>();
+            _groundChecker = this.GetComponentWithNullCheck<GroundChecker>();
         }
 
         private void Update()

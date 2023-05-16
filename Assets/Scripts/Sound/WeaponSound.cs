@@ -1,3 +1,4 @@
+using Misc;
 using UnityEngine;
 
 namespace Sound
@@ -7,6 +8,12 @@ namespace Sound
         [Header("Requirements")]
         [SerializeField] private AudioClip _sound;
         [SerializeField] private AudioSource _audioSource;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_sound);
+            this.CheckIfNull(_audioSource);
+        }
 
         public void PlaySound(Component component, object data)
         {

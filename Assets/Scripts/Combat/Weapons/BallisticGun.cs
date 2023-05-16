@@ -1,4 +1,5 @@
 using Combat.Projectiles;
+using Misc;
 using UnityEngine;
 
 namespace Combat.Weapons
@@ -11,6 +12,13 @@ namespace Combat.Weapons
         [Header("Settings")]
         [SerializeField, Min(0)] private float _throwPower = 10f;
         [SerializeField, Range(0, 2)] private float _heroVelocityInfluence = 0.5f;
+
+        protected override void OnValidate()
+        {
+            this.CheckIfNull(_rigidbody);
+            
+            base.OnValidate();
+        }
 
         protected override void Shoot()
         {

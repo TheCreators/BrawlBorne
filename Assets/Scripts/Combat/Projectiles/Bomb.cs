@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Misc;
+using UnityEngine;
 
 namespace Combat.Projectiles
 {
@@ -9,6 +10,12 @@ namespace Combat.Projectiles
         [SerializeField, Min(0)] private float _timeToExplode = 3f;
         [SerializeField, Min(0)] private float _damage = 20f;
         [SerializeField, Min(0)] private float _explosionRadius = 5f;
+
+        private void OnValidate()
+        {
+            this.CheckIfNull(_hitLayers);
+            this.CheckIfNull(_explosion);
+        }
 
         private void Start()
         {

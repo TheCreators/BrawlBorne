@@ -1,4 +1,5 @@
 using Events;
+using Misc;
 using Models;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ namespace Combat
         
         [SerializeField] private GameEvent _onDeath;
         [SerializeField] private GameEvent _onHealthChanged;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_onDeath, _onHealthChanged);
+        }
 
         private void Start()
         {

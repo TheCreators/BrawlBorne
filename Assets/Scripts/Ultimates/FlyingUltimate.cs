@@ -15,11 +15,8 @@ namespace Ultimates
 
         private void Awake()
         {
-            _rigidbody = GetComponentInParent<Rigidbody>();
-            if (_rigidbody is null) Debug.LogError("Rigidbody is null for " + gameObject.name); 
-            
-            _groundChecker = GetComponentInParent<GroundChecker>();
-            if (_groundChecker is null) Debug.LogError("GroundChecker is null for " + gameObject.name);
+            _rigidbody = this.GetComponentInParentWithNullCheck<Rigidbody>();
+            _groundChecker = this.GetComponentInParentWithNullCheck<GroundChecker>();
         }
 
         protected override void Use()

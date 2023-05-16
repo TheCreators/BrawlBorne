@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Misc;
+using TMPro;
 using UnityEngine;
 
 namespace CharacterSelection
@@ -10,7 +11,7 @@ namespace CharacterSelection
 
         private void Awake()
         {
-            _textMeshPro = GetComponent<TextMeshProUGUI>();
+            _textMeshPro = this.GetComponentWithNullCheck<TextMeshProUGUI>();
         }
 
         public void SetText(Component component, object data)
