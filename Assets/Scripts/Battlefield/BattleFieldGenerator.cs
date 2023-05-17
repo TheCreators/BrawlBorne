@@ -142,53 +142,105 @@ namespace Battlefield
             return this;
         }
 
-            public BattleFieldGenerator AddHeroesSpots()
+        public BattleFieldGenerator AddHeroesSpots()
+        {
+            int squareSize = _battleField.Cols / 2;
+            int firstSpotX = _battleField.Cols / 4;
+            int firstSpotY = _battleField.Rows / 4;
+            int spacing = squareSize * 4 / HeroesCount;
+            int x = 0, y = 0;
+            for (int i = 0; i < HeroesCount; i++)
             {
-                int squareSize = _battleField.Cols / 2;
-                int firstSpotX = _battleField.Cols / 4;
-                int firstSpotY = _battleField.Rows / 4;
-                int spacing = squareSize*4 / HeroesCount;
-                int x = 0, y = 0;
-                for (int i = 0; i < HeroesCount; i++)
+                _battleField[firstSpotX + x, firstSpotY + y] = 4;
+                if (y == 0)
                 {
-
-                    _battleField[firstSpotX +x ,firstSpotY+ y] = 4;
-                    if (y == 0) 
+                    x += spacing;
+                    if (x >= squareSize)
                     {
-                        x += spacing; 
-                        if (x >= squareSize)
-                        {
-                            y = x - squareSize;
-                            x = squareSize; 
-                        }
-                    }
-                    else if (x == squareSize) 
-                    {
-                        y += spacing; 
-                        if (y >= squareSize)
-                        {
-                            x = squareSize-(y-squareSize);
-                            y = squareSize;
-                        }
-                    }
-                    else if (y == squareSize) 
-                    {
-                        x -= spacing;
-                        if (x < 0)
-                        {
-                            y = squareSize+x;
-                            x = 0; 
-
-                        }
-                    }
-                    else 
-                    {
-                        y -= spacing;
+                        y = x - squareSize;
+                        x = squareSize;
                     }
                 }
-                return this;
+                else if (x == squareSize)
+                {
+                    y += spacing;
+                    if (y >= squareSize)
+                    {
+                        x = squareSize - (y - squareSize);
+                        y = squareSize;
+                    }
+                }
+                else if (y == squareSize)
+                {
+                    x -= spacing;
+                    if (x < 0)
+                    {
+                        y = squareSize + x;
+                        x = 0;
+                    }
+                }
+                else
+                {
+                    y -= spacing;
+                }
             }
 
+            return this;
+        }
+
+        public BattleFieldGenerator FillEmpties()
+        {
+            int rows = _battleField.Cols;
+            int cols = _battleField.Rows;
+
+            bool[,] visited = new bool[rows, cols];
+
+            bool IsIndexValid(int row, int col) => row >= 0 && row < rows && col >= 0 && col < cols;
+
+            bool CanMove(int row, int col) => IsIndexValid(row, col) && _battleField[row, col] != 1 &&
+                                              _battleField[row, col] != 2 && !visited[row, col];
+
+            bool DFS(int row, int col)
+            {
+                visited[row, col] = true;
+
+                bool canMoveLeft = CanMove(row, col - 1) && DFS(row, col - 1);
+                bool canMoveRight = CanMove(row, col + 1) && DFS(row, col + 1);
+                bool canMoveUp = CanMove(row - 1, col) && DFS(row - 1, col);
+                bool canMoveDown = CanMove(row + 1, col) && DFS(row + 1, col);
+
+                return canMoveLeft && canMoveRight && canMoveUp && canMoveDown;
+            }
+
+            int startRow = 0;
+            int startCol = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    if (_battleField[i, j] == 0)
+                    {
+                        startRow = i;
+                        startCol = j;
+                        break;
+                    }
+                }
+            }
+
+            DFS(startRow, startCol);
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    if (visited[i, j] == false && _battleField[i, j] != 2)
+                    {
+                        _battleField[i, j] = 1;
+                    }
+                }
+            }
+
+            return this;
+        }
 
         public BattleFieldGenerator MakeSymmetric()
         {

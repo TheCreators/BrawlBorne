@@ -53,6 +53,7 @@ namespace Battlefield
                 .GenerateExternalWalls()
                 .GenerateWalls()
                 .DeleteSingleWalls()
+                .FillEmpties()
                 .AddBushes()
                 .AddPots()
                 .MakeSymmetric()
