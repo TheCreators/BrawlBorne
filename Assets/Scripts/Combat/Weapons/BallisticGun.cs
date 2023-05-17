@@ -6,18 +6,15 @@ namespace Combat.Weapons
 {
     public class BallisticGun : Gun<RigidbodyProjectile>
     {
-        [Header("Requirements")]
-        [SerializeField] private Rigidbody _rigidbody;
-        
         [Header("Settings")]
         [SerializeField, Min(0)] private float _throwPower = 10f;
         [SerializeField, Range(0, 2)] private float _heroVelocityInfluence = 0.5f;
+        
+        private Rigidbody _rigidbody;
 
-        protected override void OnValidate()
+        private void Awake()
         {
-            this.CheckIfNull(_rigidbody);
-            
-            base.OnValidate();
+            _rigidbody = this.GetComponentInParentWithNullCheck<Rigidbody>();
         }
 
         protected override void Shoot()

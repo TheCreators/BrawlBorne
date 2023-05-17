@@ -7,12 +7,17 @@ namespace Sound
     {
         [Header("Requirements")]
         [SerializeField] private AudioClip _sound;
-        [SerializeField] private AudioSource _audioSource;
+        
+        private AudioSource _audioSource;
         
         private void OnValidate()
         {
             this.CheckIfNull(_sound);
-            this.CheckIfNull(_audioSource);
+        }
+        
+        private void Awake()
+        {
+            _audioSource = this.GetComponentInParentWithNullCheck<AudioSource>();
         }
 
         public void PlaySound(Component component, object data)
