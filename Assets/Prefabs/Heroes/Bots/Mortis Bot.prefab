@@ -288,6 +288,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8497210226049827996}
     - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _attackRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _heroDetectionRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _playerAttackRadius
       value: 3
       objectReference: {fileID: 0}

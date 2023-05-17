@@ -381,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3909827171621850475, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}
       propertyPath: m_Name
-      value: HeroesPool
+      value: Objects Pool
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad54670d753baf14a9871dc5e3b9d0b3, type: 3}

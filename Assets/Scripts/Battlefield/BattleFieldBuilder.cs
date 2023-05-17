@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using Environment;
 using Misc;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using Random = System.Random;
 
 namespace Battlefield
@@ -11,7 +13,7 @@ namespace Battlefield
         [Header("Objects")] 
         [SerializeField] private GameObject _wall;
         [SerializeField] private GameObject _grass;
-        [SerializeField] private GameObject _bottle;
+        [SerializeField] private Crate _crate;
         [SerializeField] private GameObject _ground;
         [SerializeField] private List<Hero> _bots;
 
@@ -22,20 +24,24 @@ namespace Battlefield
 
         private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
         private List<Hero> Heroes { get; set; } = new();
+        private List<Crate> Crates { get; set; } = new();
         private BattleField _map;
-        readonly Random _rnd = new Random();
-        
+        private readonly Random _rnd = new Random();
+
         private void OnValidate()
         {
-            this.CheckIfNull(_wall, _grass, _bottle, _ground);
+            this.CheckIfNull(_wall, _grass, _ground);
+            this.CheckIfNull(_crate);
         }
-        
+
         private void Start()
         {
             BuildTerrain();
             BakeNavMesh();
             PlaceBots();
-            HeroesPool.Instance.SetHeroes(Heroes);
+            ObjectsPool.Instance.SetHeroes(Heroes);
+            ObjectsPool.Instance.SetCrates(Crates);
+            ObjectsPool.Instance.InstantiatePlayer();
         }
 
         private void BuildTerrain()
@@ -81,17 +87,20 @@ namespace Battlefield
                                 Quaternion.identity);
                             break;
                         case 5:
-                            Instantiate(_bottle,
+                            Crates.Add(Instantiate(_crate,
                                 new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
-                                Quaternion.identity);
+                                Quaternion.identity));
                             break;
                     }
                 }
             }
         }
-        private Hero GetRandomBot(){
+
+        private Hero GetRandomBot()
+        {
             return _bots[_rnd.Next(_bots.Count)];
         }
+
         private void PlaceBots()
         {
             float xCorrection = -_fieldLength * _tileSize;
@@ -107,7 +116,6 @@ namespace Battlefield
                             Quaternion.identity));
                         break;
                     }
-                    
                 }
             }
         }

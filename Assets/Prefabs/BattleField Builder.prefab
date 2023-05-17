@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8942223173646349030}
   - component: {fileID: 8942223173646349031}
   m_Layer: 0
-  m_Name: BattleFieldBuilder
+  m_Name: BattleField Builder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wall: {fileID: 4459002749115364136, guid: 9a858fcb619e96f41b5168a0005fea88, type: 3}
   _grass: {fileID: 7870303803443953017, guid: 94f42d40122c2d84980c7ecad7ca6741, type: 3}
-  _bottle: {fileID: 5305912507053142902, guid: c5c19a7db485f404c8fbb4e18e4d4b03, type: 3}
+  _crate: {fileID: 1915759271517685591, guid: c5c19a7db485f404c8fbb4e18e4d4b03, type: 3}
   _ground: {fileID: 3321912436738672957, guid: df9ecbb0971409f458bf699f3860efae, type: 3}
   _bots:
   - {fileID: 6620761618144734648, guid: be7e1e95650b66348a49bad8c208d8bc, type: 3}

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 3909827171621850473}
   - component: {fileID: 3909827171621850472}
   - component: {fileID: 618212565}
+  - component: {fileID: -5148327682019251536}
   m_Layer: 0
-  m_Name: HeroesPool
+  m_Name: Objects Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,6 +66,34 @@ MonoBehaviour:
       - m_Target: {fileID: 3909827171621850472}
         m_TargetAssemblyTypeName: Misc.HeroesPool, Assembly-CSharp
         m_MethodName: RemoveHero
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-5148327682019251536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3909827171621850475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 80d7fcd566e08834d807313e7f84ac5e, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3909827171621850472}
+        m_TargetAssemblyTypeName: Misc.ObjectPool, Assembly-CSharp
+        m_MethodName: RemoveProp
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

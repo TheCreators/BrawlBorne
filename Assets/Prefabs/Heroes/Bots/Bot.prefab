@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentState: 0
+  _currentTarget: 3
 --- !u!114 &4591675464745393446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,8 +303,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a387133984484a9e7bbe86fb6f64db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDetectionRadius: 20
-  _playerAttackRadius: 15
+  _heroDetectionRange: 20
+  _playerDetectionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _crateDetectionRadius: 30
+  _crateDetectionColor: {r: 1, g: 0.37150985, b: 0, a: 1}
+  _boostDetectionRadius: 35
+  _boostDetectionColor: {r: 1, g: 0.41037738, b: 0.80492246, a: 1}
+  _attackRange: 15
+  _playerAttackColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &5977217962883420356
 MonoBehaviour:
   m_ObjectHideFlags: 0

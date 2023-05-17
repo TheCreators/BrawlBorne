@@ -17,13 +17,27 @@ namespace Bot
             this.CheckIfNull(_ultimate);
         }
 
-        public void Shoot(Hero hero)
+        public void Shoot(Hero hero, bool useUltimate = true)
         {
-            var lookDirection = hero.ShootAt - transform.position;
+            Shoot(hero.ShootAt - transform.position, useUltimate);
+        }
+
+        public void Shoot(Component component, bool useUltimate = true)
+        {
+            Shoot(component.transform.position - transform.position, useUltimate);
+        }
+        
+        private void Shoot(Vector3 lookDirection, bool useUltimate)
+        {
             transform.rotation = Quaternion.LookRotation(lookDirection);
-            _weapon.TryUse();
-            _ultimate.TryUse();
             
+            _weapon.TryUse();
+            
+            if (useUltimate)
+            {
+                _ultimate.TryUse();
+            }
+
             Debug.DrawRay(transform.position, lookDirection, Color.red);
         }
     }
