@@ -14,10 +14,12 @@ namespace Environment
 
         public void OnDie(Component component, object data)
         {
-            if (component.gameObject != gameObject) return;
-            if (gameObject.scene.isLoaded is false) return;
-            Destroy(gameObject);
-            Instantiate(_boost, transform.position, transform.rotation);
+            if (component.gameObject != gameObject || gameObject.scene.isLoaded is false)
+            {
+                return;
+            }
+            
+            ObjectsPool.Instance.AddBoost(Instantiate(_boost, transform.position, transform.rotation));
         }
     }
 }
