@@ -182,7 +182,7 @@ namespace Bot
                 return;
             }
 
-            _botCombat.Shoot(closestHeroInAttackRange);
+            _botCombat.Shoot(closestHeroInAttackRange, useUltimate: true);
             _botMovement.Strafe();
         }
         
@@ -209,7 +209,8 @@ namespace Bot
                 return;
             }
 
-            _botCombat.Shoot(closestCrateInAttackRange);
+            _botCombat.Shoot(closestCrateInAttackRange, useUltimate: false);
+            _botMovement.Stop();
         }
 
         private void OnDrawGizmos()
