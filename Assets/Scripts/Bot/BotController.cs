@@ -1,4 +1,5 @@
 ﻿using System;
+using Environment;
 using Misc;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace Bot
         private BotCombat _botCombat;
 
         [SerializeField] private BotState _currentState = BotState.Wandering;
+        [SerializeField] private BotTarget _currentTarget = BotTarget.None;
 
         private void Awake()
         {
@@ -46,6 +48,19 @@ namespace Bot
         {
             if (_botSensor.IsAnyHeroInDetectionRange)
             {
+                _currentTarget = BotTarget.Hero;
+                _currentState = BotState.Chasing;
+                return;
+            }
+            if (_botSensor.IsAnyCrateInDetectionRange)
+            {
+                _currentTarget = BotTarget.Crate;
+                _currentState = BotState.Chasing;
+                return;
+            }
+            if (_botSensor.IsAnyBoostInDetectionRange)
+            {
+                _currentTarget = BotTarget.Boost;
                 _currentState = BotState.Chasing;
                 return;
             }
@@ -58,9 +73,28 @@ namespace Bot
 
         private void HandleChasingState()
         {
+            switch (_currentTarget)
+            {
+                case BotTarget.Hero:
+                    HandleChasingHero();
+                    break;
+                case BotTarget.Boost:
+                    HandleChasingBoost();
+                    break;
+                case BotTarget.Crate:
+                    HandleChasingCrate();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void HandleChasingHero()
+        {
             Hero closestHeroInDetectionRange = _botSensor.ClosestHeroInDetectionRange;
             if (closestHeroInDetectionRange is null)
             {
+                _currentTarget = BotTarget.None;
                 _currentState = BotState.Wandering;
                 return;
             }
@@ -74,14 +108,73 @@ namespace Bot
             _botMovement.GoToDestination(closestHeroInDetectionRange.ShootAt);
         }
 
-        private void HandleAttackingState()
+        private void HandleChasingBoost()
         {
-            if (_botSensor.IsAnyHeroInDetectionRange is false)
+            Boost closestBoostInDetectionRange = _botSensor.ClosestBoostInDetectionRange;
+            if (closestBoostInDetectionRange is null)
             {
+                _currentTarget = BotTarget.None;
                 _currentState = BotState.Wandering;
                 return;
             }
+            
+            if (_botSensor.IsAnyHeroInDetectionRange)
+            {
+                _currentTarget = BotTarget.Hero;
+                return;
+            }
 
+            _botMovement.GoToDestination(closestBoostInDetectionRange.transform.position);
+        }
+        
+        private void HandleChasingCrate()
+        {
+            Crate closestCrateInDetectionRange = _botSensor.ClosestCrateInDetectionRange;
+            if (closestCrateInDetectionRange is null)
+            {
+                _currentTarget = BotTarget.None;
+                _currentState = BotState.Wandering;
+                return;
+            }
+            
+            if (_botSensor.IsAnyHeroInDetectionRange)
+            {
+                _currentTarget = BotTarget.Hero;
+                return;
+            }
+            
+            if (_botSensor.IsAnyBoostInDetectionRange)
+            {
+                _currentTarget = BotTarget.Boost;
+                return;
+            }
+
+            if (_botSensor.IsAnyCrateInAttackRange && _botSensor.IsVisible(_botSensor.ClosestCrateInAttackRange))
+            {
+                _currentState = BotState.Attacking;
+                return;
+            }
+            
+            _botMovement.GoToDestination(closestCrateInDetectionRange.transform.position);
+        }
+
+        private void HandleAttackingState()
+        {
+            switch (_currentTarget)
+            {
+                case BotTarget.Hero:
+                    HandleAttackingHero();
+                    break;
+                case BotTarget.Crate:
+                    HandleAttackingCrate();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void HandleAttackingHero()
+        {
             Hero closestHeroInAttackRange = _botSensor.ClosestHeroInAttackRange;
             if (closestHeroInAttackRange is null || _botSensor.IsVisible(closestHeroInAttackRange) is false)
             {
@@ -91,6 +184,32 @@ namespace Bot
 
             _botCombat.Shoot(closestHeroInAttackRange);
             _botMovement.Strafe();
+        }
+        
+        private void HandleAttackingCrate()
+        {
+            Crate closestCrateInAttackRange = _botSensor.ClosestCrateInAttackRange;
+            if (closestCrateInAttackRange is null || _botSensor.IsVisible(closestCrateInAttackRange) is false)
+            {
+                _currentState = BotState.Chasing;
+                return;
+            }
+            
+            if (_botSensor.IsAnyHeroInDetectionRange)
+            {
+                _currentTarget = BotTarget.Hero;
+                _currentState = BotState.Chasing;
+                return;
+            }
+            
+            if (_botSensor.IsAnyBoostInDetectionRange)
+            {
+                _currentTarget = BotTarget.Boost;
+                _currentState = BotState.Chasing;
+                return;
+            }
+
+            _botCombat.Shoot(closestCrateInAttackRange);
         }
 
         private void OnDrawGizmos()
