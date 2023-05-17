@@ -33,10 +33,10 @@ namespace CharacterSelection
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            HeroesPool heroesPool = FindObjectOfType<HeroesPool>();
-            if (heroesPool != null)
+            ObjectsPool objectsPool = FindObjectOfType<ObjectsPool>();
+            if (objectsPool != null)
             {
-                heroesPool.SetPlayerPrefab(_characters[_selectedCharacterIndex]);
+                objectsPool.SetPlayerPrefab(_characters[_selectedCharacterIndex]);
             }
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
