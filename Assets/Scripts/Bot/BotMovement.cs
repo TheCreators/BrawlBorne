@@ -23,6 +23,7 @@ namespace Bot
         
         private float _strafeDirection = 1.0f;
         private float _currentStrafe = 0.0f;
+        private bool _isStrafing = false;
 
         private NavMeshAgent _agent;
         public Vector3 Destination => _agent.destination;
@@ -36,7 +37,8 @@ namespace Bot
                 _agent.speed = value;
             }
         }
-        
+
+
         private void OnValidate()
         {
             this.CheckIfNull(_onMove, _onStopMoving);
@@ -52,6 +54,14 @@ namespace Bot
             GoToRandomDestination();
         }
         
+        public bool IsMoving => _agent.velocity.magnitude > 0.1f || _isStrafing;
+        
+        public Vector2 GetNormalizedRelativeVelocity()
+        {
+            var velocity = transform.InverseTransformDirection(_agent.velocity);
+            return new Vector2(velocity.z, -velocity.x).normalized;
+        }
+        
         public void Stop()
         {
             _agent.isStopped = true;
@@ -61,6 +71,7 @@ namespace Bot
         {
             _onMove.Raise(this, null);
             _agent.isStopped = false;
+            _isStrafing = false;
         }
         
         public void GoToDestination(Vector3 destination)
@@ -84,6 +95,7 @@ namespace Bot
         public void Strafe()
         {
             Stop();
+            _isStrafing = true;
             float strafeStep = _strafeSpeed * Time.deltaTime * _strafeDirection;
             _currentStrafe += strafeStep;
 
