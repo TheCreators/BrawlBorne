@@ -127,10 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9580285f44704bef94cac567e46c7d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 60
   _hitLayers:
     serializedVersion: 2
     m_Bits: 776
   _explosion: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   _timeToExplode: 2
-  _damage: 60
   _explosionRadius: 5

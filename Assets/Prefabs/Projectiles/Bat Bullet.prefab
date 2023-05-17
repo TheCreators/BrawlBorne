@@ -48,6 +48,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4434337982953079774, guid: aefb5c1f5808ca946894f7ea5beaea1c, type: 3}
+      propertyPath: _damagea
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434337982953079774, guid: aefb5c1f5808ca946894f7ea5beaea1c, type: 3}
       propertyPath: _maxDistance
       value: 25
       objectReference: {fileID: 0}

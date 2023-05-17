@@ -52,12 +52,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _explosion
+      value: 
+      objectReference: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
       propertyPath: _projectile
       value: 
       objectReference: {fileID: 8703537298634163013, guid: 5b62258f73e3f97459a0fc17b161e3be, type: 3}
     - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
       propertyPath: _throwPower
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _explosionRadius
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9033627670222265075, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
       propertyPath: m_Name

@@ -16,6 +16,10 @@ PrefabInstance:
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3430874567808542318, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: _damagea
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430874567808542318, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
       propertyPath: _explosion
       value: 
       objectReference: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
