@@ -5,23 +5,9 @@ namespace Combat.Projectiles
 {
     public class Bullet : Projectile
     {
-        [SerializeField] private LayerMask _hitLayers;
-        [SerializeField, Min(0)] private float _speed = 20f;
-        [SerializeField, Min(0)] private float _maxDistance = 100f;
-        [SerializeField, Min(0)] private float _damage = 5f;
-        
+        private float _speed = 20f;
+        private float _maxDistance = 100f;
         private Vector3 _oldPosition;
-
-        private void OnValidate()
-        {
-            this.CheckIfNull(_hitLayers);
-        }
-
-        private void Start()
-        {
-            var lifeTime = _maxDistance / _speed;
-            Destroy(gameObject, lifeTime);
-        }
 
         private void Update()
         {
@@ -30,13 +16,23 @@ namespace Combat.Projectiles
             DetectCollision();
         }
 
+        public void Init(float damage, LayerMask hitLayers, float speed, float maxDistance)
+        {
+            base.Init(damage, hitLayers);
+            _speed = speed;
+            _maxDistance = maxDistance;
+            
+            var lifeTime = _maxDistance / _speed;
+            Destroy(gameObject, lifeTime);
+        }
+
         private void DetectCollision()
         {
-            if (Physics.Linecast(_oldPosition, transform.position, out var hit, _hitLayers) is false) return;
+            if (Physics.Linecast(_oldPosition, transform.position, out var hit, HitLayers) is false) return;
 
             if (hit.collider.gameObject.TryGetComponent(out IDamageable damageable))
             {
-                damageable.TakeDamage(_damage);
+                damageable.TakeDamage(Damage);
             }
 
             Destroy(gameObject);

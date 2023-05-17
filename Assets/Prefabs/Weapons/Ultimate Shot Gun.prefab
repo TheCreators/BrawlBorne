@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
+      propertyPath: _maxDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
       propertyPath: _bulletsPerShot
       value: 32
       objectReference: {fileID: 0}

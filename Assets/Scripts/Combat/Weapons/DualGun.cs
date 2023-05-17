@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Combat.Weapons
 {
-    public class DualGun : Gun<Bullet>
+    public class DualGun : BulletGun<Bullet>
     {
-        [SerializeField, Min(0)] private float _bulletsSpread = 0.5f;
 
-        [Header("Settings")]
+        [Header("Gun Settings")]
+        [SerializeField, Min(0)] private float _bulletsSpread = 0.5f;
         [SerializeField, Min(0)] private int _bulletsPerShot = 6;
         [SerializeField, Min(0)] private float _timeBetweenBullets = 0.25f;
         
@@ -35,7 +35,8 @@ namespace Combat.Weapons
                     _onUse.Raise(this, null);
                 }
                 
-                Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);
+                Bullet bullet = Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);
+                bullet.Init(_damage, _hitLayers, _speed, _maxDistance);
 
                 positionShiftAmount *= -1;
                 yield return new WaitForSeconds(_timeBetweenBullets);

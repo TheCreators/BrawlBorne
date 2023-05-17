@@ -4,13 +4,25 @@ using UnityEngine;
 
 namespace Combat.Weapons
 {
-    public class BallisticGun : Gun<RigidbodyProjectile>
+    public class BallisticGun : Gun<Bomb>
     {
         [Header("Settings")]
         [SerializeField, Min(0)] private float _throwPower = 10f;
         [SerializeField, Range(0, 2)] private float _heroVelocityInfluence = 0.5f;
         
+        [Header("Bomb Settings")]
+        [SerializeField] private GameObject _explosion;
+        [SerializeField, Min(0)] private float _timeToExplode = 3f;
+        [SerializeField, Min(0)] private float _explosionRadius = 5f;
+        
         private Rigidbody _rigidbody;
+
+        protected override void OnValidate()
+        {
+            this.CheckIfNull(_explosion);
+            
+            base.OnValidate();
+        }
 
         private void Awake()
         {
@@ -25,7 +37,8 @@ namespace Combat.Weapons
                                     _shootingDirection.forward * _bulletSpawnDistance + // Distance from camera
                                     _shootingDirection.up * _bulletSpawnHeight; // Height from camera
 
-            RigidbodyProjectile projectile = Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);
+            Bomb projectile = Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);
+            projectile.Init(_damage, _hitLayers, _explosion, _timeToExplode, _explosionRadius);
             projectile.SetVelocity(_rigidbody.velocity * _heroVelocityInfluence);
             projectile.AddForce(_shootingDirection.forward * _throwPower, ForceMode.Impulse);
             

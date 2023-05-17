@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using Events;
+using Misc;
 using UnityEngine;
 
 namespace Combat.Weapons
@@ -14,9 +16,21 @@ namespace Combat.Weapons
         [Header("Events")]
         [SerializeField] protected GameEvent _onUse;
         [SerializeField] protected GameEvent _onCellsAmountChanged;
+        
+        [Header("Damage")]
+        [SerializeField, Min(0)] protected float _damage = 5f;
+        
+        [Header("Hit Layers")]
+        [SerializeField] protected LayerMask _hitLayers;
 
         protected bool CanBeUsed = true;
         private bool _isRefilling = false;
+
+        protected virtual void OnValidate()
+        {
+            this.CheckIfNull(_onUse, _onCellsAmountChanged);
+            this.CheckIfNull(_hitLayers);
+        }
 
         private void Start()
         {
@@ -55,6 +69,11 @@ namespace Combat.Weapons
             }
 
             _isRefilling = false;
+        }
+
+        public void IncreaseDamage(float increasePercent)
+        {
+            _damage *= 1 + increasePercent / 100;
         }
     }
 }

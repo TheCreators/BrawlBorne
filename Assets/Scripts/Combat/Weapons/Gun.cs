@@ -14,10 +14,12 @@ namespace Combat.Weapons
         [SerializeField] protected float _bulletSpawnDistance = 1f;
         [SerializeField] protected float _bulletSpawnHeight = 0.5f;
         
-        protected virtual void OnValidate()
+        protected override void OnValidate()
         {
             this.CheckIfNull(_projectile);
             this.CheckIfNull(_shootingDirection);
+            
+            base.OnValidate();
         }
 
         protected override void Use()
