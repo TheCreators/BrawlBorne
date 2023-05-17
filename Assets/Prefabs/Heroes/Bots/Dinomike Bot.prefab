@@ -52,6 +52,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _bulletSpawnHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 6706267566870164016}
@@ -154,6 +158,10 @@ PrefabInstance:
     - target: {fileID: 1538950286861943408, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
       propertyPath: m_Name
       value: Ultimate Ballistic Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260097870712585865, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
+      propertyPath: _bulletSpawnHeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6260097870712585865, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
       propertyPath: _shootingDirection

@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 7567217681864240114}
     m_Modifications:
     - target: {fileID: 980968839976805654, guid: 593cb92683bb2ed4cb951a9d13550b2d, type: 3}
+      propertyPath: _bulletSpawnHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 980968839976805654, guid: 593cb92683bb2ed4cb951a9d13550b2d, type: 3}
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 7567217681864240114}
@@ -79,6 +83,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7567217681864240114}
     m_Modifications:
+    - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
+      propertyPath: _bulletSpawnHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
       propertyPath: _shootingDirection
       value: 
