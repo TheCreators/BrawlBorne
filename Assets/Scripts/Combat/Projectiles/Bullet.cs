@@ -41,5 +41,11 @@ namespace Combat.Projectiles
 
             Destroy(gameObject);
         }
+        
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * _maxDistance);
+        }
     }
 }
