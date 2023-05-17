@@ -39,7 +39,7 @@ namespace Bot
         {
             foreach (Component obj in objects)
             {
-                if (obj == null) continue;
+                if (obj == null || obj.gameObject.Equals(gameObject)) continue;
                 
                 var distance = Vector3.Distance(transform.position, obj.transform.position);
 
@@ -57,7 +57,7 @@ namespace Bot
 
             foreach (T obj in objects)
             {
-                if (obj == null) continue;
+                if (obj == null || obj.gameObject.Equals(gameObject)) continue;
 
                 var distance = Vector3.Distance(transform.position, obj.transform.position);
 
