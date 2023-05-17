@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentState: 0
+  _currentTarget: 3
 --- !u!114 &4591675464745393446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +304,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerDetectionRadius: 20
+  _heroDetectionRange: 20
+  _playerDetectionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _crateDetectionRadius: 10
+  _crateDetectionColor: {r: 1, g: 0, b: 1, a: 1}
+  _boostDetectionRadius: 10
+  _boostDetectionColor: {r: 0, g: 1, b: 1, a: 1}
   _playerAttackRadius: 15
+  _attackRange: 15
+  _playerAttackColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &5977217962883420356
 MonoBehaviour:
   m_ObjectHideFlags: 0
