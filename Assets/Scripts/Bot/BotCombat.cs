@@ -19,11 +19,20 @@ namespace Bot
 
         public void Shoot(Hero hero)
         {
-            var lookDirection = hero.ShootAt - transform.position;
+            Shoot(hero.ShootAt - transform.position);
+        }
+
+        public void Shoot(Component component)
+        {
+            Shoot(component.transform.position - transform.position);
+        }
+        
+        private void Shoot(Vector3 lookDirection)
+        {
             transform.rotation = Quaternion.LookRotation(lookDirection);
             _weapon.TryUse();
             _ultimate.TryUse();
-            
+
             Debug.DrawRay(transform.position, lookDirection, Color.red);
         }
     }
