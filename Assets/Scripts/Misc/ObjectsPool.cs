@@ -29,8 +29,9 @@ namespace Misc
             
             if (_autoFill)
             {
-                SetHeroes(FindObjectsOfType<Hero>());
-                SetCrates(FindObjectsOfType<Crate>());
+                Heroes.AddRange(FindObjectsOfType<Hero>());
+                Crates.AddRange(FindObjectsOfType<Crate>());
+                Boosts.AddRange(FindObjectsOfType<Boost>());
             }
         }
 
