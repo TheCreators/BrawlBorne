@@ -49,11 +49,11 @@ MonoBehaviour:
   _bottle: {fileID: 5305912507053142902, guid: c5c19a7db485f404c8fbb4e18e4d4b03, type: 3}
   _ground: {fileID: 3321912436738672957, guid: df9ecbb0971409f458bf699f3860efae, type: 3}
   _bots:
-  - {fileID: 2026786720301705275, guid: b673ae67d34d8a14c97fc33ad0f33d21, type: 3}
-  - {fileID: 2026786720301705275, guid: 4aaf9f58bd7c2654897f79b0f2bf9e4a, type: 3}
-  - {fileID: 2026786720301705275, guid: 26317bd06064c0a4c9506434d29a97cc, type: 3}
-  - {fileID: 2026786720301705275, guid: ec4650bd8e22e1849a02cfc251f2f36f, type: 3}
-  - {fileID: 2026786720301705275, guid: de8fe8caae7b5f541b72f232b9e16b9b, type: 3}
+  - {fileID: 6620761618144734648, guid: be7e1e95650b66348a49bad8c208d8bc, type: 3}
+  - {fileID: 5165398221145229241, guid: f336d85d8be62d84fbda5b66b1ff8fb3, type: 3}
+  - {fileID: 7501857608295575825, guid: 1fa34e49b880c094e8983afc855dcc00, type: 3}
+  - {fileID: 9172240393972733174, guid: 0d569ea5300e77f43a1ce6af947d39cc, type: 3}
+  - {fileID: 8339106170205478523, guid: 2b091ab1fa24b724daf0c8502c9b99e1, type: 3}
   _fieldLength: 30
   _fieldWidth: 30
   _tileSize: 2
