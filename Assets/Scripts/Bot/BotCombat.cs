@@ -33,7 +33,7 @@ namespace Bot
 
             if (_weapon is BallisticGun)
             {
-                transform.rotation = Quaternion.LookRotation(lookDirection + new Vector3(0, 1f, 0));
+                transform.rotation = Quaternion.LookRotation(lookDirection + new Vector3(0, 2f, 0));
             }
 
             _weapon.TryUse();

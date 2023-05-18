@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5046099176089000521, guid: f4e6a1531364f204f87b697b2f1a1578, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.14
+      objectReference: {fileID: 0}
     - target: {fileID: 6108319153114558197, guid: f4e6a1531364f204f87b697b2f1a1578, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -383,7 +387,7 @@ PrefabInstance:
     - target: {fileID: 6139333873039719327, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Avatar
       value: 
-      objectReference: {fileID: 9000000, guid: 58ba1acf0d024504b9534eeaddbda5fa, type: 3}
+      objectReference: {fileID: 9000000, guid: b08f2d78e0a1ea8449e2b964a18547f5, type: 3}
     - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _attackRange
       value: 3

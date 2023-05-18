@@ -83,7 +83,7 @@ MonoBehaviour:
   _refillTime: 2
   _onUse: {fileID: 11400000, guid: d18531d1412b2e141b1aa986c753afa0, type: 2}
   _onCellsAmountChanged: {fileID: 11400000, guid: c6c7094979ac94d47b11bd361c323c77, type: 2}
-  _damage: 35
+  _damage: 50
   _hitLayers:
     serializedVersion: 2
     m_Bits: 776

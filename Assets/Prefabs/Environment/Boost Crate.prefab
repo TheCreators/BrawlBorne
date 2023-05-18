@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27626dbb1b1e46aebdd4bbab6ae8858d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 100
-  _healthPoints: 100
+  _maxHealthPoints: 200
+  _healthPoints: 200
   _onDeath: {fileID: 11400000, guid: 80d7fcd566e08834d807313e7f84ac5e, type: 2}
   _onHealthChanged: {fileID: 11400000, guid: 48d790a501997594ca9f11b485fd2f22, type: 2}
 --- !u!114 &1915759271517685591
