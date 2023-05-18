@@ -1,4 +1,5 @@
 ﻿using Misc;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Combat.Projectiles
@@ -34,7 +35,7 @@ namespace Combat.Projectiles
             for (int i = 0; i < count; i++)
             {
                 if (colliders[i].gameObject.TryGetComponent(out IDamageable damageable) && 
-                    (Sender is null || colliders[i].gameObject != Sender.gameObject))
+                    (Sender.IsDestroyed() || colliders[i].gameObject != Sender.gameObject))
                 {
                     damageable.TakeDamage(Damage);
                 }

@@ -27,6 +27,7 @@ namespace Battlefield
         [SerializeField] [Range(0, 6)] private int _maxBushSize = 3;
         [SerializeField] [Range(0, 20)] private int _potsCount = 9;
         [SerializeField] [Range(1, 30)] private int _heroesCount = 15;
+        [SerializeField] [Range(3, 8)] private int _spawnDistance = 8;
 
         private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
         private List<Hero> Heroes { get; set; } = new();
@@ -58,7 +59,7 @@ namespace Battlefield
             do
             {
                 _generator = new BattleFieldGenerator(new BattleField(_fieldLength, _fieldWidth), _wallDensity,
-                        _bushesDensity, _maxBushSize, _potsCount, _heroesCount)
+                        _bushesDensity, _maxBushSize, _potsCount, _heroesCount, _spawnDistance)
                     .GenerateExternalWalls()
                     .GenerateWalls()
                     .DeleteSingleWalls()
@@ -73,9 +74,9 @@ namespace Battlefield
             float xCorrection = -_fieldLength * _tileSize;
             float zCorrection = -_fieldWidth * _tileSize;
 
-            for (int i = 0; i < _map.Cols; i++)
+            for (int i = 0; i < _map.Rows; i++)
             {
-                for (int j = 0; j < _map.Rows; j++)
+                for (int j = 0; j < _map.Cols; j++)
                 {
                     GameObject createdObject;
                     switch (_map[i, j])
@@ -102,7 +103,7 @@ namespace Battlefield
                             break;
                         case 5:
                             Crates.Add(Instantiate(_crate,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                new Vector3(xCorrection + i * _tileSize, 1, zCorrection + j * _tileSize),
                                 Quaternion.identity));
                             break;
                     }
@@ -119,16 +120,15 @@ namespace Battlefield
         {
             float xCorrection = -_fieldLength * _tileSize;
             float zCorrection = -_fieldWidth * _tileSize;
-            for (int i = 0; i < _map.Cols; i++)
+            for (int i = 0; i < _map.Rows; i++)
             {
-                for (int j = 0; j < _map.Rows; j++)
+                for (int j = 0; j < _map.Cols; j++)
                 {
                     if (_map[i, j] == 4)
                     {
                         Heroes.Add(Instantiate(GetRandomBot(),
                             new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
                             Quaternion.identity));
-                        break;
                     }
                 }
             }
