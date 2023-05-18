@@ -83,5 +83,5 @@ MonoBehaviour:
   _ultimateDuration: 7
   _speed: 20
   _timeBetweenHits: 1
-  _damagePerHit: 4
+  _damagePerHit: 12
   _hitRadius: 3
