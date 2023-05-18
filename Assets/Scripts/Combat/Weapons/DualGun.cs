@@ -24,9 +24,7 @@ namespace Combat.Weapons
             int positionShiftAmount = 1;
             for (int i = 0; i < _bulletsPerShot; i++)
             {
-                Vector3 spawnPosition = _shootingDirection.position + // Position
-                                        _shootingDirection.forward * _bulletSpawnDistance + // Distance from camera
-                                        _shootingDirection.up * _bulletSpawnHeight + // Height from camera
+                Vector3 spawnPosition = _projectileSpawnPoint.position + // Position
                                         _bulletsSpread * positionShiftAmount * transform.right; // Spread (left or right)
 
                 bool isLastBullet = i == _bulletsPerShot - 1;
@@ -36,7 +34,7 @@ namespace Combat.Weapons
                 }
                 
                 Bullet bullet = Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);
-                bullet.Init(_damage, _hitLayers, _speed, _maxDistance);
+                bullet.Init(_damage, _hitLayers, Hero, _speed, _maxDistance);
 
                 positionShiftAmount *= -1;
                 yield return new WaitForSeconds(_timeBetweenBullets);

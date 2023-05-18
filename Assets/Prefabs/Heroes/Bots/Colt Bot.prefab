@@ -143,6 +143,18 @@ PrefabInstance:
       propertyPath: _name
       value: Colt Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 2327377150365161471, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084415905231610014, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084415905231610014, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.119
+      objectReference: {fileID: 0}
     - target: {fileID: 5977217962883420356, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _weapon
       value: 
@@ -160,6 +172,11 @@ PrefabInstance:
 --- !u!4 &4710755450365253681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+  m_PrefabInstance: {fileID: 5170480185836914051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9182838495621178653 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4084415905231610014, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
   m_PrefabInstance: {fileID: 5170480185836914051}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6340146647886327578
@@ -221,6 +238,10 @@ PrefabInstance:
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 4710755450365253681}
+    - target: {fileID: 3182631992555741317, guid: 3b0c1a6e3e7b5a54593b74555f9b998b, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 9182838495621178653}
     - target: {fileID: 7138079653007631276, guid: 3b0c1a6e3e7b5a54593b74555f9b998b, type: 3}
       propertyPath: m_Name
       value: Ultimate Dual Gun
@@ -363,6 +384,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _shootingPoint
+      value: 
+      objectReference: {fileID: 9182838495621178653}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: _bulletSpawnHeight
       value: 0
       objectReference: {fileID: 0}
@@ -370,6 +395,14 @@ PrefabInstance:
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 4710755450365253681}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _bulletSpawnDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 9182838495621178653}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
 --- !u!114 &1784908616663939738 stripped

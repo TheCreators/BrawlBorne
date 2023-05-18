@@ -12,11 +12,12 @@ namespace Combat.Projectiles
         public void Init(
             float damage,
             LayerMask hitLayers,
+            Hero sender,
             GameObject explosion,
             float timeToExplode,
             float explosionRadius)
         {
-            base.Init(damage, hitLayers);
+            base.Init(damage, hitLayers, sender);
             _explosion = explosion;
             _timeToExplode = timeToExplode;
             _explosionRadius = explosionRadius;
@@ -32,7 +33,7 @@ namespace Combat.Projectiles
 
             for (int i = 0; i < count; i++)
             {
-                if (colliders[i].gameObject.TryGetComponent(out IDamageable damageable))
+                if (colliders[i].gameObject.TryGetComponent(out IDamageable damageable) && colliders[i].gameObject != Sender.gameObject)
                 {
                     damageable.TakeDamage(Damage);
                 }

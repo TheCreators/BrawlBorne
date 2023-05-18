@@ -52,9 +52,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _shootingPoint
+      value: 
+      objectReference: {fileID: 6409332108016900107}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 4615712030291714693}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 6409332108016900107}
     - target: {fileID: 9033627670222265075, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
       propertyPath: m_Name
       value: Ballistic Gun
@@ -175,6 +183,10 @@ PrefabInstance:
       propertyPath: _name
       value: Dinomike
       objectReference: {fileID: 0}
+    - target: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.911
+      objectReference: {fileID: 0}
     - target: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -223,6 +235,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dinomike
       objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.85
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
 --- !u!4 &4615712029635879727 stripped
@@ -233,6 +257,11 @@ Transform:
 --- !u!4 &4615712030291714693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+  m_PrefabInstance: {fileID: 2330402874340972843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6409332108016900107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
   m_PrefabInstance: {fileID: 2330402874340972843}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2590115249902741892
@@ -812,9 +841,17 @@ PrefabInstance:
       value: Ultimate Ballistic Gun
       objectReference: {fileID: 0}
     - target: {fileID: 6260097870712585865, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
+      propertyPath: _shootingPoint
+      value: 
+      objectReference: {fileID: 6409332108016900107}
+    - target: {fileID: 6260097870712585865, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 4615712030291714693}
+    - target: {fileID: 6260097870712585865, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 6409332108016900107}
     - target: {fileID: 8517768023548802772, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
       propertyPath: m_RootOrder
       value: 5

@@ -127,6 +127,10 @@ PrefabInstance:
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 1176797906895605844}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 623778565552155354}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
 --- !u!114 &4271844161098050804 stripped
@@ -174,6 +178,10 @@ PrefabInstance:
     - target: {fileID: 1146891796700530722, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
       propertyPath: _name
       value: Squeak
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
       propertyPath: m_RootOrder
@@ -223,8 +231,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squeak
       objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.041
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+--- !u!4 &623778565552155354 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+  m_PrefabInstance: {fileID: 8074355747489836026}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1176797906895605844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}

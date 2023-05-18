@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1634590768204988363}
     m_Modifications:
+    - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
+      propertyPath: _shootingDirection
+      value: 
+      objectReference: {fileID: 1634590767517597281}
+    - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 1032436601505334511}
     - target: {fileID: 2289054197709934623, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
       propertyPath: m_Name
       value: Shot Gun
@@ -580,6 +588,10 @@ PrefabInstance:
       propertyPath: _name
       value: Poko
       objectReference: {fileID: 0}
+    - target: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.713
+      objectReference: {fileID: 0}
     - target: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -628,8 +640,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poko
       objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.275
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+--- !u!4 &1032436601505334511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+  m_PrefabInstance: {fileID: 8572099514157532623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1634590767517597281 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+  m_PrefabInstance: {fileID: 8572099514157532623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1634590768204988363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}

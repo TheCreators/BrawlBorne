@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 7567217681864240114}
+    - target: {fileID: 980968839976805654, guid: 593cb92683bb2ed4cb951a9d13550b2d, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 6283684254834185950}
     - target: {fileID: 1103894618279453745, guid: 593cb92683bb2ed4cb951a9d13550b2d, type: 3}
       propertyPath: m_Name
       value: Ultimate Shot Gun
@@ -148,6 +152,10 @@ PrefabInstance:
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 7567217681864240114}
+    - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 6283684254834185950}
     - target: {fileID: 2289054197709934623, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
       propertyPath: m_Name
       value: Shot Gun
@@ -348,6 +356,26 @@ PrefabInstance:
       propertyPath: _name
       value: Shelly Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 2327377150365161471, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327377150365161471, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084415905231610014, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084415905231610014, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907142902796656471, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.185
+      objectReference: {fileID: 0}
     - target: {fileID: 5977217962883420356, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _weapon
       value: 
@@ -378,6 +406,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+--- !u!4 &6283684254834185950 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4084415905231610014, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+  m_PrefabInstance: {fileID: 8041989852949018176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7567217681864240114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}

@@ -16,15 +16,11 @@ namespace Combat.Weapons
             CanBeUsed = false;
 
             List<Quaternion> rotations = GenerateRandomRotations(_bulletsPerShot);
-            
-            Vector3 spawnPosition = _shootingDirection.position + // Position
-                                    _shootingDirection.forward * _bulletSpawnDistance + // Distance from camera
-                                    _shootingDirection.up * _bulletSpawnHeight; // Height from camera
-            
+
             for (int i = 0; i < _bulletsPerShot; i++)
             {
-                Bullet bullet = Instantiate(_projectile, spawnPosition, rotations[i]);
-                bullet.Init(_damage, _hitLayers, _speed, _maxDistance);
+                Bullet bullet = Instantiate(_projectile, _projectileSpawnPoint.position, rotations[i]);
+                bullet.Init(_damage, _hitLayers, Hero, _speed, _maxDistance);
             }
 
             CanBeUsed = true;

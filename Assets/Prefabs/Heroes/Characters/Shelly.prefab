@@ -452,6 +452,10 @@ PrefabInstance:
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 434779452120009167}
+    - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 2230528255215153985}
     - target: {fileID: 2289054197709934623, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
       propertyPath: m_Name
       value: Shot Gun
@@ -536,6 +540,10 @@ PrefabInstance:
       propertyPath: _name
       value: Shelly
       objectReference: {fileID: 0}
+    - target: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.025
+      objectReference: {fileID: 0}
     - target: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -584,6 +592,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shelly
       objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.648
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
 --- !u!4 &434779451456866405 stripped
@@ -594,6 +610,11 @@ Transform:
 --- !u!4 &434779452120009167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+  m_PrefabInstance: {fileID: 7372860056207684193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2230528255215153985 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
   m_PrefabInstance: {fileID: 7372860056207684193}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7465914405355393513
@@ -679,6 +700,10 @@ PrefabInstance:
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 434779452120009167}
+    - target: {fileID: 980968839976805654, guid: 593cb92683bb2ed4cb951a9d13550b2d, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 2230528255215153985}
     - target: {fileID: 1103894618279453745, guid: 593cb92683bb2ed4cb951a9d13550b2d, type: 3}
       propertyPath: m_Name
       value: Ultimate Shot Gun
