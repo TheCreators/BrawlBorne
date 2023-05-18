@@ -33,7 +33,8 @@ namespace Combat.Projectiles
 
             for (int i = 0; i < count; i++)
             {
-                if (colliders[i].gameObject.TryGetComponent(out IDamageable damageable) && colliders[i].gameObject != Sender.gameObject)
+                if (colliders[i].gameObject.TryGetComponent(out IDamageable damageable) && 
+                    (Sender is null || colliders[i].gameObject != Sender.gameObject))
                 {
                     damageable.TakeDamage(Damage);
                 }
