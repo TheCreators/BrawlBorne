@@ -421,6 +421,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bar: {fileID: 1283023207674143501}
   _text: {fileID: 1283023207821183756}
+  _objectToRotate: {fileID: 1283023207753693245}
+  _isHud: 1
 --- !u!114 &3858087966212037510
 MonoBehaviour:
   m_ObjectHideFlags: 0
