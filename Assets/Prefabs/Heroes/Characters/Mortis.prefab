@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: _shootingDirection
       value: 
       objectReference: {fileID: 6850862280328353188}
+    - target: {fileID: 2846795393345023447, guid: 38ce11013de9ac547be1f6b37fde0f18, type: 3}
+      propertyPath: _projectileSpawnPoint
+      value: 
+      objectReference: {fileID: 5183624241685901098}
     - target: {fileID: 7924874885760864731, guid: 38ce11013de9ac547be1f6b37fde0f18, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -175,6 +179,10 @@ PrefabInstance:
       propertyPath: _name
       value: Mortis
       objectReference: {fileID: 0}
+    - target: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.467
+      objectReference: {fileID: 0}
     - target: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -223,8 +231,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mortis
       objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.429
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+--- !u!4 &5183624241685901098 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+  m_PrefabInstance: {fileID: 4560504033671147018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6850862280328353188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6942594267192523694, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
