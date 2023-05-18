@@ -16,6 +16,7 @@ namespace Battlefield
         {
             _battleField = battleField;
         }
+        bool IsIndexValid(int row, int col) => row >= 0 && row < _battleField.Rows && col >= 0 && col < _battleField.Cols;
 
         public BattleFieldGenerator GenerateExternalWalls()
         {
@@ -142,6 +143,22 @@ namespace Battlefield
             return this;
         }
 
+        private void spawnHero(int x, int y)
+        {
+            if (IsIndexValid(x, y))
+            {
+                while (_battleField[x, y] != 0 && _battleField[x, y] != 3)
+                {
+                    do
+                    {
+                        x += _random.Next(3) - 1;
+                        y += _random.Next(3) - 1;
+                    } while (!IsIndexValid(x, y));
+
+                }
+                _battleField[x, y] = 4;
+            }
+        }
         public BattleFieldGenerator AddHeroesSpots()
         {
             int squareSize = _battleField.Cols / 2;
@@ -151,7 +168,7 @@ namespace Battlefield
             int x = 0, y = 0;
             for (int i = 0; i < HeroesCount; i++)
             {
-                _battleField[firstSpotX + x, firstSpotY + y] = 4;
+                spawnHero(firstSpotX + x, firstSpotY + y);
                 if (y == 0)
                 {
                     x += spacing;
@@ -187,16 +204,13 @@ namespace Battlefield
 
             return this;
         }
-
         public BattleFieldGenerator FillEmpties()
         {
             int rows = _battleField.Cols;
             int cols = _battleField.Rows;
 
             bool[,] visited = new bool[rows, cols];
-
-            bool IsIndexValid(int row, int col) => row >= 0 && row < rows && col >= 0 && col < cols;
-
+            
             bool CanMove(int row, int col) => IsIndexValid(row, col) && _battleField[row, col] != 1 &&
                                               _battleField[row, col] != 2 && !visited[row, col];
 
