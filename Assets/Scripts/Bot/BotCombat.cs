@@ -30,7 +30,12 @@ namespace Bot
         private void Shoot(Vector3 lookDirection, bool useUltimate)
         {
             transform.rotation = Quaternion.LookRotation(lookDirection);
-            
+
+            if (_weapon is BallisticGun)
+            {
+                transform.rotation = Quaternion.LookRotation(lookDirection + new Vector3(0, 1f, 0));
+            }
+
             _weapon.TryUse();
             
             if (useUltimate)

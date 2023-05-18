@@ -16,6 +16,8 @@ namespace Combat.Weapons
         [SerializeField, Min(0)] private float _explosionRadius = 5f;
         
         private Rigidbody _rigidbody;
+        
+        public Transform ShotDirection { get; set; }
 
         protected override void OnValidate()
         {
@@ -27,6 +29,13 @@ namespace Combat.Weapons
         private void Awake()
         {
             _rigidbody = this.GetComponentInParentWithNullCheck<Rigidbody>();
+        }
+
+        protected override void Start()
+        {
+            ShotDirection = _shootingDirection;
+
+            base.Start();
         }
 
         protected override void Shoot()
