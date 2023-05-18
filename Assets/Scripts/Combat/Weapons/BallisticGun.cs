@@ -42,12 +42,8 @@ namespace Combat.Weapons
         {
             CanBeUsed = false;
 
-            Vector3 spawnPosition = _shootingDirection.position + // Position
-                                    _shootingDirection.forward * _bulletSpawnDistance + // Distance from camera
-                                    _shootingDirection.up * _bulletSpawnHeight; // Height from camera
-
-            Bomb projectile = Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);
-            projectile.Init(_damage, _hitLayers, _explosion, _timeToExplode, _explosionRadius);
+            Bomb projectile = Instantiate(_projectile, _projectileSpawnPoint.position, _shootingDirection.rotation);
+            projectile.Init(_damage, _hitLayers, Hero, _explosion, _timeToExplode, _explosionRadius);
             projectile.SetVelocity(_rigidbody.velocity * _heroVelocityInfluence);
             projectile.AddForce(_shootingDirection.forward * _throwPower, ForceMode.Impulse);
             
