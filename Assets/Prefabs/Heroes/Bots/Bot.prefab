@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd642d4bf7b48e69ae27e94099c6ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _randomPointMaxRadius: 40
-  _randomPointMinRadius: 25
+  _randomPointMaxRadius: 80
+  _randomPointMinRadius: 50
   _strafeSpeed: 3
   _strafeDistance: 2
   _onMove: {fileID: 11400000, guid: bd6ab64eada019c409c422e42ec4c918, type: 2}
