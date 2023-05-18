@@ -103,7 +103,7 @@ namespace Battlefield
                             break;
                         case 5:
                             Crates.Add(Instantiate(_crate,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                new Vector3(xCorrection + i * _tileSize, 1, zCorrection + j * _tileSize),
                                 Quaternion.identity));
                             break;
                     }
@@ -129,7 +129,6 @@ namespace Battlefield
                         Heroes.Add(Instantiate(GetRandomBot(),
                             new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
                             Quaternion.identity));
-                        break;
                     }
                 }
             }
