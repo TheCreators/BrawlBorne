@@ -35,7 +35,8 @@ namespace Battlefield
         private BattleField _map;
         private BattleFieldGenerator _generator;
         private readonly Random _rnd = new Random();
-
+        private float xCorrection;
+        private float zCorrection;
         private void OnValidate()
         {
             this.CheckIfNull(_wall, _border, _grass, _ground);
@@ -44,6 +45,8 @@ namespace Battlefield
 
         private void Start()
         {
+            xCorrection = -_fieldLength * _tileSize;
+            zCorrection = -_fieldWidth * _tileSize;
             BuildTerrain();
             BakeNavMesh();
             PlaceBots();
@@ -70,10 +73,7 @@ namespace Battlefield
             } while (!_generator.HasGround());
 
             _map = _generator.AddHeroesSpots().BuildMap();
-
-            float xCorrection = -_fieldLength * _tileSize;
-            float zCorrection = -_fieldWidth * _tileSize;
-
+            
             for (int i = 0; i < _map.Rows; i++)
             {
                 for (int j = 0; j < _map.Cols; j++)
@@ -116,10 +116,24 @@ namespace Battlefield
             return _bots[_rnd.Next(_bots.Count)];
         }
 
+        public Vector3 GetPlayerSpotCoordinates()
+        {
+            for (int i = 0; i < _map.Rows; i++)
+            {
+                for (int j = 0; j < _map.Cols; j++)
+                {
+                    if (_map[i, j] == 6)
+                    {
+                        return new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize);
+                    }
+                }
+            }
+
+            return new Vector3(0, 0, 0);
+        }
+
         private void PlaceBots()
         {
-            float xCorrection = -_fieldLength * _tileSize;
-            float zCorrection = -_fieldWidth * _tileSize;
             for (int i = 0; i < _map.Rows; i++)
             {
                 for (int j = 0; j < _map.Cols; j++)
@@ -129,7 +143,6 @@ namespace Battlefield
                         Heroes.Add(Instantiate(GetRandomBot(),
                             new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
                             Quaternion.identity));
-                        break;
                     }
                 }
             }
