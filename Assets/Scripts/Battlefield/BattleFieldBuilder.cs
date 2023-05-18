@@ -74,9 +74,9 @@ namespace Battlefield
             float xCorrection = -_fieldLength * _tileSize;
             float zCorrection = -_fieldWidth * _tileSize;
 
-            for (int i = 0; i < _map.Cols; i++)
+            for (int i = 0; i < _map.Rows; i++)
             {
-                for (int j = 0; j < _map.Rows; j++)
+                for (int j = 0; j < _map.Cols; j++)
                 {
                     GameObject createdObject;
                     switch (_map[i, j])
@@ -120,9 +120,9 @@ namespace Battlefield
         {
             float xCorrection = -_fieldLength * _tileSize;
             float zCorrection = -_fieldWidth * _tileSize;
-            for (int i = 0; i < _map.Cols; i++)
+            for (int i = 0; i < _map.Rows; i++)
             {
-                for (int j = 0; j < _map.Rows; j++)
+                for (int j = 0; j < _map.Cols; j++)
                 {
                     if (_map[i, j] == 4)
                     {
