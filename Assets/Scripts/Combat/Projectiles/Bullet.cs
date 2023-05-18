@@ -33,7 +33,8 @@ namespace Combat.Projectiles
 
         private void DetectCollision()
         {
-            if (Physics.Linecast(_oldPosition, transform.position, out var hit, HitLayers) is false || hit.collider.gameObject == Sender.gameObject) return;
+            if (Physics.Linecast(_oldPosition, transform.position, out var hit, HitLayers) is false || 
+                (Sender is not null && hit.collider.gameObject == Sender.gameObject)) return;
 
             if (hit.collider.gameObject.TryGetComponent(out IDamageable damageable))
             {
