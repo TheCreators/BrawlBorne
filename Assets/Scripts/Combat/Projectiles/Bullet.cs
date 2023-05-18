@@ -16,9 +16,14 @@ namespace Combat.Projectiles
             DetectCollision();
         }
 
-        public void Init(float damage, LayerMask hitLayers, float speed, float maxDistance)
+        public void Init(
+            float damage, 
+            LayerMask hitLayers, 
+            Hero sender, 
+            float speed, 
+            float maxDistance)
         {
-            base.Init(damage, hitLayers);
+            base.Init(damage, hitLayers, sender);
             _speed = speed;
             _maxDistance = maxDistance;
             
@@ -28,7 +33,7 @@ namespace Combat.Projectiles
 
         private void DetectCollision()
         {
-            if (Physics.Linecast(_oldPosition, transform.position, out var hit, HitLayers) is false) return;
+            if (Physics.Linecast(_oldPosition, transform.position, out var hit, HitLayers) is false || hit.collider.gameObject == Sender.gameObject) return;
 
             if (hit.collider.gameObject.TryGetComponent(out IDamageable damageable))
             {
