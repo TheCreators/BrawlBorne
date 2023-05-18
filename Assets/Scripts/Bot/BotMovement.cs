@@ -58,6 +58,11 @@ namespace Bot
         
         public Vector2 GetNormalizedRelativeVelocity()
         {
+            if (_isStrafing)
+            {
+                return new Vector2(0, _strafeDirection * 0.75f);
+            }
+            
             var velocity = transform.InverseTransformDirection(_agent.velocity);
             return new Vector2(velocity.z, -velocity.x).normalized;
         }
@@ -99,7 +104,8 @@ namespace Bot
             float strafeStep = _strafeSpeed * Time.deltaTime * _strafeDirection;
             _currentStrafe += strafeStep;
 
-            if (Mathf.Abs(_currentStrafe) >= _strafeDistance)
+            bool timeToChangeDirection = Mathf.Abs(_currentStrafe) >= _strafeDistance;
+            if (timeToChangeDirection)
             {
                 _strafeDirection = -_strafeDirection;
                 _currentStrafe = 0.0f;

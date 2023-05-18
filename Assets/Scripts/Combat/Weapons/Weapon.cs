@@ -32,7 +32,7 @@ namespace Combat.Weapons
             this.CheckIfNull(_hitLayers);
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             _onCellsAmountChanged.Raise(this, _currentCells);
         }

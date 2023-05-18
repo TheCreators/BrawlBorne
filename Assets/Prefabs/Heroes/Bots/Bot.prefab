@@ -293,6 +293,9 @@ MonoBehaviour:
   _boostDetectionColor: {r: 1, g: 0.41037738, b: 0.80492246, a: 1}
   _attackRange: 15
   _playerAttackColor: {r: 1, g: 0, b: 0, a: 1}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 777
 --- !u!114 &5977217962883420356
 MonoBehaviour:
   m_ObjectHideFlags: 0
