@@ -10,22 +10,23 @@ namespace Battlefield
 {
     public class BattleFieldBuilder : MonoBehaviour
     {
-        [Header("Objects")] 
-        [SerializeField] private GameObject _wall;
+        [Header("Objects")] [SerializeField] private GameObject _wall;
+        [SerializeField] private GameObject _border;
         [SerializeField] private GameObject _grass;
         [SerializeField] private Crate _crate;
         [SerializeField] private GameObject _ground;
         [SerializeField] private List<Hero> _bots;
 
-        [Header("Settings")] 
-        [SerializeField] [Range(30,30)]private int _fieldLength = 30;
-        [SerializeField] [Range(30,30)]private int _fieldWidth = 30;
-        [SerializeField] [Range(2,2)]private int _tileSize = 2;
-        [SerializeField] [Range(0,0.2f)]private float _wallDensity = 0.05f;
-        [SerializeField] [Range(0,0.3f)]private float _bushesDensity = 0.03f;
-        [SerializeField] [Range(0,6)]private int _maxBushSize = 3;
-        [SerializeField] [Range(0,20)]private int _potsCount = 9;
-        [SerializeField] [Range(1,30)]private int _heroesCount = 15;
+        [Header("Settings")] [SerializeField] [Range(30, 30)]
+        private int _fieldLength = 30;
+
+        [SerializeField] [Range(30, 30)] private int _fieldWidth = 30;
+        [SerializeField] [Range(2, 2)] private int _tileSize = 2;
+        [SerializeField] [Range(0, 0.2f)] private float _wallDensity = 0.05f;
+        [SerializeField] [Range(0, 0.3f)] private float _bushesDensity = 0.03f;
+        [SerializeField] [Range(0, 6)] private int _maxBushSize = 3;
+        [SerializeField] [Range(0, 20)] private int _potsCount = 9;
+        [SerializeField] [Range(1, 30)] private int _heroesCount = 15;
 
         private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
         private List<Hero> Heroes { get; set; } = new();
@@ -36,7 +37,7 @@ namespace Battlefield
 
         private void OnValidate()
         {
-            this.CheckIfNull(_wall, _grass, _ground);
+            this.CheckIfNull(_wall, _border, _grass, _ground);
             this.CheckIfNull(_crate);
         }
 
@@ -49,7 +50,7 @@ namespace Battlefield
             ObjectsPool.Instance.SetCrates(Crates);
             ObjectsPool.Instance.InstantiatePlayer();
         }
-        
+
         private void BuildTerrain()
         {
             GameObject field = Instantiate(_ground, new Vector3(0, 0, 0), Quaternion.identity);
@@ -65,9 +66,9 @@ namespace Battlefield
                     .AddBushes()
                     .AddPots()
                     .MakeSymmetric();
-            }while (!_generator.HasGround());
-            
-                _map = _generator.AddHeroesSpots().BuildMap();
+            } while (!_generator.HasGround());
+
+            _map = _generator.AddHeroesSpots().BuildMap();
 
             float xCorrection = -_fieldLength * _tileSize;
             float zCorrection = -_fieldWidth * _tileSize;
@@ -87,6 +88,9 @@ namespace Battlefield
                             break;
                         case 2:
                             createdObject = Instantiate(_wall,
+                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                Quaternion.identity);
+                            Instantiate(_border,
                                 new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
                                 Quaternion.identity);
                             _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
