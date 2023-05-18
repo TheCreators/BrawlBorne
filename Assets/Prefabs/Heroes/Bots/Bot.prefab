@@ -204,7 +204,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477042130070592955}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1e1f9de6143ebd2478872a54bc5ee807, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 27f5b43a3e310e642a8eec071da76666, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -319,8 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27626dbb1b1e46aebdd4bbab6ae8858d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 100
-  _healthPoints: 300
+  _maxHealthPoints: 200
+  _healthPoints: 200
   _onDeath: {fileID: 11400000, guid: 68d23cd08d27b8e44b38090202c53f2f, type: 2}
   _onHealthChanged: {fileID: 11400000, guid: eddf2d5640e89e646a041d096b9c5341, type: 2}
 --- !u!114 &6604856619764781148
