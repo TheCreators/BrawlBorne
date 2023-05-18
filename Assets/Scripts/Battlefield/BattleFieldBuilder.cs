@@ -18,14 +18,20 @@ namespace Battlefield
         [SerializeField] private List<Hero> _bots;
 
         [Header("Settings")] 
-        [SerializeField] private int _fieldLength = 30;
-        [SerializeField] private int _fieldWidth = 30;
-        [SerializeField] private int _tileSize = 2;
+        [SerializeField] [Range(30,30)]private int _fieldLength = 30;
+        [SerializeField] [Range(30,30)]private int _fieldWidth = 30;
+        [SerializeField] [Range(2,2)]private int _tileSize = 2;
+        [SerializeField] [Range(0,0.2f)]private float _wallDensity = 0.05f;
+        [SerializeField] [Range(0,0.3f)]private float _bushesDensity = 0.03f;
+        [SerializeField] [Range(0,6)]private int _maxBushSize = 3;
+        [SerializeField] [Range(0,20)]private int _potsCount = 9;
+        [SerializeField] [Range(1,30)]private int _heroesCount = 15;
 
         private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
         private List<Hero> Heroes { get; set; } = new();
         private List<Crate> Crates { get; set; } = new();
         private BattleField _map;
+        private BattleFieldGenerator _generator;
         private readonly Random _rnd = new Random();
 
         private void OnValidate()
@@ -43,22 +49,25 @@ namespace Battlefield
             ObjectsPool.Instance.SetCrates(Crates);
             ObjectsPool.Instance.InstantiatePlayer();
         }
-
+        
         private void BuildTerrain()
         {
             GameObject field = Instantiate(_ground, new Vector3(0, 0, 0), Quaternion.identity);
             _navMeshSurfaces.Add(field.GetComponentInChildren<NavMeshSurface>());
-
-            _map = new BattleFieldGenerator(new BattleField(_fieldLength, _fieldWidth))
-                .GenerateExternalWalls()
-                .GenerateWalls()
-                .DeleteSingleWalls()
-                .FillEmpties()
-                .AddBushes()
-                .AddPots()
-                .MakeSymmetric()
-                .AddHeroesSpots()
-                .BuildMap();
+            do
+            {
+                _generator = new BattleFieldGenerator(new BattleField(_fieldLength, _fieldWidth), _wallDensity,
+                        _bushesDensity, _maxBushSize, _potsCount, _heroesCount)
+                    .GenerateExternalWalls()
+                    .GenerateWalls()
+                    .DeleteSingleWalls()
+                    .FillEmpties()
+                    .AddBushes()
+                    .AddPots()
+                    .MakeSymmetric();
+            }while (!_generator.HasGround());
+            
+                _map = _generator.AddHeroesSpots().BuildMap();
 
             float xCorrection = -_fieldLength * _tileSize;
             float zCorrection = -_fieldWidth * _tileSize;

@@ -5,19 +5,45 @@ namespace Battlefield
     public class BattleFieldGenerator
     {
         private BattleField _battleField;
-        private const double WallDensity = 0.05;
-        private const double BushesDensity = 0.03;
-        private const int MaxBushSize = 3;
-        private const int PotsCount = 9;
-        private const int HeroesCount = 15;
+        private readonly float _wallDensity;
+        private readonly float _bushesDensity;
+        private readonly int _maxBushSize;
+        private readonly int _potsCount;
+        private readonly int _heroesCount;
         private readonly Random _random = new Random();
 
-        public BattleFieldGenerator(BattleField battleField)
+        public BattleFieldGenerator(BattleField battleField,float wallDensity,float bushesDensity,int maxBushSize,int potsCount , int heroesCount)
         {
             _battleField = battleField;
+            _wallDensity = wallDensity;
+            _bushesDensity = bushesDensity;
+            _maxBushSize = maxBushSize;
+            _potsCount = potsCount;
+            _heroesCount = heroesCount;
         }
         bool IsIndexValid(int row, int col) => row >= 0 && row < _battleField.Rows && col >= 0 && col < _battleField.Cols;
 
+public bool HasGround()
+        {
+            int wallsCount = 0;
+            for (int i = 0; i < _battleField.Rows; i++)
+            {
+                for (int j = 0; j < _battleField.Cols; j++)
+                {
+                    if (_battleField[i, j] == 1)
+                    {
+                        wallsCount++;
+                    }
+                }
+            }
+    
+            if (4 * wallsCount / 3 > _battleField.Rows * _battleField.Cols)
+            {
+                return false;
+            }
+
+            return true;
+        }
         public BattleFieldGenerator GenerateExternalWalls()
         {
             for (int i = 0; i < _battleField.Cols; i++)
@@ -40,7 +66,7 @@ namespace Battlefield
                 double lengthWall = 0;
                 for (int j = 1; j < _battleField.Rows; j++)
                 {
-                    double wallChance = WallDensity + lengthWall;
+                    double wallChance = _wallDensity + lengthWall;
                     if (_battleField[i - 1, j] == 1)
                     {
                         wallChance += 0.2;
@@ -95,14 +121,14 @@ namespace Battlefield
             int columns = _battleField.Rows;
             int cellsCount = rows * columns;
 
-            int bushesCount = (int) (BushesDensity * cellsCount);
+            int bushesCount = (int) (_bushesDensity * cellsCount);
 
             for (int i = 0; i < bushesCount; i++)
             {
                 int row = _random.Next(rows);
                 int column = _random.Next(columns);
 
-                int bushSize = _random.Next(MaxBushSize - 1) + 2;
+                int bushSize = _random.Next(_maxBushSize - 1) + 2;
                 for (int j = 0; j < bushSize; j++)
                 {
                     for (int k = 0; k < bushSize; k++)
@@ -123,27 +149,29 @@ namespace Battlefield
             int middleX = _battleField.Cols / 2;
             int middleY = _battleField.Rows / 2;
             int potsOnField = 0;
-            while (PotsCount > potsOnField)
+            while (_potsCount > potsOnField)
             {
                 int potPositionX = potsOnField % 2 == 0 ? middleX : 0;
-                int potPositionY = (potsOnField % 4 + (PotsCount + 1) % 2) % 4 < 2 ? middleY : 0;
-                while (true)
+                int potPositionY = (potsOnField % 4 + (_potsCount + 1) % 2) % 4 < 2 ? middleY : 0;
+                int checker = 0;
+                while (checker < 50)
                 {
+                checker++;
                     int x = potPositionX + _random.Next(middleX);
                     int y = potPositionY + _random.Next(middleY);
-                    if (_battleField[x, y] == 0)
+                    if (_battleField[x, y] == 0 || _battleField[x, y] == 3)
                     {
                         _battleField[x, y] = 5;
-                        potsOnField++;
                         break;
                     }
                 }
+                potsOnField++;
             }
 
             return this;
         }
 
-        private void spawnHero(int x, int y)
+        private void SpawnHero(int x, int y)
         {
             if (IsIndexValid(x, y))
             {
@@ -164,11 +192,11 @@ namespace Battlefield
             int squareSize = _battleField.Cols / 2;
             int firstSpotX = _battleField.Cols / 4;
             int firstSpotY = _battleField.Rows / 4;
-            int spacing = squareSize * 4 / HeroesCount;
+            int spacing = squareSize * 4 / _heroesCount;
             int x = 0, y = 0;
-            for (int i = 0; i < HeroesCount; i++)
+            for (int i = 0; i < _heroesCount; i++)
             {
-                spawnHero(firstSpotX + x, firstSpotY + y);
+                SpawnHero(firstSpotX + x, firstSpotY + y);
                 if (y == 0)
                 {
                     x += spacing;
@@ -228,9 +256,9 @@ namespace Battlefield
 
             int startRow = 0;
             int startCol = 0;
-            for (int i = 0; i < rows; i++)
+            for (int i = rows/2; i < rows; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = cols/2; j < cols; j++)
                 {
                     if (_battleField[i, j] == 0)
                     {
