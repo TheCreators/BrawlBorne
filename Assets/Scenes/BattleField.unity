@@ -493,6 +493,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8942223173646349031, guid: 00ef75323699d3b4b8c135a5653bacf2, type: 3}
+      propertyPath: _heroesCount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8942223173646349032, guid: 00ef75323699d3b4b8c135a5653bacf2, type: 3}
       propertyPath: m_Name
       value: BattleFieldBuilder
