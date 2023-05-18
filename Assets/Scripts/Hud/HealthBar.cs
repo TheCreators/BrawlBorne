@@ -1,3 +1,5 @@
+using System;
+using Combat;
 using Misc;
 using Models;
 using Player;
@@ -11,16 +13,34 @@ namespace Hud
     {
         [SerializeField] private Image _bar;
         [SerializeField] private TextMeshProUGUI _text;
+        [SerializeField] private GameObject _objectToRotate;
+        [SerializeField] private bool _isHud;
+        
+        private Camera _camera;
         
         private void OnValidate()
         {
             this.CheckIfNull(_bar);
             this.CheckIfNull(_text);
+            this.CheckIfNull(_objectToRotate);
+        }
+        
+        private void Start()
+        {
+            _camera = Camera.main;
+        }
+
+        private void Update()
+        {
+            if (_isHud is false)
+            {
+                _objectToRotate.transform.rotation = Quaternion.LookRotation(transform.position - _camera.transform.position);
+            }
         }
 
         public void SetHealthBar(Component component, object data) 
         {
-            if (component.TryGetComponent(out PlayerMovement _))
+            if ((_isHud && component.TryGetComponent(out PlayerMovement _)) || component == GetComponentInParent<Health>())
             {
                 HealthAmount healthAmount = (HealthAmount) data;
                 _bar.fillAmount = healthAmount.CurrentHealth / healthAmount.MaxHealth;

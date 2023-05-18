@@ -56,9 +56,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _damage
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: _projectile
       value: 
       objectReference: {fileID: 6323033957192560943, guid: aa0bc6e1a1187774cb0110eef4a9672b, type: 3}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _maxDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: _bulletsPerShot
       value: 11

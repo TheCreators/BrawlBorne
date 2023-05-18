@@ -83,10 +83,15 @@ MonoBehaviour:
   _refillTime: 2
   _onUse: {fileID: 11400000, guid: d18531d1412b2e141b1aa986c753afa0, type: 2}
   _onCellsAmountChanged: {fileID: 11400000, guid: c6c7094979ac94d47b11bd361c323c77, type: 2}
+  _damage: 15
+  _hitLayers:
+    serializedVersion: 2
+    m_Bits: 841
   _projectile: {fileID: 415872128601716827, guid: 17b2b22b1a6d4594d925004a9796db96, type: 3}
+  _projectileSpawnPoint: {fileID: 0}
   _shootingDirection: {fileID: 0}
-  _bulletSpawnDistance: 1
-  _bulletSpawnHeight: -0.5
+  _speed: 9
+  _maxDistance: 25
   _bulletsPerShot: 20
   _verticalSpread: 8
   _horizontalSpread: 16

@@ -5,20 +5,23 @@ namespace Combat.Projectiles
 {
     public class Bomb : RigidbodyProjectile
     {
-        [SerializeField] private LayerMask _hitLayers;
-        [SerializeField] private GameObject _explosion;
-        [SerializeField, Min(0)] private float _timeToExplode = 3f;
-        [SerializeField, Min(0)] private float _damage = 20f;
-        [SerializeField, Min(0)] private float _explosionRadius = 5f;
+        private GameObject _explosion;
+        private float _timeToExplode = 3f;
+        private float _explosionRadius = 5f;
 
-        private void OnValidate()
+        public void Init(
+            float damage,
+            LayerMask hitLayers,
+            Hero sender,
+            GameObject explosion,
+            float timeToExplode,
+            float explosionRadius)
         {
-            this.CheckIfNull(_hitLayers);
-            this.CheckIfNull(_explosion);
-        }
+            base.Init(damage, hitLayers, sender);
+            _explosion = explosion;
+            _timeToExplode = timeToExplode;
+            _explosionRadius = explosionRadius;
 
-        private void Start()
-        {
             Invoke(nameof(Explode), _timeToExplode);
         }
 
@@ -26,13 +29,14 @@ namespace Combat.Projectiles
         {
             Instantiate(_explosion, transform.position, _explosion.transform.rotation);
             var colliders = new Collider[20];
-            int count = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, colliders, _hitLayers);
+            int count = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, colliders, HitLayers);
 
             for (int i = 0; i < count; i++)
             {
-                if (colliders[i].gameObject.TryGetComponent(out IDamageable damageable))
+                if (colliders[i].gameObject.TryGetComponent(out IDamageable damageable) && 
+                    (Sender is null || colliders[i].gameObject != Sender.gameObject))
                 {
-                    damageable.TakeDamage(_damage);
+                    damageable.TakeDamage(Damage);
                 }
             }
 

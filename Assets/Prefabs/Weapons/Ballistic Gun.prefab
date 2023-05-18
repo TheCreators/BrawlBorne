@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 53a1a8c18087346d18a02d8a4e0c59ca, type: 3}
     - target: {fileID: 936402671515005356, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
       propertyPath: m_Name
-      value: Ballistic Gun 1
+      value: Ballistic Gun
       objectReference: {fileID: 0}
     - target: {fileID: 8039073245070755080, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
       propertyPath: m_RootOrder
@@ -83,9 +83,15 @@ MonoBehaviour:
   _refillTime: 2
   _onUse: {fileID: 11400000, guid: d18531d1412b2e141b1aa986c753afa0, type: 2}
   _onCellsAmountChanged: {fileID: 11400000, guid: c6c7094979ac94d47b11bd361c323c77, type: 2}
+  _damage: 50
+  _hitLayers:
+    serializedVersion: 2
+    m_Bits: 776
   _projectile: {fileID: 3430874567808542318, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+  _projectileSpawnPoint: {fileID: 0}
   _shootingDirection: {fileID: 0}
-  _bulletSpawnDistance: 1
-  _bulletSpawnHeight: -0.5
   _throwPower: 10
   _heroVelocityInfluence: 0.5
+  _explosion: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  _timeToExplode: 2
+  _explosionRadius: 5

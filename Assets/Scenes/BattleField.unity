@@ -494,16 +494,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8942223173646349031, guid: 00ef75323699d3b4b8c135a5653bacf2, type: 3}
-      propertyPath: _border
-      value: 
-      objectReference: {fileID: 4459002749115364136, guid: 9c13651d3b76488498ebdf5fcfa24fad, type: 3}
-    - target: {fileID: 8942223173646349031, guid: 00ef75323699d3b4b8c135a5653bacf2, type: 3}
-      propertyPath: _tileSize
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8942223173646349031, guid: 00ef75323699d3b4b8c135a5653bacf2, type: 3}
-      propertyPath: _wallDensity
-      value: 0.1
+      propertyPath: _heroesCount
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8942223173646349032, guid: 00ef75323699d3b4b8c135a5653bacf2, type: 3}
       propertyPath: m_Name

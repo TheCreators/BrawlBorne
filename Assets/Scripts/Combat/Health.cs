@@ -53,7 +53,7 @@ namespace Combat
 
         public void IncreaseMaxHealth(float increasePercent)
         {
-            _maxHealthPoints = _maxHealthPoints * (1 + increasePercent / 100);
+            _maxHealthPoints *= (1 + increasePercent / 100);
             float increasedCurrentHealth = _healthPoints * (1 + increasePercent / 100);
             if (increasedCurrentHealth >= _maxHealthPoints)
             {
