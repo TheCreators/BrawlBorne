@@ -27,6 +27,7 @@ namespace Battlefield
         [SerializeField] [Range(0, 6)] private int _maxBushSize = 3;
         [SerializeField] [Range(0, 20)] private int _potsCount = 9;
         [SerializeField] [Range(1, 30)] private int _heroesCount = 15;
+        [SerializeField] [Range(3, 8)] private int _spawnDistance = 8;
 
         private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
         private List<Hero> Heroes { get; set; } = new();
@@ -58,7 +59,7 @@ namespace Battlefield
             do
             {
                 _generator = new BattleFieldGenerator(new BattleField(_fieldLength, _fieldWidth), _wallDensity,
-                        _bushesDensity, _maxBushSize, _potsCount, _heroesCount)
+                        _bushesDensity, _maxBushSize, _potsCount, _heroesCount, _spawnDistance)
                     .GenerateExternalWalls()
                     .GenerateWalls()
                     .DeleteSingleWalls()

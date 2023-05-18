@@ -10,9 +10,10 @@ namespace Battlefield
         private readonly int _maxBushSize;
         private readonly int _potsCount;
         private readonly int _heroesCount;
+        private readonly int _spawnDistance;
         private readonly Random _random = new Random();
 
-        public BattleFieldGenerator(BattleField battleField,float wallDensity,float bushesDensity,int maxBushSize,int potsCount , int heroesCount)
+        public BattleFieldGenerator(BattleField battleField,float wallDensity,float bushesDensity,int maxBushSize,int potsCount , int heroesCount, int spawnDistance)
         {
             _battleField = battleField;
             _wallDensity = wallDensity;
@@ -20,6 +21,7 @@ namespace Battlefield
             _maxBushSize = maxBushSize;
             _potsCount = potsCount;
             _heroesCount = heroesCount;
+            _spawnDistance = spawnDistance;
         }
         bool IsIndexValid(int row, int col) => row >= 0 && row < _battleField.Rows && col >= 0 && col < _battleField.Cols;
 
@@ -46,12 +48,12 @@ public bool HasGround()
         }
         public BattleFieldGenerator GenerateExternalWalls()
         {
-            for (int i = 0; i < _battleField.Cols; i++)
+            for (int i = 0; i < _battleField.Rows; i++)
             {
                 _battleField[i, 0] = 2;
             }
 
-            for (int i = 0; i < _battleField.Rows; i++)
+            for (int i = 0; i < _battleField.Cols; i++)
             {
                 _battleField[0, i] = 2;
             }
@@ -61,10 +63,10 @@ public bool HasGround()
 
         public BattleFieldGenerator GenerateWalls()
         {
-            for (int i = 1; i < _battleField.Cols; i++)
+            for (int i = 1; i < _battleField.Rows; i++)
             {
                 double lengthWall = 0;
-                for (int j = 1; j < _battleField.Rows; j++)
+                for (int j = 1; j < _battleField.Cols; j++)
                 {
                     double wallChance = _wallDensity + lengthWall;
                     if (_battleField[i - 1, j] == 1)
@@ -97,9 +99,9 @@ public bool HasGround()
 
         public BattleFieldGenerator DeleteSingleWalls()
         {
-            for (int i = 1; i < _battleField.Cols - 1; i++)
+            for (int i = 1; i < _battleField.Rows - 1; i++)
             {
-                for (int j = 1; j < _battleField.Rows - 1; j++)
+                for (int j = 1; j < _battleField.Cols - 1; j++)
                 {
                     if (_battleField[i, j] == 1)
                     {
@@ -146,8 +148,8 @@ public bool HasGround()
 
         public BattleFieldGenerator AddPots()
         {
-            int middleX = _battleField.Cols / 2;
-            int middleY = _battleField.Rows / 2;
+            int middleX = _battleField.Rows / 2;
+            int middleY = _battleField.Cols / 2;
             int potsOnField = 0;
             while (_potsCount > potsOnField)
             {
@@ -188,54 +190,57 @@ public bool HasGround()
             }
         }
         public BattleFieldGenerator AddHeroesSpots()
-        {
-            int squareSize = _battleField.Cols / 2;
-            int firstSpotX = _battleField.Cols / 4;
-            int firstSpotY = _battleField.Rows / 4;
-            int spacing = squareSize * 4 / _heroesCount;
-            int x = 0, y = 0;
-            for (int i = 0; i < _heroesCount; i++)
-            {
-                SpawnHero(firstSpotX + x, firstSpotY + y);
-                if (y == 0)
                 {
-                    x += spacing;
-                    if (x >= squareSize)
+                    int firstSpotX = _battleField.Rows / _spawnDistance;
+                    int firstSpotY = _battleField.Cols / _spawnDistance;
+                    int squareSizeX = _battleField.Rows - 2*firstSpotX;
+                    int squareSizeY = _battleField.Cols -2* firstSpotY;
+                    
+                    int spacing = (squareSizeX+squareSizeY) * 2 / _heroesCount;
+                    int x = 0, y = 0;
+                    for (int i = 0; i < _heroesCount; i++)
                     {
-                        y = x - squareSize;
-                        x = squareSize;
+                        SpawnHero(firstSpotX + x, firstSpotY + y);
+                        if (y == 0)
+                        {
+                            x += spacing;
+                            if (x >= squareSizeX)
+                            {
+                                y = x - squareSizeX;
+                                x = squareSizeX;
+                            }
+                        }
+                        else if (x == squareSizeX)
+                        {
+                            y += spacing;
+                            if (y >= squareSizeY)
+                            {
+                                x = squareSizeX - (y - squareSizeY);
+                                y = squareSizeY;
+                            }
+                        }
+                        else if (y == squareSizeY)
+                        {
+                            x -= spacing;
+                            if (x < 0)
+                            {
+                                y = squareSizeY + x;
+                                x = 0;
+                            }
+                        }
+                        else
+        
+                        {
+                            y -= spacing;
+                        }
                     }
+        
+                    return this;
                 }
-                else if (x == squareSize)
-                {
-                    y += spacing;
-                    if (y >= squareSize)
-                    {
-                        x = squareSize - (y - squareSize);
-                        y = squareSize;
-                    }
-                }
-                else if (y == squareSize)
-                {
-                    x -= spacing;
-                    if (x < 0)
-                    {
-                        y = squareSize + x;
-                        x = 0;
-                    }
-                }
-                else
-                {
-                    y -= spacing;
-                }
-            }
-
-            return this;
-        }
         public BattleFieldGenerator FillEmpties()
         {
-            int rows = _battleField.Cols;
-            int cols = _battleField.Rows;
+            int rows = _battleField.Rows;
+            int cols = _battleField.Cols;
 
             bool[,] visited = new bool[rows, cols];
             
