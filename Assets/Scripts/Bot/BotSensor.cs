@@ -19,6 +19,8 @@ namespace Bot
         
         [SerializeField] private float _attackRange = 5f;
         [SerializeField] private Color _playerAttackColor = Color.red;
+        
+        [SerializeField] private LayerMask _layerMask;
 
         public bool IsAnyHeroInDetectionRange => IsAnyObjectInRange(_heroDetectionRange, ObjectsPool.Instance.Heroes);
         [CanBeNull] public Hero ClosestHeroInDetectionRange => GetClosestObjectInRange(_heroDetectionRange, ObjectsPool.Instance.Heroes);
@@ -75,7 +77,7 @@ namespace Bot
             if (hero == null) return false;
             
             Vector3 direction = hero.ShootAt - transform.position;
-            bool isVisible = Physics.SphereCast(transform.position, 0.5f, direction, out var hit) &&
+            bool isVisible = Physics.SphereCast(transform.position, 0.5f, direction, out var hit, 100000, _layerMask) &&
                              hit.collider.gameObject == hero.gameObject;
             
             return isVisible;
@@ -86,7 +88,7 @@ namespace Bot
             if (component == null) return false;
             
             Vector3 direction = component.transform.position - transform.position;
-            bool isVisible = Physics.SphereCast(transform.position, 0.5f, direction, out var hit) &&
+            bool isVisible = Physics.SphereCast(transform.position, 0.5f, direction, out var hit, 100000, _layerMask) &&
                              hit.collider.gameObject == component.gameObject;
             
             return isVisible;
