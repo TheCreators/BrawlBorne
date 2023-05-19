@@ -4,12 +4,10 @@ using UnityEngine;
 
 namespace Combat.Weapons
 {
-    public class ShotGun : Gun<Bullet>
+    public class ShotGun : BulletGun<Bullet>
     {
-        [Header("Settings")]
+        [Header("Gun Settings")]
         [SerializeField, Min(0)] private int _bulletsPerShot = 4;
-
-        [Header("Spread Settings")]
         [SerializeField, Min(0)] private float _verticalSpread = 10f;
         [SerializeField, Min(0)] private float _horizontalSpread = 10f;
 
@@ -18,14 +16,11 @@ namespace Combat.Weapons
             CanBeUsed = false;
 
             List<Quaternion> rotations = GenerateRandomRotations(_bulletsPerShot);
-            
-            Vector3 spawnPosition = _shootingDirection.position + // Position
-                                    _shootingDirection.forward * _bulletSpawnDistance + // Distance from camera
-                                    _shootingDirection.up * _bulletSpawnHeight; // Height from camera
-            
+
             for (int i = 0; i < _bulletsPerShot; i++)
             {
-                Instantiate(_projectile, spawnPosition, rotations[i]);
+                Bullet bullet = Instantiate(_projectile, _projectileSpawnPoint.position, rotations[i]);
+                bullet.Init(_damage, _hitLayers, Hero, _speed, _maxDistance);
             }
 
             CanBeUsed = true;

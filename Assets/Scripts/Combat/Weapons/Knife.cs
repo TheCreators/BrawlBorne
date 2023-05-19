@@ -1,3 +1,4 @@
+using Misc;
 using UnityEngine;
 
 namespace Combat.Weapons
@@ -6,15 +7,19 @@ namespace Combat.Weapons
     {
         [Header("Requirements")]
         [SerializeField] protected Transform _lookDirection;
-        
-        [Header("Settings")]
-        [SerializeField, Min(0)] private float _damage = 10f;
-        [SerializeField] private LayerMask _hitLayers;
-        
+
         [Header("Area Settings")]
         [SerializeField, Min(0)] private float _radius = 0.5f;
         [SerializeField, Min(0)] private float _length = 0.5f;
         [SerializeField] private Vector3 _hitOffset;
+        
+        protected override void OnValidate()
+        {
+            this.CheckIfNull(_lookDirection);
+            this.CheckIfNull(_hitOffset);
+            
+            base.OnValidate();
+        }
 
         protected override void Use()
         {

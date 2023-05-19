@@ -1,5 +1,7 @@
 ﻿using Combat.Projectiles;
+using Misc;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Combat.Weapons
 {
@@ -7,12 +9,27 @@ namespace Combat.Weapons
     {
         [Header("Requirements")]
         [SerializeField] protected TProjectile _projectile;
+        [SerializeField] protected Transform _projectileSpawnPoint;
         [SerializeField] protected Transform _shootingDirection;
+
+        protected Hero Hero;
         
-        [Header("Bullet Spawn Settings")]
-        [SerializeField] protected float _bulletSpawnDistance = 1f;
-        [SerializeField] protected float _bulletSpawnHeight = 0.5f;
+        protected override void Start()
+        {
+            Hero = this.GetComponentInParentWithNullCheck<Hero>();
+            
+            base.Start();
+        }
         
+        protected override void OnValidate()
+        {
+            this.CheckIfNull(_projectile);
+            this.CheckIfNull(_shootingDirection);
+            this.CheckIfNull(_projectileSpawnPoint);
+            
+            base.OnValidate();
+        }
+
         protected override void Use()
         {
             Shoot();

@@ -16,6 +16,13 @@ namespace Misc
 
         public bool IsGrounded { get; private set; }
         private bool _wasGrounded = false;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_groundCheck);
+            this.CheckIfNull(_groundMask);
+            this.CheckIfNull(_onLand, _onAirborne);
+        }
 
         private void Update()
         {

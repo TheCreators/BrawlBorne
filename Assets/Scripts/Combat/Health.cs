@@ -1,4 +1,5 @@
 using Events;
+using Misc;
 using Models;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ namespace Combat
         
         [SerializeField] private GameEvent _onDeath;
         [SerializeField] private GameEvent _onHealthChanged;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_onDeath, _onHealthChanged);
+        }
 
         private void Start()
         {
@@ -47,7 +53,7 @@ namespace Combat
 
         public void IncreaseMaxHealth(float increasePercent)
         {
-            _maxHealthPoints = _maxHealthPoints * (1 + increasePercent / 100);
+            _maxHealthPoints *= (1 + increasePercent / 100);
             float increasedCurrentHealth = _healthPoints * (1 + increasePercent / 100);
             if (increasedCurrentHealth >= _maxHealthPoints)
             {

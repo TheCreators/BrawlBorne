@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Misc;
+using UnityEngine;
 
 namespace Combat.Projectiles
 {
@@ -7,9 +8,9 @@ namespace Combat.Projectiles
     {
         private Rigidbody _rigidbody;
         
-        private void Awake()
+        protected virtual void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();
         }
         
         public void SetVelocity(Vector3 velocity)

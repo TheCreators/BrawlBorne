@@ -1,4 +1,6 @@
-﻿using Combat.Weapons;
+﻿using System;
+using Combat.Weapons;
+using Misc;
 using Ultimates;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +12,12 @@ namespace Player
         [Header("Requirements")]
         [SerializeField] private Weapon _weapon;
         [SerializeField] private Ultimate _ultimate;
+        
+        private void OnValidate()
+        {
+            this.CheckIfNull(_weapon);
+            this.CheckIfNull(_ultimate);
+        }
 
         public void OnShoot(InputAction.CallbackContext context)
         {
@@ -23,7 +31,7 @@ namespace Player
         {
             if (context.performed)
             {
-                _ultimate.Use();
+                _ultimate.TryUse();
             }
         }
     }

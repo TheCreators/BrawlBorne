@@ -1,5 +1,5 @@
-﻿using System;
-using Combat.Weapons;
+﻿using Combat.Weapons;
+using Misc;
 using UnityEngine;
 
 namespace Ultimates
@@ -8,18 +8,17 @@ namespace Ultimates
     {
         [Header("Requirements")]
         [SerializeField] private Weapon _weapon;
-
-        private void Awake()
+        
+        protected override void OnValidate()
         {
-            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
+            this.CheckIfNull(_weapon);
+            
+            base.OnValidate();
         }
 
-        public override void Use()
+        protected override void Use()
         {
-            if (_canBeUsed is false) return;
-            _onUse.Raise(this, null);
             _weapon.TryUse();
-            _canBeUsed = false;
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
     }

@@ -6,6 +6,7 @@ using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace CharacterSelection
 {
@@ -15,6 +16,9 @@ namespace CharacterSelection
         [SerializeField] private float _shiftDistance = 2f;
         [SerializeField] private float _shiftSpeed = 2f;
         [SerializeField] private GameEvent _onCharacterNameChanged;
+        
+        [Header("Scene Loading")]
+        [SerializeField] private GameObject _loadingScreen;
 
         private int _selectedCharacterIndex = 0;
         private bool _isMoving = false;
@@ -28,15 +32,29 @@ namespace CharacterSelection
         public void SelectCharacter()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
+            _loadingScreen.SetActive(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // StartCoroutine(LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+        
+        private IEnumerator LoadSceneAsync(int sceneIndex)
+        {
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
+
+            _loadingScreen.SetActive(true);
+            
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
         }
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            HeroesPool heroesPool = FindObjectOfType<HeroesPool>();
-            if (heroesPool != null)
+            ObjectsPool objectsPool = FindObjectOfType<ObjectsPool>();
+            if (objectsPool != null)
             {
-                heroesPool.SetPlayerPrefab(_characters[_selectedCharacterIndex]);
+                objectsPool.SetPlayerPrefab(_characters[_selectedCharacterIndex]);
             }
 
             SceneManager.sceneLoaded -= OnSceneLoaded;

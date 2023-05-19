@@ -1,6 +1,5 @@
-﻿using Combat;
+﻿using System;
 using Combat.Weapons;
-using JetBrains.Annotations;
 using Misc;
 using Ultimates;
 using UnityEngine;
@@ -12,13 +11,38 @@ namespace Bot
         [SerializeField] private Weapon _weapon;
         [SerializeField] private Ultimate _ultimate;
 
-        public void Shoot(Hero hero)
+        private void OnValidate()
         {
-            var lookDirection = hero.ShootAt - transform.position;
+            this.CheckIfNull(_weapon);
+            this.CheckIfNull(_ultimate);
+        }
+
+        public void Shoot(Hero hero, bool useUltimate = true)
+        {
+            Shoot(hero.ShootAt - transform.position, useUltimate);
+        }
+
+        public void Shoot(Component component, bool useUltimate = true)
+        {
+            Shoot(component.transform.position - transform.position, useUltimate);
+        }
+        
+        private void Shoot(Vector3 lookDirection, bool useUltimate)
+        {
             transform.rotation = Quaternion.LookRotation(lookDirection);
+
+            if (_weapon is BallisticGun)
+            {
+                transform.rotation = Quaternion.LookRotation(lookDirection + new Vector3(0, 2f, 0));
+            }
+
             _weapon.TryUse();
-            _ultimate.Use();
             
+            if (useUltimate)
+            {
+                _ultimate.TryUse();
+            }
+
             Debug.DrawRay(transform.position, lookDirection, Color.red);
         }
     }

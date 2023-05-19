@@ -1,11 +1,11 @@
 using System.Collections;
 using Combat;
+using Misc;
 using Player;
 using UnityEngine;
 
 namespace Ultimates
 {
-    [RequireComponent(typeof(PlayerMovement))]
     public class SpeedUltimate : Ultimate
     {
         [SerializeField] private LayerMask _hitLayers;
@@ -17,28 +17,29 @@ namespace Ultimates
         [SerializeField, Min(0)] private float _hitRadius = 3f;
     
         private PlayerMovement _playerMovement;
-        private void Start()
+        
+        protected override void OnValidate()
         {
-            _playerMovement = GetComponent<PlayerMovement>();
+            this.CheckIfNull(_hitLayers);
+            
+            base.OnValidate();
         }
 
         private void Awake()
         {
-            Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
+            _playerMovement = this.GetComponentInParentWithNullCheck<PlayerMovement>();
         }
 
-        public override void Use()
+        protected override void Use()
         {
-            if (_canBeUsed is false) return;
-            _onUse.Raise(this, null);
             StartCoroutine(HittingRoutine());
         }
 
         private IEnumerator HittingRoutine()
         {
-            _canBeUsed = false;
             float previousSpeed = _playerMovement.WalkSpeed;
             _playerMovement.WalkSpeed = _speed;
+            
             int count = 0;
             while (_timeBetweenHits * count <= _ultimateDuration)
             {
@@ -48,6 +49,7 @@ namespace Ultimates
             }
 
             _playerMovement.WalkSpeed = previousSpeed;
+            
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
     

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Misc;
+using UnityEngine;
 
 namespace CharacterSelection
 {
@@ -12,6 +14,12 @@ namespace CharacterSelection
 
         private float _elapsedTime;
         private bool _isDelayComplete;
+
+        private void OnValidate()
+        {
+            this.CheckIfNull(_startPosition, _endPosition);
+            this.CheckIfNull(_canvas);
+        }
 
         private void Start()
         {
