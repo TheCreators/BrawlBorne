@@ -13,7 +13,8 @@ namespace Misc
         [SerializeField] private bool _autoFill = false;
 
         private Hero _playerPrefab;
-
+        private Vector3 _playerSpawnPosition;
+        
         public List<Hero> Heroes { get; private set; } = new();
         public List<Crate> Crates { get; private set; } = new();
         public List<Boost> Boosts { get; private set; } = new();
@@ -50,10 +51,15 @@ namespace Misc
         {
             Crates.AddRange(crates);
         }
+
+        public void SetPlayerSpawnPosition(Vector3 spawnPosition)
+        {
+            _playerSpawnPosition = spawnPosition;
+        }
         
         public void InstantiatePlayer()
         {
-            Heroes.Add(Instantiate(_playerPrefab));
+            Heroes.Add(Instantiate(_playerPrefab, _playerSpawnPosition,  Quaternion.identity));
             _onHeroesAmountChanged.Raise(this, Heroes.Count);
         }
         

@@ -173,7 +173,7 @@ public bool HasGround()
             return this;
         }
 
-        private void SpawnHero(int x, int y)
+        private void SpawnHero(int x, int y, bool isPlayer = false)
         {
             if (IsIndexValid(x, y))
             {
@@ -186,7 +186,17 @@ public bool HasGround()
                     } while (!IsIndexValid(x, y));
 
                 }
-                _battleField[x, y] = 4;
+
+                if (isPlayer)
+                {
+                    _battleField[x, y] = 6;
+                }
+                else
+                {
+                    _battleField[x, y] = 4;
+
+                }
+
             }
         }
         public BattleFieldGenerator AddHeroesSpots()
@@ -198,9 +208,9 @@ public bool HasGround()
                     
                     int spacing = (squareSizeX+squareSizeY) * 2 / _heroesCount;
                     int x = 0, y = 0;
+                    SpawnHero(firstSpotX + x, firstSpotY + y,true);
                     for (int i = 0; i < _heroesCount; i++)
                     {
-                        SpawnHero(firstSpotX + x, firstSpotY + y);
                         if (y == 0)
                         {
                             x += spacing;
@@ -233,6 +243,7 @@ public bool HasGround()
                         {
                             y -= spacing;
                         }
+                        SpawnHero(firstSpotX + x, firstSpotY + y);
                     }
         
                     return this;
