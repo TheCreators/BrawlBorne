@@ -50,6 +50,7 @@ namespace Battlefield
             BuildTerrain();
             BakeNavMesh();
             PlaceBots();
+            ObjectsPool.Instance.SetPlayerSpawnPosition(GetPlayerSpotCoordinates());
             ObjectsPool.Instance.SetHeroes(Heroes);
             ObjectsPool.Instance.SetCrates(Crates);
             ObjectsPool.Instance.InstantiatePlayer();
