@@ -11,20 +11,12 @@ namespace Combat.Weapons
         [SerializeField, Range(0, 2)] private float _heroVelocityInfluence = 0.5f;
         
         [Header("Bomb Settings")]
-        [SerializeField] private GameObject _explosion;
         [SerializeField, Min(0)] private float _timeToExplode = 3f;
         [SerializeField, Min(0)] private float _explosionRadius = 5f;
         
         private Rigidbody _rigidbody;
         
         public Transform ShotDirection { get; set; }
-
-        protected override void OnValidate()
-        {
-            this.CheckIfNull(_explosion);
-            
-            base.OnValidate();
-        }
 
         private void Awake()
         {
@@ -43,7 +35,7 @@ namespace Combat.Weapons
             CanBeUsed = false;
 
             Bomb projectile = Instantiate(_projectile, _projectileSpawnPoint.position, _shootingDirection.rotation);
-            projectile.Init(_damage, _hitLayers, Hero, _explosion, _timeToExplode, _explosionRadius);
+            projectile.Init(_damage, _hitLayers, Hero, _timeToExplode, _explosionRadius);
             projectile.SetVelocity(_rigidbody.velocity * _heroVelocityInfluence);
             projectile.AddForce(_shootingDirection.forward * _throwPower, ForceMode.Impulse);
             

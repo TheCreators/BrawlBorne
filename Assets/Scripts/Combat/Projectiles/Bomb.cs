@@ -1,25 +1,42 @@
 ﻿using Misc;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Combat.Projectiles
 {
+    [RequireComponent(typeof(AudioSource))]
     public class Bomb : RigidbodyProjectile
     {
-        private GameObject _explosion;
+        [SerializeField] private AudioClip _explosionSound;
+        [SerializeField] private GameObject _explosion;
+        [SerializeField] private GameObject _objectToDestroy;
+        
+        private AudioSource _audioSource;
         private float _timeToExplode = 3f;
         private float _explosionRadius = 5f;
+
+        private void OnValidate()
+        {
+            this.CheckIfNull(_explosionSound);
+            this.CheckIfNull(_explosion);
+        }
+
+        protected override void Awake()
+        {
+            _audioSource = this.GetComponentWithNullCheck<AudioSource>();
+            
+            base.Awake();
+        }
 
         public void Init(
             float damage,
             LayerMask hitLayers,
             Hero sender,
-            GameObject explosion,
             float timeToExplode,
             float explosionRadius)
         {
             base.Init(damage, hitLayers, sender);
-            _explosion = explosion;
             _timeToExplode = timeToExplode;
             _explosionRadius = explosionRadius;
 
@@ -29,6 +46,8 @@ namespace Combat.Projectiles
         private void Explode()
         {
             Instantiate(_explosion, transform.position, _explosion.transform.rotation);
+            _audioSource.PlayOneShot(_explosionSound);
+            
             var colliders = new Collider[20];
             int count = Physics.OverlapSphereNonAlloc(transform.position, _explosionRadius, colliders, HitLayers);
 
@@ -40,7 +59,13 @@ namespace Combat.Projectiles
                     damageable.TakeDamage(Damage);
                 }
             }
-
+            
+            Destroy(_objectToDestroy);
+            Invoke(nameof(DestroyMyself), _explosionSound.length);
+        }
+        
+        private void DestroyMyself()
+        {
             Destroy(gameObject);
         }
 
