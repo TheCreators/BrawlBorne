@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5620974427366729039, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1999085621473864132, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e43951397cb5cef4990dd2d229bf4cdf, type: 2}
     - target: {fileID: 2620161007102807661, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
       propertyPath: m_Name
       value: Ultimate Bomb
@@ -24,9 +32,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
     - target: {fileID: 3430874567808542318, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: _explosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e1ceaca341ec3441af8f1b4b0378fb8, type: 3}
+    - target: {fileID: 3430874567808542318, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
       propertyPath: _explosionRadius
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6613808925844265763, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709778575390802749, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709778575390802749, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709778575390802749, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194845041737881521, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 29dbf389ebe997d45946ffb92d321bac, type: 2}
     - target: {fileID: 8509229616897328573, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
       propertyPath: m_RootOrder
       value: 0
