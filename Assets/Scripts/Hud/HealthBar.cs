@@ -34,6 +34,8 @@ namespace Hud
         {
             if (_isHud is false)
             {
+                if (_camera == null) _camera = Camera.main;
+                
                 _objectToRotate.transform.rotation = Quaternion.LookRotation(transform.position - _camera.transform.position);
             }
         }
