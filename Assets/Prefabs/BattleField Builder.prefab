@@ -58,8 +58,9 @@ MonoBehaviour:
   _fieldLength: 30
   _fieldWidth: 30
   _tileSize: 2
-  _wallDensity: 0.1
+  _wallDensity: 0.0404
   _bushesDensity: 0.03
   _maxBushSize: 3
   _potsCount: 9
-  _heroesCount: 14
+  _heroesCount: 20
+  _spawnDistance: 8

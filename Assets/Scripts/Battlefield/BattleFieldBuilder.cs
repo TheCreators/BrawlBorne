@@ -1,9 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using Environment;
 using Misc;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Random = System.Random;
 
 namespace Battlefield
@@ -37,6 +37,7 @@ namespace Battlefield
         private readonly Random _rnd = new Random();
         private float xCorrection;
         private float zCorrection;
+        
         private void OnValidate()
         {
             this.CheckIfNull(_wall, _border, _grass, _ground);
@@ -49,6 +50,12 @@ namespace Battlefield
             zCorrection = -_fieldWidth * _tileSize;
             BuildTerrain();
             BakeNavMesh();
+            
+            Invoke(nameof(Spawn), 0.1f);
+        }
+
+        private void Spawn()
+        {
             PlaceBots();
             ObjectsPool.Instance.SetPlayerSpawnPosition(GetPlayerSpotCoordinates());
             ObjectsPool.Instance.SetHeroes(Heroes);
@@ -95,7 +102,7 @@ namespace Battlefield
                             Instantiate(_border,
                                 new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
                                 Quaternion.identity);
-                            _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
+                            // _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
                             break;
                         case 3:
                             Instantiate(_grass,
@@ -153,7 +160,9 @@ namespace Battlefield
         {
             foreach (var navMeshSurface in _navMeshSurfaces)
             {
-                navMeshSurface.BuildNavMesh();
+                navMeshSurface.collectObjects = CollectObjects.All;
+                navMeshSurface.useGeometry = NavMeshCollectGeometry.RenderMeshes;
+                navMeshSurface.BuildNavMeshAsync();
             }
         }
     }
