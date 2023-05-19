@@ -8,7 +8,7 @@ namespace Combat.Projectiles
     {
         private Rigidbody _rigidbody;
         
-        private void Awake()
+        protected virtual void Awake()
         {
             _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();
         }
