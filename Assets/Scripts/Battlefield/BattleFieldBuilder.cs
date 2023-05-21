@@ -29,14 +29,14 @@ namespace Battlefield
         [SerializeField] [Range(1, 30)] private int _heroesCount = 15;
         [SerializeField] [Range(3, 8)] private int _spawnDistance = 8;
 
-        private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
-        private List<Hero> Heroes { get; set; } = new();
-        private List<Crate> Crates { get; set; } = new();
+        private readonly List<NavMeshSurface> _navMeshSurfaces = new();
+        private List<Hero> Heroes { get; } = new();
+        private List<Crate> Crates { get; } = new();
         private BattleField _map;
         private BattleFieldGenerator _generator;
-        private readonly Random _rnd = new Random();
-        private float xCorrection;
-        private float zCorrection;
+        private readonly Random _rnd = new();
+        private float _xCorrection;
+        private float _zCorrection;
         
         private void OnValidate()
         {
@@ -46,8 +46,8 @@ namespace Battlefield
 
         private void Start()
         {
-            xCorrection = -_fieldLength * _tileSize;
-            zCorrection = -_fieldWidth * _tileSize;
+            _xCorrection = -_fieldLength * _tileSize;
+            _zCorrection = -_fieldWidth * _tileSize;
             BuildTerrain();
             BakeNavMesh();
             
@@ -91,27 +91,27 @@ namespace Battlefield
                     {
                         case 1:
                             createdObject = Instantiate(_wall,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                new Vector3(_xCorrection + i * _tileSize, 0, _zCorrection + j * _tileSize),
                                 Quaternion.identity);
                             _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
                             break;
                         case 2:
                             createdObject = Instantiate(_wall,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                new Vector3(_xCorrection + i * _tileSize, 0, _zCorrection + j * _tileSize),
                                 Quaternion.identity);
                             Instantiate(_border,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                new Vector3(_xCorrection + i * _tileSize, 0, _zCorrection + j * _tileSize),
                                 Quaternion.identity);
                             // _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
                             break;
                         case 3:
                             Instantiate(_grass,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                                new Vector3(_xCorrection + i * _tileSize, 0, _zCorrection + j * _tileSize),
                                 Quaternion.identity);
                             break;
                         case 5:
                             Crates.Add(Instantiate(_crate,
-                                new Vector3(xCorrection + i * _tileSize, 1, zCorrection + j * _tileSize),
+                                new Vector3(_xCorrection + i * _tileSize, 1, _zCorrection + j * _tileSize),
                                 Quaternion.identity));
                             break;
                     }
@@ -124,7 +124,7 @@ namespace Battlefield
             return _bots[_rnd.Next(_bots.Count)];
         }
 
-        public Vector3 GetPlayerSpotCoordinates()
+        private Vector3 GetPlayerSpotCoordinates()
         {
             for (int i = 0; i < _map.Rows; i++)
             {
@@ -132,7 +132,7 @@ namespace Battlefield
                 {
                     if (_map[i, j] == 6)
                     {
-                        return new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize);
+                        return new Vector3(_xCorrection + i * _tileSize, 0, _zCorrection + j * _tileSize);
                     }
                 }
             }
@@ -149,7 +149,7 @@ namespace Battlefield
                     if (_map[i, j] == 4)
                     {
                         Heroes.Add(Instantiate(GetRandomBot(),
-                            new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
+                            new Vector3(_xCorrection + i * _tileSize, 0, _zCorrection + j * _tileSize),
                             Quaternion.identity));
                     }
                 }
@@ -160,8 +160,6 @@ namespace Battlefield
         {
             foreach (var navMeshSurface in _navMeshSurfaces)
             {
-                navMeshSurface.collectObjects = CollectObjects.All;
-                navMeshSurface.useGeometry = NavMeshCollectGeometry.RenderMeshes;
                 navMeshSurface.BuildNavMeshAsync();
             }
         }
