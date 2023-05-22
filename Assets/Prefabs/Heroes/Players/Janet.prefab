@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8576738071242029198}
     m_Modifications:
     - target: {fileID: 30421499097323888, guid: 46db1aa11f8a8e04eb31081dd4bdf806, type: 3}
@@ -692,12 +693,21 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46db1aa11f8a8e04eb31081dd4bdf806, type: 3}
+--- !u!4 &176053547459013836 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 935449834518240832, guid: 46db1aa11f8a8e04eb31081dd4bdf806, type: 3}
+  m_PrefabInstance: {fileID: 1047673433394360972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1684273033065661066
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 22050627, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
@@ -776,6 +786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Janet
       objectReference: {fileID: 0}
+    - target: {fileID: 8021513846328117847, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _name
+      value: Janet
+      objectReference: {fileID: 0}
     - target: {fileID: 8693570749161455904, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -789,6 +803,18 @@ PrefabInstance:
       value: 0.621
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 176053547459013836}
+    - targetCorrespondingSourceObject: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7619664245093926856}
+    - targetCorrespondingSourceObject: {fileID: 6942594267589458436, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5857317459844099131}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
 --- !u!4 &8068895751097861034 stripped
 Transform:
@@ -810,6 +836,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8576738071242029198}
     m_Modifications:
     - target: {fileID: 2221211629830431333, guid: 13f2356df2426b044ab7db0dc2b7598b, type: 3}
@@ -861,6 +888,9 @@ PrefabInstance:
       value: Flying Ultimate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f2356df2426b044ab7db0dc2b7598b, type: 3}
 --- !u!114 &5011176172315700074 stripped
 MonoBehaviour:
@@ -873,11 +903,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a55805d1a6e0e742b0073288e24ac60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &5857317459844099131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2221211629830431333, guid: 13f2356df2426b044ab7db0dc2b7598b, type: 3}
+  m_PrefabInstance: {fileID: 5735909201003220574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8614782458992765343
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8576738071242029198}
     m_Modifications:
     - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
@@ -937,6 +973,9 @@ PrefabInstance:
       value: Ballistic Gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
 --- !u!114 &5290350196459278229 stripped
 MonoBehaviour:
@@ -949,3 +988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49ed34fcd6dcdd4d979260b57d0fcb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7619664245093926856 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+  m_PrefabInstance: {fileID: 8614782458992765343}
+  m_PrefabAsset: {fileID: 0}

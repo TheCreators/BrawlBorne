@@ -80,9 +80,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -205,7 +213,7 @@ GameObject:
   - component: {fileID: 985948909}
   - component: {fileID: 22050627}
   - component: {fileID: 8826726188078539771}
-  - component: {fileID: 1146891796700530722}
+  - component: {fileID: 8021513846328117847}
   - component: {fileID: 2037473731519624922}
   - component: {fileID: 4703306833235520587}
   - component: {fileID: 6319289774936516497}
@@ -253,13 +261,24 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6942594267589458447}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &1917529679
@@ -270,8 +289,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6942594267589458447}
   m_Material: {fileID: 13400000, guid: b487e6889bef8f84b98ef7c80a34b2a2, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.53
   m_Height: 2.79
   m_Direction: 1
@@ -516,7 +544,7 @@ AudioSource:
     m_RotationOrder: 4
 --- !u!95 &22050627
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -533,7 +561,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8826726188078539771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +582,7 @@ MonoBehaviour:
     m_Bits: 64
   _onLand: {fileID: 11400000, guid: 1a93eb162b575d14ba22bfea07000ef3, type: 2}
   _onAirborne: {fileID: 11400000, guid: d0d33419420935e4cb7d2166f54909c3, type: 2}
---- !u!114 &1146891796700530722
+--- !u!114 &8021513846328117847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -562,7 +591,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6942594267589458447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19f06452f522449bb8829278752b5f85, type: 3}
+  m_Script: {fileID: 11500000, guid: 04a215a7fce847dbb0c4f533c88164f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _shootAt: {fileID: 7632048028256500891}
@@ -654,10 +683,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27626dbb1b1e46aebdd4bbab6ae8858d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 400
+  _healthPointsBar: 400
   _healthPoints: 400
+  _maxHealthPoints: 400
+  _isInvulnerable: 0
   _onDeath: {fileID: 11400000, guid: 68d23cd08d27b8e44b38090202c53f2f, type: 2}
   _onHealthChanged: {fileID: 11400000, guid: eddf2d5640e89e646a041d096b9c5341, type: 2}
+  _onMaxHealthChanged: {fileID: 11400000, guid: de51f0b737a43fb4d96885fecd53326d, type: 2}
 --- !u!114 &4340838794852804689
 MonoBehaviour:
   m_ObjectHideFlags: 0
