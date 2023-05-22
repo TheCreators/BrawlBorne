@@ -11,9 +11,7 @@ namespace Hud
 
         public void SetCellsBar(Component component, object data)
         {
-            PlayerMovement playerMovement = component.GetComponentInParent<PlayerMovement>();
-
-            if (playerMovement == null) return;
+            if (component.GetComponentInParent<Player>() == null) return;
 
             int cells = (int) data;
             for (int i = 0; i < _cells.Count; i++)

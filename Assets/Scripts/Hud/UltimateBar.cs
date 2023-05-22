@@ -16,7 +16,7 @@ namespace Hud
 
         public void MakeVisible(Component component, object data)
         {
-            if (component.GetComponentInParent<PlayerCombat>() != null)
+            if (component.GetComponentInParent<Player>() != null)
             {
                 TurnOn();
             }
@@ -24,7 +24,7 @@ namespace Hud
 
         public void MakeInvisible(Component component, object data)
         {
-            if (component.GetComponentInParent<PlayerCombat>() != null)
+            if (component.GetComponentInParent<Player>() != null)
             {
                 TurnOff();
             }

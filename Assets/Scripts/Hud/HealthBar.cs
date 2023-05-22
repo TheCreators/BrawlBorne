@@ -65,7 +65,7 @@ namespace Hud
 
         private bool ShouldUpdate(Component component)
         {
-            return (_isHud && component.TryGetComponent(out PlayerMovement _)) || component == GetComponentInParent<Health>();
+            return (_isHud && component.TryGetComponent(out Player _)) || component == GetComponentInParent<Health>();
         }
 
         private void UpdateHealthBard()
