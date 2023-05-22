@@ -1,27 +1,39 @@
 using System.Collections;
 using Combat;
+using Heroes.Player;
 using Misc;
-using Player;
+using Models;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Ultimates
 {
     public class SpeedUltimate : Ultimate
     {
-        [SerializeField] private LayerMask _hitLayers;
-    
-        [SerializeField, Range(0, 20)] private float _ultimateDuration = 7f;
-        [SerializeField, Range(0, 50)] private float _speed = 20f;
-        [SerializeField, Range(0, 10)] private float _timeBetweenHits = 1f;
-        [SerializeField, Min(0)] private float _damagePerHit = 4f;
-        [SerializeField, Min(0)] private float _hitRadius = 3f;
-    
-        private PlayerMovement _playerMovement;
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 20)]
+        private float _ultimateDuration = 7f;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 50)]
+        private float _speed = 20f;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 10)]
+        private float _timeBetweenHits = 1f;
         
+        [SerializeField] [BoxGroup(Group.Hit)]
+        private LayerMask _hitLayers;
+        
+        [SerializeField] [BoxGroup(Group.Hit)] [Min(0)]
+        private float _damagePerHit = 4f;
+
+        [SerializeField] [BoxGroup(Group.Hit)] [Min(0)]
+        private float _hitRadius = 3f;
+
+        private PlayerMovement _playerMovement;
+
         protected override void OnValidate()
         {
             this.CheckIfNull(_hitLayers);
-            
+
             base.OnValidate();
         }
 
@@ -39,7 +51,7 @@ namespace Ultimates
         {
             float previousSpeed = _playerMovement.WalkSpeed;
             _playerMovement.WalkSpeed = _speed;
-            
+
             int count = 0;
             while (_timeBetweenHits * count <= _ultimateDuration)
             {
@@ -49,10 +61,10 @@ namespace Ultimates
             }
 
             _playerMovement.WalkSpeed = previousSpeed;
-            
+
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
-    
+
         private void Hit()
         {
             var colliders = new Collider[20];
@@ -66,7 +78,7 @@ namespace Ultimates
                 }
             }
         }
-    
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;

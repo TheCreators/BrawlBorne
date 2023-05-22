@@ -1,16 +1,25 @@
-﻿using System;
-using Misc;
+﻿using Misc;
+using NaughtyAttributes;
 using UnityEngine;
 
-namespace CharacterSelection
+namespace PlayerSelection
 {
     public class CameraMovement : MonoBehaviour
     {
-        [SerializeField] private Transform _startPosition;
-        [SerializeField] private Transform _endPosition;
-        [SerializeField] private float _duration = 2f;
-        [SerializeField] private float _delay = 1f;
-        [SerializeField] private Canvas _canvas;
+        [SerializeField] [Required]
+        private Transform _startPosition;
+
+        [SerializeField] [Required]
+        private Transform _endPosition;
+
+        [SerializeField] [Min(0)]
+        private float _duration = 2f;
+
+        [SerializeField] [Min(0)]
+        private float _delay = 1f;
+
+        [SerializeField] [Required]
+        private Canvas _canvas;
 
         private float _elapsedTime;
         private bool _isDelayComplete;

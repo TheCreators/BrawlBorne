@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Player;
+﻿using System.Collections.Generic;
+using Heroes.Player;
 using UnityEngine;
 
 namespace Hud
 {
     public class UltimateBar : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> _objectToToggle;
+        [SerializeField]
+        private List<GameObject> _objectToToggle;
 
         public void Start()
         {
@@ -21,7 +21,7 @@ namespace Hud
                 TurnOn();
             }
         }
-        
+
         public void MakeInvisible(Component component, object data)
         {
             if (component.GetComponentInParent<PlayerCombat>() != null)
@@ -29,7 +29,7 @@ namespace Hud
                 TurnOff();
             }
         }
-        
+
         private void TurnOff()
         {
             foreach (GameObject objectToToggle in _objectToToggle)
@@ -37,7 +37,7 @@ namespace Hud
                 objectToToggle.SetActive(false);
             }
         }
-        
+
         private void TurnOn()
         {
             foreach (GameObject objectToToggle in _objectToToggle)

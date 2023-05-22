@@ -1,21 +1,24 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace Heroes.Player
 {
     public class MouseRotation : MonoBehaviour
     {
-        [SerializeField, Range(0, 100)] private float _sensitivity = 10f;
+        [SerializeField] [Range(0, 100)]
+        private float _sensitivity = 10f;
 
         private Quaternion _rotation;
 
         private const string SettingsKey = "sens";
+
         private void Start()
         {
             if (PlayerPrefs.HasKey(SettingsKey))
             {
                 _sensitivity = PlayerPrefs.GetFloat(SettingsKey);
             }
+
             Cursor.lockState = CursorLockMode.Locked;
         }
 

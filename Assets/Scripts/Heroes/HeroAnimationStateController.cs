@@ -1,9 +1,10 @@
+using Misc;
 using UnityEngine;
 
-namespace Misc
+namespace Heroes
 {
     [RequireComponent(typeof(Animator))]
-    public abstract class AnimationStateController : MonoBehaviour
+    public abstract class HeroAnimationStateController : MonoBehaviour
     {
         protected Animator Animator;
 

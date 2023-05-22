@@ -1,9 +1,10 @@
 ﻿using System;
 using Environment;
 using Misc;
+using NaughtyAttributes;
 using UnityEngine;
 
-namespace Bot
+namespace Heroes.Bot
 {
     [RequireComponent(typeof(BotMovement))]
     [RequireComponent(typeof(BotSensor))]
@@ -14,8 +15,11 @@ namespace Bot
         private BotSensor _botSensor;
         private BotCombat _botCombat;
 
-        [SerializeField] private BotState _currentState = BotState.Wandering;
-        [SerializeField] private BotTarget _currentTarget = BotTarget.None;
+        [ShowNonSerializedField]
+        private BotState _currentState = BotState.Wandering;
+
+        [ShowNonSerializedField]
+        private BotTarget _currentTarget = BotTarget.None;
 
         private void Awake()
         {
@@ -52,20 +56,21 @@ namespace Bot
                 _currentState = BotState.Chasing;
                 return;
             }
+
             if (_botSensor.IsAnyCrateInDetectionRange)
             {
                 _currentTarget = BotTarget.Crate;
                 _currentState = BotState.Chasing;
                 return;
             }
+
             if (_botSensor.IsAnyBoostInDetectionRange)
             {
                 _currentTarget = BotTarget.Boost;
                 _currentState = BotState.Chasing;
                 return;
             }
-            
-            _botMovement.Resume();
+
             if (!_botMovement.HasReachedDestination()) return;
 
             _botMovement.GoToRandomDestination();
@@ -98,7 +103,7 @@ namespace Bot
                 _currentState = BotState.Wandering;
                 return;
             }
-            
+
             if (_botSensor.IsAnyHeroInAttackRange && _botSensor.IsVisible(_botSensor.ClosestHeroInAttackRange))
             {
                 _currentState = BotState.Attacking;
@@ -117,7 +122,7 @@ namespace Bot
                 _currentState = BotState.Wandering;
                 return;
             }
-            
+
             if (_botSensor.IsAnyHeroInDetectionRange)
             {
                 _currentTarget = BotTarget.Hero;
@@ -126,7 +131,7 @@ namespace Bot
 
             _botMovement.GoToDestination(closestBoostInDetectionRange.transform.position);
         }
-        
+
         private void HandleChasingCrate()
         {
             Crate closestCrateInDetectionRange = _botSensor.ClosestCrateInDetectionRange;
@@ -136,13 +141,13 @@ namespace Bot
                 _currentState = BotState.Wandering;
                 return;
             }
-            
+
             if (_botSensor.IsAnyHeroInDetectionRange)
             {
                 _currentTarget = BotTarget.Hero;
                 return;
             }
-            
+
             if (_botSensor.IsAnyBoostInDetectionRange)
             {
                 _currentTarget = BotTarget.Boost;
@@ -154,7 +159,7 @@ namespace Bot
                 _currentState = BotState.Attacking;
                 return;
             }
-            
+
             _botMovement.GoToDestination(closestCrateInDetectionRange.transform.position);
         }
 
@@ -185,7 +190,7 @@ namespace Bot
             _botCombat.Shoot(closestHeroInAttackRange, useUltimate: true);
             _botMovement.Strafe();
         }
-        
+
         private void HandleAttackingCrate()
         {
             Crate closestCrateInAttackRange = _botSensor.ClosestCrateInAttackRange;
@@ -194,14 +199,14 @@ namespace Bot
                 _currentState = BotState.Chasing;
                 return;
             }
-            
+
             if (_botSensor.IsAnyHeroInDetectionRange)
             {
                 _currentTarget = BotTarget.Hero;
                 _currentState = BotState.Chasing;
                 return;
             }
-            
+
             if (_botSensor.IsAnyBoostInDetectionRange)
             {
                 _currentTarget = BotTarget.Boost;

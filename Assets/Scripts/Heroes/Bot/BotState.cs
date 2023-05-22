@@ -1,4 +1,4 @@
-﻿namespace Bot
+﻿namespace Heroes.Bot
 {
     public enum BotState
     {

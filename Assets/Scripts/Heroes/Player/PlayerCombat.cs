@@ -1,18 +1,20 @@
-﻿using System;
-using Combat.Weapons;
+﻿using Combat.Weapons;
 using Misc;
+using NaughtyAttributes;
 using Ultimates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace Heroes.Player
 {
     public class PlayerCombat : MonoBehaviour
     {
-        [Header("Requirements")]
-        [SerializeField] private Weapon _weapon;
-        [SerializeField] private Ultimate _ultimate;
-        
+        [SerializeField] [Required] [ShowAssetPreview]
+        private Weapon _weapon;
+
+        [SerializeField] [Required] [ShowAssetPreview]
+        private Ultimate _ultimate;
+
         private void OnValidate()
         {
             this.CheckIfNull(_weapon);
@@ -26,7 +28,7 @@ namespace Player
                 _weapon.TryUse();
             }
         }
-        
+
         public void OnUltimate(InputAction.CallbackContext context)
         {
             if (context.performed)

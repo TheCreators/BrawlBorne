@@ -1,22 +1,27 @@
-using System.Collections;
 using Events;
 using Misc;
+using Models;
+using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace Heroes.Player
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(GroundChecker))]
     public class PlayerJump : MonoBehaviour
     {
-        [SerializeField, Min(0)] private float _jumpForce = 8f;
-        [SerializeField, Min(0)] private float _jumpCooldown = 0.5f;
-        [SerializeField] private GameEvent _onJump;
-        
+        [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
+        private float _jumpForce = 8f;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
+        private float _jumpCooldown = 0.5f;
+
+        [SerializeField] [BoxGroup(Group.Events)]
+        private GameEvent _onJump;
+
         private bool _readyToJump = true;
-        private bool _jumpHeld = false;
+        private bool _jumpHeld;
 
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
@@ -25,7 +30,7 @@ namespace Player
         {
             this.CheckIfNull(_onJump);
         }
-        
+
         private void Awake()
         {
             _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();

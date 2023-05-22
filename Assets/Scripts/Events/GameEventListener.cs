@@ -1,14 +1,18 @@
 ﻿using System;
 using Misc;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Events
 {
     public class GameEventListener : MonoBehaviour
     {
-        [SerializeField] private GameEvent _gameEvent;
-        [SerializeField] private CustomUnityEvent _response;
-        
+        [SerializeField] [Required]
+        private GameEvent _gameEvent;
+
+        [SerializeField]
+        private CustomUnityEvent _response;
+
         private void OnValidate()
         {
             this.CheckIfNull(_gameEvent);

@@ -1,4 +1,4 @@
-﻿using Misc;
+﻿using Heroes;
 using UnityEngine;
 
 namespace Combat.Projectiles
@@ -8,7 +8,7 @@ namespace Combat.Projectiles
         protected float Damage = 5f;
         protected LayerMask HitLayers;
         protected Hero Sender;
-        
+
         protected void Init(float damage, LayerMask hitLayers, Hero sender)
         {
             Damage = damage;

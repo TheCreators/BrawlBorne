@@ -1,21 +1,20 @@
 ﻿using Misc;
-using Player;
 using UnityEngine;
 
-namespace Bot
+namespace Heroes.Bot
 {
     [RequireComponent(typeof(BotMovement))]
-    public class BotAnimationStateController : AnimationStateController
+    public class BotAnimationStateController : HeroAnimationStateController
     {
         private BotMovement _botMovement;
-        
+
         protected override void Awake()
         {
             _botMovement = this.GetComponentWithNullCheck<BotMovement>();
-            
+
             base.Awake();
         }
-        
+
         private void Update()
         {
             Animator.SetFloat(VelocityX, _botMovement.GetNormalizedRelativeVelocity().x);

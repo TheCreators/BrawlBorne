@@ -1,12 +1,12 @@
 ﻿using Misc;
 using UnityEngine;
 
-namespace Player
+namespace Heroes.Player
 {
     [RequireComponent(typeof(PlayerMovement))]
     [RequireComponent(typeof(PlayerJump))]
     [RequireComponent(typeof(GroundChecker))]
-    public class PlayerAnimationStateController : AnimationStateController
+    public class PlayerAnimationStateController : HeroAnimationStateController
     {
         private PlayerMovement _playerMovement;
         private PlayerJump _playerJump;

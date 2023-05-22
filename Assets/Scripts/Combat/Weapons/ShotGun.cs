@@ -1,15 +1,22 @@
 using System.Collections.Generic;
 using Combat.Projectiles;
+using Misc;
+using Models;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Combat.Weapons
 {
     public class ShotGun : BulletGun<Bullet>
     {
-        [Header("Gun Settings")]
-        [SerializeField, Min(0)] private int _bulletsPerShot = 4;
-        [SerializeField, Min(0)] private float _verticalSpread = 10f;
-        [SerializeField, Min(0)] private float _horizontalSpread = 10f;
+        [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
+        private int _bulletsPerShot = 4;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
+        private float _verticalSpread = 10f;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
+        private float _horizontalSpread = 10f;
 
         protected override void Shoot()
         {
@@ -20,7 +27,7 @@ namespace Combat.Weapons
             for (int i = 0; i < _bulletsPerShot; i++)
             {
                 Bullet bullet = Instantiate(_projectile, _projectileSpawnPoint.position, rotations[i]);
-                bullet.Init(_damage, _hitLayers, Hero, _speed, _maxDistance);
+                bullet.Init(_damage, _hitLayers, Owner, _speed, _maxDistance);
             }
 
             CanBeUsed = true;
@@ -49,6 +56,5 @@ namespace Combat.Weapons
 
             return rotations;
         }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,8 +7,8 @@ namespace Events
     [CreateAssetMenu(fileName = "GameEvent")]
     public class GameEvent : ScriptableObject
     {
-        private List<GameEventListener> Listeners { get; set; } = new ();
-        
+        private List<GameEventListener> Listeners { get; } = new();
+
         public void Raise(Component component, object data)
         {
             foreach (var listener in Listeners.ToList())
@@ -25,7 +24,7 @@ namespace Events
                 Listeners.Add(listener);
             }
         }
-        
+
         public void UnregisterListener(GameEventListener listener)
         {
             if (Listeners.Contains(listener))

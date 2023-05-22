@@ -8,8 +8,11 @@ namespace Abilities
     [RequireComponent(typeof(Rigidbody))]
     public class DashAbility : MonoBehaviour
     {
-        [SerializeField, Range(0, 25)] private float _dashSpeed = 7f;
-        [SerializeField, Range(0, 10)] private float _dashDuration = 0.5f;
+        [SerializeField] [Range(0, 25)]
+        private float _dashSpeed = 7f;
+
+        [SerializeField] [Range(0, 10)]
+        private float _dashDuration = 0.5f;
 
         private Rigidbody _rigidbody;
 

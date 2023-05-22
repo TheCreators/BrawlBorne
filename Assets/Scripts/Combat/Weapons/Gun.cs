@@ -1,32 +1,38 @@
 ﻿using Combat.Projectiles;
+using Heroes;
 using Misc;
+using Models;
+using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Combat.Weapons
 {
     public abstract class Gun<TProjectile> : Weapon where TProjectile : Projectile
     {
-        [Header("Requirements")]
-        [SerializeField] protected TProjectile _projectile;
-        [SerializeField] protected Transform _projectileSpawnPoint;
-        [SerializeField] protected Transform _shootingDirection;
+        [SerializeField] [BoxGroup(Group.Projectiles)] [Required] [ShowAssetPreview]
+        protected TProjectile _projectile;
 
-        protected Hero Hero;
-        
+        [SerializeField] [BoxGroup(Group.Projectiles)] [Required]
+        protected Transform _projectileSpawnPoint;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Required]
+        protected Transform _shootingDirection;
+
+        protected Hero Owner;
+
         protected override void Start()
         {
-            Hero = this.GetComponentInParentWithNullCheck<Hero>();
-            
+            Owner = this.GetComponentInParentWithNullCheck<Hero>();
+
             base.Start();
         }
-        
+
         protected override void OnValidate()
         {
             this.CheckIfNull(_projectile);
             this.CheckIfNull(_shootingDirection);
             this.CheckIfNull(_projectileSpawnPoint);
-            
+
             base.OnValidate();
         }
 
@@ -34,7 +40,7 @@ namespace Combat.Weapons
         {
             Shoot();
         }
-        
+
         protected abstract void Shoot();
     }
 }

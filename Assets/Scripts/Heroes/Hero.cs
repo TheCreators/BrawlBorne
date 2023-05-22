@@ -1,16 +1,21 @@
-﻿using UnityEngine;
+﻿using Misc;
+using NaughtyAttributes;
+using UnityEngine;
 
-namespace Misc
+namespace Heroes
 {
     public class Hero : MonoBehaviour
     {
-        [SerializeField] private Transform _shootAt;
-        [SerializeField] private string _name;
-        
+        [SerializeField] [Required]
+        private Transform _shootAt;
+
+        [SerializeField]
+        private string _name;
+
         public Vector3 ShootAt => _shootAt.position;
-        
+
         public string Name => _name;
-        
+
         private void OnValidate()
         {
             this.CheckIfNull(_shootAt);

@@ -1,15 +1,18 @@
-﻿using System;
-using Combat.Weapons;
+﻿using Combat.Weapons;
 using Misc;
+using NaughtyAttributes;
 using Ultimates;
 using UnityEngine;
 
-namespace Bot
+namespace Heroes.Bot
 {
     public class BotCombat : MonoBehaviour
     {
-        [SerializeField] private Weapon _weapon;
-        [SerializeField] private Ultimate _ultimate;
+        [SerializeField] [Required] [ShowAssetPreview]
+        private Weapon _weapon;
+
+        [SerializeField] [Required] [ShowAssetPreview]
+        private Ultimate _ultimate;
 
         private void OnValidate()
         {
@@ -26,7 +29,7 @@ namespace Bot
         {
             Shoot(component.transform.position - transform.position, useUltimate);
         }
-        
+
         private void Shoot(Vector3 lookDirection, bool useUltimate)
         {
             transform.rotation = Quaternion.LookRotation(lookDirection);
@@ -37,7 +40,7 @@ namespace Bot
             }
 
             _weapon.TryUse();
-            
+
             if (useUltimate)
             {
                 _ultimate.TryUse();

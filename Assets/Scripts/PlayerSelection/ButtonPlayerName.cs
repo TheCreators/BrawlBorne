@@ -2,10 +2,10 @@
 using TMPro;
 using UnityEngine;
 
-namespace CharacterSelection
+namespace PlayerSelection
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public class ButtonCharacterName : MonoBehaviour
+    public class ButtonPlayerName : MonoBehaviour
     {
         private TextMeshProUGUI _textMeshPro;
 

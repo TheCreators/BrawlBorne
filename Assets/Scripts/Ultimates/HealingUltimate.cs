@@ -1,15 +1,18 @@
 using Combat;
 using Misc;
+using Models;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Ultimates
 {
     public class HealingUltimate : Ultimate
     {
-        [SerializeField, Range(0, 100)] private float _healingPointsPercent = 50f;
-        
+        [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
+        private float _healingPointsPercent = 50f;
+
         private Health _health;
-        
+
         private void Awake()
         {
             _health = this.GetComponentInParentWithNullCheck<Health>();
