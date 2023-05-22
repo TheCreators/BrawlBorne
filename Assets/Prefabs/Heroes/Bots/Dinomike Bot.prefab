@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 6706267566870164016}
     m_Modifications:
     - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
@@ -68,7 +69,15 @@ PrefabInstance:
       value: Ballistic Gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+--- !u!4 &1473246337361057563 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+  m_PrefabInstance: {fileID: 739051028826765644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3794107344099680070 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
@@ -85,6 +94,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 6706267566870164016}
     m_Modifications:
     - target: {fileID: 8643506430451624819, guid: 2b4222abcb1c4dd4e85a04f10d2e2616, type: 3}
@@ -136,12 +146,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b4222abcb1c4dd4e85a04f10d2e2616, type: 3}
+--- !u!4 &7744306941475754473 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8986994496905408969, guid: 2b4222abcb1c4dd4e85a04f10d2e2616, type: 3}
+  m_PrefabInstance: {fileID: 1711783202880675872}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2744562211673390697
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 6706267566870164016}
     m_Modifications:
     - target: {fileID: 2014210471712889598, guid: dcd7d32fb04658b4787ac9de3185ae8c, type: 3}
@@ -197,6 +216,9 @@ PrefabInstance:
       value: Weapon Upgrade Ultimate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcd7d32fb04658b4787ac9de3185ae8c, type: 3}
 --- !u!114 &1345940511699783491 stripped
 MonoBehaviour:
@@ -209,11 +231,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8242a368eb64422984d1dde07340eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &4460055715076187287 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2014210471712889598, guid: dcd7d32fb04658b4787ac9de3185ae8c, type: 3}
+  m_PrefabInstance: {fileID: 2744562211673390697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4137852907265344033
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 6706267566870164016}
     m_Modifications:
     - target: {fileID: 1538950286861943408, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
@@ -277,7 +305,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
+--- !u!4 &5717789943532680437 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8517768023548802772, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
+  m_PrefabInstance: {fileID: 4137852907265344033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8038026566466206888 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6260097870712585865, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
@@ -294,8 +330,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _name
+      value: Dinomike
+      objectReference: {fileID: 0}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -377,10 +418,33 @@ PrefabInstance:
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _attack._range
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _heroDetectionRange
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _heroDetection._range
+      value: 22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7744306941475754473}
+    - targetCorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1473246337361057563}
+    - targetCorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5717789943532680437}
+    - targetCorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4460055715076187287}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
 --- !u!4 &6706267566870164016 stripped
 Transform:

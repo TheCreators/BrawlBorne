@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8261201768424916120}
     m_Modifications:
     - target: {fileID: 5046099176089000521, guid: f4e6a1531364f204f87b697b2f1a1578, type: 3}
@@ -64,12 +65,21 @@ PrefabInstance:
       value: Mortis
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4e6a1531364f204f87b697b2f1a1578, type: 3}
+--- !u!4 &5046099175776841261 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5046099176089000521, guid: f4e6a1531364f204f87b697b2f1a1578, type: 3}
+  m_PrefabInstance: {fileID: 364704868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1282323401835419911
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8261201768424916120}
     m_Modifications:
     - target: {fileID: 1626132344196601840, guid: 45301b16aea79b144b383a9c10056365, type: 3}
@@ -125,6 +135,9 @@ PrefabInstance:
       value: Knife
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45301b16aea79b144b383a9c10056365, type: 3}
 --- !u!114 &529899283907776247 stripped
 MonoBehaviour:
@@ -137,11 +150,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f561bdd50119b4d884dce19297afda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &796910548882406393 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1928820175737955070, guid: 45301b16aea79b144b383a9c10056365, type: 3}
+  m_PrefabInstance: {fileID: 1282323401835419911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1458475425754977797
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8261201768424916120}
     m_Modifications:
     - target: {fileID: 1050619069681247615, guid: 38ce11013de9ac547be1f6b37fde0f18, type: 3}
@@ -205,6 +224,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38ce11013de9ac547be1f6b37fde0f18, type: 3}
 --- !u!114 &3727945850640366546 stripped
 MonoBehaviour:
@@ -217,11 +239,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6284ea602b8834d4dad00a195f7143b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8775057254445729758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7924874885760864731, guid: 38ce11013de9ac547be1f6b37fde0f18, type: 3}
+  m_PrefabInstance: {fileID: 1458475425754977797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4708300825974846902
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8261201768424916120}
     m_Modifications:
     - target: {fileID: 2014210471712889598, guid: dcd7d32fb04658b4787ac9de3185ae8c, type: 3}
@@ -277,7 +305,15 @@ PrefabInstance:
       value: Weapon Upgrade Ultimate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcd7d32fb04658b4787ac9de3185ae8c, type: 3}
+--- !u!4 &6531582198162206536 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2014210471712889598, guid: dcd7d32fb04658b4787ac9de3185ae8c, type: 3}
+  m_PrefabInstance: {fileID: 4708300825974846902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8497210226049827996 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3799658240861335850, guid: dcd7d32fb04658b4787ac9de3185ae8c, type: 3}
@@ -294,8 +330,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _name
+      value: Mortis
+      objectReference: {fileID: 0}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -393,6 +434,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _attack._range
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _heroDetectionRange
       value: 15
       objectReference: {fileID: 0}
@@ -401,10 +446,29 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _heroDetection._range
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _playerDetectionRadius
       value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 796910548882406393}
+    - targetCorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8775057254445729758}
+    - targetCorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6531582198162206536}
+    - targetCorrespondingSourceObject: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5046099175776841261}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
 --- !u!4 &5518500360815262132 stripped
 Transform:
