@@ -9,7 +9,7 @@
 
 To contribute do following steps:
 
-1. Install [Unity 2021.3.8f1](https://unity.com/releases/editor/whats-new/2021.3.8)
+1. Install [Unity 2022.2.20f1](https://unity.com/releases/editor/whats-new/2022.2.20)
 2. Clone repository `git clone https://github.com/TheCreators/BrawlBorne`
 3. Create new branch from develop `git checkout -b feature-name origin/develop`
 4. Develop...
