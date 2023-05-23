@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 6942594267589458436}
   - component: {fileID: 6762660092969063664}
   - component: {fileID: 1917529679}
-  - component: {fileID: 6942594267589458446}
+  - component: {fileID: 4205844934124758952}
   - component: {fileID: 985948909}
   - component: {fileID: 22050627}
   - component: {fileID: 8826726188078539771}
@@ -304,7 +304,7 @@ CapsuleCollider:
   m_Height: 2.79
   m_Direction: 1
   m_Center: {x: 0, y: 1.39, z: 0}
---- !u!114 &6942594267589458446
+--- !u!114 &4205844934124758952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,7 +332,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4703306833235520587}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_TargetAssemblyTypeName: Heroes.Player.PlayerMovement, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -344,11 +344,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 2a25c36f-ed5a-4501-b57b-b4fb6a1395d4
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6942594267192523693}
-        m_TargetAssemblyTypeName: MouseRotation, Assembly-CSharp
+        m_TargetAssemblyTypeName: Heroes.Player.MouseRotation, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
         m_Arguments:
@@ -364,7 +364,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6319289774936516497}
-        m_TargetAssemblyTypeName: PlayerJump, Assembly-CSharp
+        m_TargetAssemblyTypeName: Heroes.Player.PlayerJump, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -380,7 +380,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4703306833235520587}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_TargetAssemblyTypeName: Heroes.Player.PlayerMovement, Assembly-CSharp
         m_MethodName: OnSneak
         m_Mode: 0
         m_Arguments:
@@ -392,11 +392,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 9ae74a4a-23ec-47c4-8ead-cc073285991f
-    m_ActionName: Player/Shift[/Keyboard/shift]
+    m_ActionName: Player/Sneak[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1307913016}
-        m_TargetAssemblyTypeName: DashAbility, Assembly-CSharp
+        m_TargetAssemblyTypeName: Abilities.DashAbility, Assembly-CSharp
         m_MethodName: OnAbility
         m_Mode: 0
         m_Arguments:
@@ -412,7 +412,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1650874961}
-        m_TargetAssemblyTypeName: PlayerShooting, Assembly-CSharp
+        m_TargetAssemblyTypeName: Heroes.Player.PlayerCombat, Assembly-CSharp
         m_MethodName: OnShoot
         m_Mode: 0
         m_Arguments:
@@ -428,7 +428,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1650874961}
-        m_TargetAssemblyTypeName: Player.PlayerCombat, Assembly-CSharp
+        m_TargetAssemblyTypeName: Heroes.Player.PlayerCombat, Assembly-CSharp
         m_MethodName: OnUltimate
         m_Mode: 0
         m_Arguments:
