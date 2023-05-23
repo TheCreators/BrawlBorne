@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Misc;
 using Models;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -132,6 +134,13 @@ namespace Sound
 
             _previousFootstepIndex = index;
             return index;
+        }
+
+        private void OnDestroy()
+        {
+            if (_footstepCoroutine == null) return;
+            StopCoroutine(_footstepCoroutine);
+            _footstepCoroutine = null;
         }
     }
 }
