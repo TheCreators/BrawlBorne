@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8344269675317444000}
   - component: {fileID: 477042130070592951}
   - component: {fileID: 6139333873039719327}
-  - component: {fileID: 2026786720301705275}
+  - component: {fileID: -7126832125545192323}
   - component: {fileID: 3422220121699819812}
   - component: {fileID: 8606340750331939890}
   - component: {fileID: 4591675464745393446}
@@ -57,8 +57,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477042130070592955}
   m_Material: {fileID: 13400000, guid: b487e6889bef8f84b98ef7c80a34b2a2, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -70,10 +79,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477042130070592955}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -199,7 +219,7 @@ NavMeshAgent:
   m_ObstacleAvoidanceType: 4
 --- !u!95 &6139333873039719327
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -216,8 +236,9 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2026786720301705275
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7126832125545192323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,7 +247,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 477042130070592955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19f06452f522449bb8829278752b5f85, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d6ad29abb144bcbbdc7637ce53a7f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _shootAt: {fileID: 4907142902796656471}
@@ -255,8 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da24a199f20d4a788ce8a8333a07ea8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentState: 0
-  _currentTarget: 3
 --- !u!114 &4591675464745393446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd642d4bf7b48e69ae27e94099c6ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _randomPointRange:
+    _range: {x: 50, y: 80}
+    _minColor: {r: 0, g: 1, b: 0, a: 1}
+    _maxColor: {r: 0, g: 1, b: 0, a: 1}
   _randomPointMaxRadius: 80
   _randomPointMinRadius: 50
+  _color: {r: 0, g: 1, b: 0, a: 1}
   _strafeSpeed: 3
   _strafeDistance: 2
   _onMove: {fileID: 11400000, guid: bd6ab64eada019c409c422e42ec4c918, type: 2}
@@ -287,14 +311,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a387133984484a9e7bbe86fb6f64db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heroDetectionRange: 20
-  _playerDetectionColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _crateDetectionRadius: 30
-  _crateDetectionColor: {r: 1, g: 0.37150985, b: 0, a: 1}
-  _boostDetectionRadius: 35
-  _boostDetectionColor: {r: 1, g: 0.41037738, b: 0.80492246, a: 1}
-  _attackRange: 15
-  _playerAttackColor: {r: 1, g: 0, b: 0, a: 1}
+  _heroDetection:
+    _range: 20
+    _color: {r: 1, g: 0.9215687, b: 0.015686275, a: 1}
+  _crateDetection:
+    _range: 30
+    _color: {r: 1, g: 0.37254903, b: 0, a: 1}
+  _boostDetection:
+    _range: 35
+    _color: {r: 1, g: 0.41176474, b: 0.80392164, a: 1}
+  _attack:
+    _range: 15
+    _color: {r: 1, g: 0, b: 0, a: 1}
   _layerMask:
     serializedVersion: 2
     m_Bits: 777
@@ -324,10 +352,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27626dbb1b1e46aebdd4bbab6ae8858d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 250
+  _healthPointsBar: 250
   _healthPoints: 250
+  _maxHealthPoints: 250
+  _isInvulnerable: 0
   _onDeath: {fileID: 11400000, guid: 68d23cd08d27b8e44b38090202c53f2f, type: 2}
   _onHealthChanged: {fileID: 11400000, guid: eddf2d5640e89e646a041d096b9c5341, type: 2}
+  _onMaxHealthChanged: {fileID: 11400000, guid: de51f0b737a43fb4d96885fecd53326d, type: 2}
 --- !u!114 &6604856619764781148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,6 +504,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 477042130070592946}
     m_Modifications:
     - target: {fileID: 5548959462401355148, guid: 871389aa702a8b345abe50d1d37f2cee, type: 3}
@@ -564,6 +596,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 871389aa702a8b345abe50d1d37f2cee, type: 3}
 --- !u!224 &2327377150365161471 stripped
 RectTransform:

@@ -31,7 +31,7 @@ Transform:
   - {fileID: 1283023207140271582}
   - {fileID: 1283023208509507038}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283023207140271583
 GameObject:
@@ -94,7 +94,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -377,6 +379,7 @@ GameObject:
   - component: {fileID: 1283023207753693244}
   - component: {fileID: 1283023207753693234}
   - component: {fileID: 3858087966212037510}
+  - component: {fileID: 5822043115357896498}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -441,7 +444,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1283023207753693234}
         m_TargetAssemblyTypeName: Hud.HealthBar, Assembly-CSharp
-        m_MethodName: SetHealthBar
+        m_MethodName: UpdateCurrentHealth
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5822043115357896498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283023207753693245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: de51f0b737a43fb4d96885fecd53326d, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1283023207753693234}
+        m_TargetAssemblyTypeName: Hud.HealthBar, Assembly-CSharp
+        m_MethodName: UpdateMaxHealth
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

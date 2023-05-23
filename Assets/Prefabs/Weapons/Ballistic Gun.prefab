@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4142159789061123195, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
@@ -60,6 +61,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 936402671515005356, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4532523903042987530}
   m_SourcePrefab: {fileID: 100100000, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
 --- !u!1 &9033627670222265075 stripped
 GameObject:
@@ -78,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49ed34fcd6dcdd4d979260b57d0fcb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cellsBar: 3
   _maxCells: 3
   _currentCells: 3
   _refillTime: 2
@@ -92,6 +100,5 @@ MonoBehaviour:
   _shootingDirection: {fileID: 0}
   _throwPower: 10
   _heroVelocityInfluence: 0.5
-  _explosion: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   _timeToExplode: 2
   _explosionRadius: 5

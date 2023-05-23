@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,9 +6,15 @@ namespace Menu
 {
     public class MainMenu : MonoBehaviour
     {
-        public void StartGame()
+        [SerializeField] [Scene]
+        private int _playerSelection;
+        
+        [SerializeField] [Scene]
+        private int _mainMenu;
+        
+        public void GoToPlayerSelection()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(_playerSelection);
         }
 
         public void QuitGame()
@@ -17,7 +24,7 @@ namespace Menu
 
         public void ReturnToMainMenu()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(_mainMenu);
         }
     }
 }

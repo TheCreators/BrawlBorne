@@ -1,7 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using Environment;
 using Events;
-using Player;
+using Heroes;
+using Heroes.Player;
+using Models;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,44 +13,56 @@ namespace Misc
 {
     public class ObjectsPool : MonoSingleton<ObjectsPool>
     {
-        [SerializeField] private GameEvent _onHeroesAmountChanged;
-        [SerializeField] private bool _autoFill = false;
+        [SerializeField] [BoxGroup(Group.Settings)]
+        private bool _autoFillOnStart;
+
+        [SerializeField] [BoxGroup(Group.Events)]
+        private GameEvent _onHeroesAmountChanged;
 
         private Hero _playerPrefab;
         private Vector3 _playerSpawnPosition;
-        
+
         public List<Hero> Heroes { get; private set; } = new();
+
+        [ShowNativeProperty]
+        private int HeroesAmount => Heroes.Count;
+
         public List<Crate> Crates { get; private set; } = new();
+
+        [ShowNativeProperty]
+        private int CratesAmount => Crates.Count;
+
         public List<Boost> Boosts { get; private set; } = new();
-        
+
+        [ShowNativeProperty]
+        private int BoostsAmount => Boosts.Count;
+
         private void OnValidate()
         {
             this.CheckIfNull(_onHeroesAmountChanged);
         }
-        
+
         private void Start()
         {
             _onHeroesAmountChanged.Raise(this, Heroes.Count);
-            
-            if (_autoFill)
+
+            if (_autoFillOnStart)
             {
-                Heroes.AddRange(FindObjectsOfType<Hero>());
-                Crates.AddRange(FindObjectsOfType<Crate>());
-                Boosts.AddRange(FindObjectsOfType<Boost>());
+                AutoFill();
             }
         }
 
-        public void SetPlayerPrefab(Hero playerPrefab)
+        public void SetPlayerPrefab(Player playerPrefab)
         {
             _playerPrefab = playerPrefab;
         }
-        
+
         public void SetHeroes(IEnumerable<Hero> heroes)
         {
             Heroes.AddRange(heroes);
             _onHeroesAmountChanged.Raise(this, Heroes.Count);
         }
-        
+
         public void SetCrates(IEnumerable<Crate> crates)
         {
             Crates.AddRange(crates);
@@ -56,13 +72,13 @@ namespace Misc
         {
             _playerSpawnPosition = spawnPosition;
         }
-        
+
         public void InstantiatePlayer()
         {
-            Heroes.Add(Instantiate(_playerPrefab, _playerSpawnPosition,  Quaternion.identity));
+            Heroes.Add(Instantiate(_playerPrefab, _playerSpawnPosition, Quaternion.identity));
             _onHeroesAmountChanged.Raise(this, Heroes.Count);
         }
-        
+
         public void AddBoost(Boost boost)
         {
             Boosts.Add(boost);
@@ -77,7 +93,7 @@ namespace Misc
                 Destroy(hero.gameObject);
             }
 
-            if (hero.TryGetComponent(out PlayerMovement _))
+            if (hero is Player)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -90,7 +106,7 @@ namespace Misc
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             }
         }
-        
+
         public void RemoveProp(Component sender, object data)
         {
             if (sender.TryGetComponent(out Crate crate) && Crates.Contains(crate))
@@ -99,13 +115,20 @@ namespace Misc
                 Destroy(crate.gameObject);
                 return;
             }
-            
+
             if (sender.TryGetComponent(out Boost boost) && Boosts.Contains(boost))
             {
                 Boosts.Remove(boost);
                 Destroy(boost.gameObject);
-                return;
             }
+        }
+
+        [Button]
+        private void AutoFill()
+        {
+            Heroes = FindObjectsOfType<Hero>().ToList();
+            Crates = FindObjectsOfType<Crate>().ToList();
+            Boosts = FindObjectsOfType<Boost>().ToList();
         }
     }
 }

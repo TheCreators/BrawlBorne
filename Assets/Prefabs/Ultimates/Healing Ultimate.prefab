@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1783682040439834756, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
@@ -56,6 +57,12 @@ PrefabInstance:
       value: Healing Ultimate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7352767474091393370, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6715291111157372975}
   m_SourcePrefab: {fileID: 100100000, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
 --- !u!1 &491816741458629648 stripped
 GameObject:
@@ -77,4 +84,4 @@ MonoBehaviour:
   _cooldown: 10
   _onUse: {fileID: 11400000, guid: 6365880e29c1acb478df347cf660ed17, type: 2}
   _onReady: {fileID: 11400000, guid: fd58774d0cfd2244fab7022c71190b7c, type: 2}
-  _healingPointsPercent: 30
+  _healingPointsPercent: 15

@@ -1,4 +1,5 @@
 ﻿using Misc;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 
@@ -6,8 +7,9 @@ namespace Hud
 {
     public class EnemiesLeftText : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _text;
-        
+        [SerializeField] [Required] [ShowAssetPreview]
+        private TextMeshProUGUI _text;
+
         private void OnValidate()
         {
             this.CheckIfNull(_text);

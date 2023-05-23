@@ -1,61 +1,94 @@
-using System.Collections;
 using System.Collections.Generic;
 using Environment;
+using Heroes;
+using Heroes.Bot;
 using Misc;
+using Misc.Validators;
+using Models;
+using NaughtyAttributes;
+using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 using Random = System.Random;
 
 namespace Battlefield
 {
     public class BattleFieldBuilder : MonoBehaviour
     {
-        [Header("Objects")] [SerializeField] private GameObject _wall;
-        [SerializeField] private GameObject _border;
-        [SerializeField] private GameObject _grass;
-        [SerializeField] private Crate _crate;
-        [SerializeField] private GameObject _ground;
-        [SerializeField] private List<Hero> _bots;
+        [SerializeField] [BoxGroup(Group.Prefabs)] [Required] [ShowAssetPreview]
+        private GameObject _wall;
 
-        [Header("Settings")] [SerializeField] [Range(30, 30)]
+        [SerializeField] [BoxGroup(Group.Prefabs)] [Required] [ShowAssetPreview]
+        private GameObject _border;
+
+        [SerializeField] [BoxGroup(Group.Prefabs)] [Required] [ShowAssetPreview]
+        private GameObject _grass;
+
+        [SerializeField] [BoxGroup(Group.Prefabs)] [Required] [ShowAssetPreview]
+        private Crate _crate;
+
+        [SerializeField] [BoxGroup(Group.Prefabs)] [Required] [ShowAssetPreview]
+        [ValidateInput(nameof(Has.NavMeshSurface), "Ground must have NavMeshSurface component")]
+        private GameObject _ground;
+
+        [SerializeField] [BoxGroup(Group.Prefabs)]
+        private List<Bot> _bots;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(15, 60)]
         private int _fieldLength = 30;
 
-        [SerializeField] [Range(30, 30)] private int _fieldWidth = 30;
-        [SerializeField] [Range(2, 2)] private int _tileSize = 2;
-        [SerializeField] [Range(0, 0.2f)] private float _wallDensity = 0.05f;
-        [SerializeField] [Range(0, 0.3f)] private float _bushesDensity = 0.03f;
-        [SerializeField] [Range(0, 6)] private int _maxBushSize = 3;
-        [SerializeField] [Range(0, 20)] private int _potsCount = 9;
-        [SerializeField] [Range(1, 30)] private int _heroesCount = 15;
-        [SerializeField] [Range(3, 8)] private int _spawnDistance = 8;
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(15, 60)]
+        private int _fieldWidth = 30;
 
-        private readonly List<NavMeshSurface> _navMeshSurfaces = new List<NavMeshSurface>();
-        private List<Hero> Heroes { get; set; } = new();
-        private List<Crate> Crates { get; set; } = new();
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 0.2f)]
+        private float _wallDensity = 0.05f;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 0.3f)]
+        private float _bushesDensity = 0.03f;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 6)]
+        private int _maxBushSize = 3;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 20)]
+        private int _cratesCount = 9;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(1, 30)]
+        private int _heroesCount = 15;
+
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(3, 8)]
+        private int _spawnDistance = 8;
+
+        private const int TileSize = 2;
+
+        private List<Hero> Heroes { get; } = new();
+        private List<Crate> Crates { get; } = new();
+
         private BattleField _map;
         private BattleFieldGenerator _generator;
-        private readonly Random _rnd = new Random();
-        private float xCorrection;
-        private float zCorrection;
-        
+        private Random _random;
+        private Transform _environmentTransform;
+        private NavMeshSurface _navMeshSurface;
+
+        private float _xCorrection;
+        private float _zCorrection;
+
         private void OnValidate()
         {
             this.CheckIfNull(_wall, _border, _grass, _ground);
             this.CheckIfNull(_crate);
         }
 
-        private void Start()
+        private void Awake()
         {
-            xCorrection = -_fieldLength * _tileSize;
-            zCorrection = -_fieldWidth * _tileSize;
-            BuildTerrain();
-            BakeNavMesh();
-            
-            Invoke(nameof(Spawn), 0.1f);
+            _xCorrection = -_fieldLength * TileSize;
+            _zCorrection = -_fieldWidth * TileSize;
+            _random = new Random();
+            _environmentTransform = new GameObject("Environment").transform;
         }
 
-        private void Spawn()
+        private void Start()
         {
+            BuildTerrain();
+            BakeNavMesh();
             PlaceBots();
             ObjectsPool.Instance.SetPlayerSpawnPosition(GetPlayerSpotCoordinates());
             ObjectsPool.Instance.SetHeroes(Heroes);
@@ -65,12 +98,13 @@ namespace Battlefield
 
         private void BuildTerrain()
         {
-            GameObject field = Instantiate(_ground, new Vector3(0, 0, 0), Quaternion.identity);
-            _navMeshSurfaces.Add(field.GetComponentInChildren<NavMeshSurface>());
+            GameObject field = Instantiate(_ground, new Vector3(0, 0, 0), Quaternion.identity, _environmentTransform);
+            _navMeshSurface = field.GetComponent<NavMeshSurface>();
+
             do
             {
                 _generator = new BattleFieldGenerator(new BattleField(_fieldLength, _fieldWidth), _wallDensity,
-                        _bushesDensity, _maxBushSize, _potsCount, _heroesCount, _spawnDistance)
+                        _bushesDensity, _maxBushSize, _cratesCount, _heroesCount, _spawnDistance)
                     .GenerateExternalWalls()
                     .GenerateWalls()
                     .DeleteSingleWalls()
@@ -81,50 +115,64 @@ namespace Battlefield
             } while (!_generator.HasGround());
 
             _map = _generator.AddHeroesSpots().BuildMap();
-            
+
+            Transform wallsTransform = new GameObject("Walls").transform;
+            wallsTransform.parent = _environmentTransform;
+            Transform bushesTransform = new GameObject("Bushes").transform;
+            bushesTransform.parent = _environmentTransform;
+            Transform cratesTransform = new GameObject("Crates").transform;
+            cratesTransform.parent = _environmentTransform;
+
             for (int i = 0; i < _map.Rows; i++)
             {
                 for (int j = 0; j < _map.Cols; j++)
                 {
-                    GameObject createdObject;
                     switch (_map[i, j])
                     {
                         case 1:
-                            createdObject = Instantiate(_wall,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
-                                Quaternion.identity);
-                            _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
+                            Instantiate(
+                                _wall,
+                                new Vector3(_xCorrection + i * TileSize, 0, _zCorrection + j * TileSize),
+                                Quaternion.identity,
+                                wallsTransform);
                             break;
                         case 2:
-                            createdObject = Instantiate(_wall,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
-                                Quaternion.identity);
-                            Instantiate(_border,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
-                                Quaternion.identity);
-                            // _navMeshSurfaces.Add(createdObject.GetComponent<NavMeshSurface>());
+                            Instantiate(
+                                _wall,
+                                new Vector3(_xCorrection + i * TileSize, 0, _zCorrection + j * TileSize),
+                                Quaternion.identity,
+                                wallsTransform);
+                            Instantiate(
+                                _border,
+                                new Vector3(_xCorrection + i * TileSize, 0, _zCorrection + j * TileSize),
+                                Quaternion.identity,
+                                wallsTransform);
                             break;
                         case 3:
-                            Instantiate(_grass,
-                                new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
-                                Quaternion.identity);
+                            Instantiate(
+                                _grass,
+                                new Vector3(_xCorrection + i * TileSize, 0, _zCorrection + j * TileSize),
+                                Quaternion.identity,
+                                bushesTransform);
                             break;
                         case 5:
-                            Crates.Add(Instantiate(_crate,
-                                new Vector3(xCorrection + i * _tileSize, 1, zCorrection + j * _tileSize),
-                                Quaternion.identity));
+                            Crates.Add(Instantiate(
+                                _crate,
+                                new Vector3(_xCorrection + i * TileSize, 1, _zCorrection + j * TileSize),
+                                Quaternion.identity,
+                                cratesTransform));
                             break;
                     }
                 }
             }
         }
 
-        private Hero GetRandomBot()
+        private Bot GetRandomBot()
         {
-            return _bots[_rnd.Next(_bots.Count)];
+            return _bots[_random.Next(_bots.Count)];
         }
 
-        public Vector3 GetPlayerSpotCoordinates()
+        private Vector3 GetPlayerSpotCoordinates()
         {
             for (int i = 0; i < _map.Rows; i++)
             {
@@ -132,7 +180,7 @@ namespace Battlefield
                 {
                     if (_map[i, j] == 6)
                     {
-                        return new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize);
+                        return new Vector3(_xCorrection + i * TileSize, 0, _zCorrection + j * TileSize);
                     }
                 }
             }
@@ -142,15 +190,19 @@ namespace Battlefield
 
         private void PlaceBots()
         {
+            Transform botsTransform = new GameObject("Bots").transform;
+
             for (int i = 0; i < _map.Rows; i++)
             {
                 for (int j = 0; j < _map.Cols; j++)
                 {
                     if (_map[i, j] == 4)
                     {
-                        Heroes.Add(Instantiate(GetRandomBot(),
-                            new Vector3(xCorrection + i * _tileSize, 0, zCorrection + j * _tileSize),
-                            Quaternion.identity));
+                        Heroes.Add(Instantiate(
+                            GetRandomBot(),
+                            new Vector3(_xCorrection + i * TileSize, 0, _zCorrection + j * TileSize),
+                            Quaternion.identity,
+                            botsTransform));
                     }
                 }
             }
@@ -158,12 +210,7 @@ namespace Battlefield
 
         private void BakeNavMesh()
         {
-            foreach (var navMeshSurface in _navMeshSurfaces)
-            {
-                navMeshSurface.collectObjects = CollectObjects.All;
-                navMeshSurface.useGeometry = NavMeshCollectGeometry.RenderMeshes;
-                navMeshSurface.BuildNavMeshAsync();
-            }
+            _navMeshSurface.BuildNavMesh();
         }
     }
 }

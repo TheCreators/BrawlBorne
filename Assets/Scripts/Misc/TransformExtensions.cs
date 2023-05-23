@@ -12,6 +12,7 @@ namespace Misc
                 transform = transform.parent;
                 path = transform.name + "/" + path;
             }
+
             return path;
         }
     }
