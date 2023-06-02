@@ -111,13 +111,13 @@ AnimatorController:
   m_Name: Bot
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Velocity Z
+  - m_Name: Forward Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Velocity X
+  - m_Name: Right Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -241,8 +241,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Velocity Z
     m_Mirror: 0
-  m_BlendParameter: Velocity Z
-  m_BlendParameterY: Velocity X
+  m_BlendParameter: Right Speed
+  m_BlendParameterY: Forward Speed
   m_MinThreshold: 0
   m_MaxThreshold: 0.28710938
   m_UseAutomaticThresholds: 1
