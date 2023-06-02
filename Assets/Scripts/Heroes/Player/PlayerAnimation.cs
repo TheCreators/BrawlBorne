@@ -6,7 +6,7 @@ namespace Heroes.Player
     [RequireComponent(typeof(PlayerMovement))]
     [RequireComponent(typeof(PlayerJump))]
     [RequireComponent(typeof(GroundChecker))]
-    public class PlayerAnimationStateController : HeroAnimationStateController
+    public class PlayerAnimation : HeroAnimation
     {
         private PlayerMovement _playerMovement;
         private PlayerJump _playerJump;
@@ -23,11 +23,11 @@ namespace Heroes.Player
         
         private void Update()
         {
-            Animator.SetFloat(VelocityX, _playerMovement.GetNormalizedRelativeVelocity().x);
-            Animator.SetFloat(VelocityZ, _playerMovement.GetNormalizedRelativeVelocity().y);
-            Animator.SetBool(IsGrounded, _groundChecker.IsGrounded);
-            Animator.SetBool(IsJumping, _playerJump.IsJumping);
-            Animator.SetBool(IsMoving, _playerMovement.IsMoving);
+            Animator.SetFloat(ForwardSpeedHash, _playerMovement.GetNormalizedRelativeVelocity().x);
+            Animator.SetFloat(RightSpeedHash, _playerMovement.GetNormalizedRelativeVelocity().y);
+            Animator.SetBool(IsGroundedHash, _groundChecker.IsGrounded);
+            Animator.SetBool(IsJumpingHash, _playerJump.IsJumping);
+            Animator.SetBool(IsMovingHash, _playerMovement.IsMoving);
         }
     }
 }
