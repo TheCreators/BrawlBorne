@@ -337,6 +337,14 @@ PrefabInstance:
       propertyPath: _name
       value: Dinomike
       objectReference: {fileID: 0}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 3794107344099680070}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _ultimate
+      value: 
+      objectReference: {fileID: 1345940511699783491}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -380,6 +388,14 @@ PrefabInstance:
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477042130070592949, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_Height
+      value: 2.1447861
+      objectReference: {fileID: 0}
+    - target: {fileID: 477042130070592949, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: m_Center.y
+      value: 0.07239306
       objectReference: {fileID: 0}
     - target: {fileID: 477042130070592955, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Name

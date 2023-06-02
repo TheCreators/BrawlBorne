@@ -15,11 +15,8 @@ GameObject:
   - component: {fileID: 477042130070592951}
   - component: {fileID: 6139333873039719327}
   - component: {fileID: -7126832125545192323}
-  - component: {fileID: 3422220121699819812}
-  - component: {fileID: 8606340750331939890}
-  - component: {fileID: 4591675464745393446}
-  - component: {fileID: 6342258248279081278}
-  - component: {fileID: 5977217962883420356}
+  - component: {fileID: 6686982960833355882}
+  - component: {fileID: 4427405174418926670}
   - component: {fileID: -143211974280577395}
   - component: {fileID: 6604856619764781148}
   - component: {fileID: 5617542302611998510}
@@ -252,54 +249,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootAt: {fileID: 4907142902796656471}
   _name: 
---- !u!114 &3422220121699819812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477042130070592955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1604b6e874c641f0825ecc088a5e139a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8606340750331939890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477042130070592955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da24a199f20d4a788ce8a8333a07ea8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4591675464745393446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477042130070592955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efd642d4bf7b48e69ae27e94099c6ad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _randomPointRange:
-    _range: {x: 50, y: 80}
-    _minColor: {r: 0, g: 1, b: 0, a: 1}
-    _maxColor: {r: 0, g: 1, b: 0, a: 1}
-  _randomPointMaxRadius: 80
-  _randomPointMinRadius: 50
-  _color: {r: 0, g: 1, b: 0, a: 1}
-  _strafeSpeed: 3
-  _strafeDistance: 2
-  _onMove: {fileID: 11400000, guid: bd6ab64eada019c409c422e42ec4c918, type: 2}
-  _onStopMoving: {fileID: 11400000, guid: a70a62ef516cea842a927b4d6e2fc81d, type: 2}
---- !u!114 &6342258248279081278
+    _range: {x: 40, y: 80}
+    _minColor: {r: 0.06568062, g: 1, b: 0, a: 1}
+    _maxColor: {r: 0.06666667, g: 1, b: 0, a: 1}
+  _weapon: {fileID: 0}
+  _ultimate: {fileID: 0}
+  _strafeLength: 2
+--- !u!114 &6686982960833355882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -326,7 +283,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 777
---- !u!114 &5977217962883420356
+--- !u!114 &4427405174418926670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,11 +292,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 477042130070592955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b72ce338fc7473e97bf25a40eb4261f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1604b6e874c641f0825ecc088a5e139a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 0}
-  _ultimate: {fileID: 0}
 --- !u!114 &-143211974280577395
 MonoBehaviour:
   m_ObjectHideFlags: 0

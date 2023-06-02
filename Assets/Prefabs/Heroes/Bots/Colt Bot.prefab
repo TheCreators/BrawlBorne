@@ -93,6 +93,14 @@ PrefabInstance:
       propertyPath: _name
       value: Colt
       objectReference: {fileID: 0}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 1784908616663939738}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _ultimate
+      value: 
+      objectReference: {fileID: 2209871640601313285}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -139,7 +147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477042130070592949, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Height
-      value: 2.6268005
+      value: 2.3802092
       objectReference: {fileID: 0}
     - target: {fileID: 477042130070592949, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Enabled
@@ -147,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477042130070592949, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Center.y
-      value: 0.31340027
+      value: 0.1901046
       objectReference: {fileID: 0}
     - target: {fileID: 477042130070592955, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Name

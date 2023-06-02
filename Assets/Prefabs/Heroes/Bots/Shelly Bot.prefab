@@ -337,6 +337,18 @@ PrefabInstance:
       propertyPath: _name
       value: Shelly
       objectReference: {fileID: 0}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 6234864047595104487}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _ultimate
+      value: 
+      objectReference: {fileID: 9169824410152600657}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _strafeDistance
+      value: 9.9
+      objectReference: {fileID: 0}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -383,11 +395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477042130070592949, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Height
-      value: 2.7379081
+      value: 2.3962886
       objectReference: {fileID: 0}
     - target: {fileID: 477042130070592949, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Center.y
-      value: 0.36895406
+      value: 0.19814432
       objectReference: {fileID: 0}
     - target: {fileID: 477042130070592955, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_Name
@@ -451,6 +463,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _playerDetectionRadius
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686982960833355882, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _attack._range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686982960833355882, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _heroDetection._range
       value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []

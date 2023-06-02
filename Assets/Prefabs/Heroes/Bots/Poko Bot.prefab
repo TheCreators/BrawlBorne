@@ -155,6 +155,18 @@ PrefabInstance:
       propertyPath: _name
       value: Poko
       objectReference: {fileID: 0}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _weapon
+      value: 
+      objectReference: {fileID: 8743278333527880569}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _ultimate
+      value: 
+      objectReference: {fileID: 6933131821346572197}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _strafeDistance
+      value: 9.9
+      objectReference: {fileID: 0}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -261,6 +273,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6342258248279081278, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: _playerDetectionRadius
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686982960833355882, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _attack._range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686982960833355882, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _heroDetection._range
       value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
