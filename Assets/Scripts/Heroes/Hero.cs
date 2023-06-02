@@ -1,4 +1,5 @@
 ﻿using Misc;
+using Models;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -6,17 +7,17 @@ namespace Heroes
 {
     public class Hero : MonoBehaviour
     {
-        [SerializeField] [Required]
+        [SerializeField] [BoxGroup(Group.Settings)] [Required]
         private Transform _shootAt;
 
-        [SerializeField]
+        [SerializeField] [BoxGroup(Group.Settings)]
         private string _name;
 
         public Vector3 ShootAt => _shootAt.position;
 
         public string Name => _name;
 
-        private void OnValidate()
+        protected virtual void OnValidate()
         {
             this.CheckIfNull(_shootAt);
             this.CheckIfNull(_name);
