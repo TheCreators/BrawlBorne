@@ -35,9 +35,6 @@ namespace Heroes.Bot
 
         [ShowNativeProperty]
         private string CurrentState => _stateMachine?.CurrentState.ToString();
-        
-        [ShowNativeProperty]
-        private string RandomPointCoordinates => RandomPoint?.ToString() ?? "null";
 
         public Vector3? RandomPoint { get; set; }
         [CanBeNull]
