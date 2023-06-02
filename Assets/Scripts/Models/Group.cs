@@ -11,5 +11,6 @@
         public const string Hit = "Hit";
         public const string Strafe = "Strafe";
         public const string FootstepsDelay = "Footsteps Delay";
+        public const string Combat = "Combat";
     }
 }

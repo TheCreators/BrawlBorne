@@ -98,7 +98,7 @@ namespace Battlefield
 
         private void BuildTerrain()
         {
-            GameObject field = Instantiate(_ground, new Vector3(0, 0, 0), Quaternion.identity, _environmentTransform);
+            GameObject field = Instantiate(_ground, new Vector3(-1, 0, -1), Quaternion.identity, _environmentTransform);
             _navMeshSurface = field.GetComponent<NavMeshSurface>();
 
             do

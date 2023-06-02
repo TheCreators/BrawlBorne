@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Environment;
 using JetBrains.Annotations;
 using Misc;
@@ -23,32 +24,32 @@ namespace Heroes.Bot
 
         [SerializeField]
         private LayerMask _layerMask;
+        
+        public float AttackRange => _attack.Value;
 
-        public bool IsAnyHeroInDetectionRange => IsAnyObjectInRange(_heroDetection.Value, ObjectsPool.Instance.Heroes);
-
-        [CanBeNull]
-        public Hero ClosestHeroInDetectionRange => GetClosestObjectInRange(_heroDetection.Value, ObjectsPool.Instance.Heroes);
-
-        public bool IsAnyHeroInAttackRange => IsAnyObjectInRange(_attack.Value, ObjectsPool.Instance.Heroes);
+        public bool IsAnyEnemyInDetectionRange => IsAnyObjectInRange(_heroDetection.Value, ObjectsPool.Instance.Heroes);
 
         [CanBeNull]
-        public Hero ClosestHeroInAttackRange => GetClosestObjectInRange(_attack.Value, ObjectsPool.Instance.Heroes);
+        public Hero ClosestEnemyInDetectionRange => GetClosestObjectInRange(_heroDetection.Value, ObjectsPool.Instance.Heroes);
 
         public bool IsAnyCrateInDetectionRange => IsAnyObjectInRange(_crateDetection.Value, ObjectsPool.Instance.Crates);
 
         [CanBeNull]
         public Crate ClosestCrateInDetectionRange => GetClosestObjectInRange(_crateDetection.Value, ObjectsPool.Instance.Crates);
 
-        public bool IsAnyCrateInAttackRange => IsAnyObjectInRange(_attack.Value, ObjectsPool.Instance.Crates);
-
-        [CanBeNull]
-        public Crate ClosestCrateInAttackRange => GetClosestObjectInRange(_attack.Value, ObjectsPool.Instance.Crates);
-
         public bool IsAnyBoostInDetectionRange => IsAnyObjectInRange(_boostDetection.Value, ObjectsPool.Instance.Boosts);
 
         [CanBeNull]
         public Boost ClosestBoostInDetectionRange => GetClosestObjectInRange(_boostDetection.Value, ObjectsPool.Instance.Boosts);
 
+        public bool IsInAttackRange(Component component) => IsInRange(component, _attack.Value);
+        
+        public bool IsInDetectionRange(Crate crate) => IsInRange(crate, _crateDetection.Value);
+        
+        public bool IsInDetectionRange(Hero hero) => IsInRange(hero, _heroDetection.Value);
+        
+        public bool IsInDetectionRange(Boost boost) => IsInRange(boost, _boostDetection.Value);
+        
         private bool IsAnyObjectInRange(float range, IEnumerable<Component> objects)
         {
             foreach (Component obj in objects)
@@ -84,26 +85,34 @@ namespace Heroes.Bot
             return closestObject;
         }
 
-        public bool IsVisible(Hero hero)
-        {
-            if (hero == null) return false;
-
-            Vector3 direction = hero.ShootAt - transform.position;
-            bool isVisible = Physics.SphereCast(transform.position, 0.5f, direction, out var hit, 100000, _layerMask) &&
-                             hit.collider.gameObject == hero.gameObject;
-
-            return isVisible;
-        }
-
         public bool IsVisible(Component component)
         {
             if (component == null) return false;
 
-            Vector3 direction = component.transform.position - transform.position;
-            bool isVisible = Physics.SphereCast(transform.position, 0.5f, direction, out var hit, 100000, _layerMask) &&
-                             hit.collider.gameObject == component.gameObject;
+            const float sphereRadius = 0.5f;
+            const float sphereCastDistance = 100000f;
 
-            return isVisible;
+            Vector3 direction = (component.TryGetComponent(out Hero hero) ? hero.ShootAt : component.transform.position) - transform.position;
+            
+            var hitColliders = new Collider[3];
+            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, sphereRadius, hitColliders, _layerMask);
+            for (int i = 0; i < numColliders; i++)
+            {
+                if (hitColliders[i].gameObject.Equals(component.gameObject))
+                {
+                    return true;
+                }
+            }
+
+            return Physics.SphereCast(transform.position, sphereRadius, direction, out var hit, sphereCastDistance, _layerMask) && 
+                   hit.collider.gameObject.Equals(component.gameObject);
+        }
+
+        private bool IsInRange(Component component, float range)
+        {
+            if (component == null) return false;
+
+            return Vector3.Distance(transform.position, component.transform.position) <= range;
         }
 
         private void OnDrawGizmosSelected()

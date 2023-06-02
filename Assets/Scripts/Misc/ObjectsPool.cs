@@ -75,6 +75,12 @@ namespace Misc
 
         public void InstantiatePlayer()
         {
+            if (_playerPrefab == null)
+            {   
+                Debug.LogError("Player prefab is not set!");
+                return;
+            }
+            
             Heroes.Add(Instantiate(_playerPrefab, _playerSpawnPosition, Quaternion.identity));
             _onHeroesAmountChanged.Raise(this, Heroes.Count);
         }
