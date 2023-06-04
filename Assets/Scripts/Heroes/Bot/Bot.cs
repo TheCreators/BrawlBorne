@@ -1,13 +1,15 @@
 ﻿using System;
+using Combat;
+using Combat.Ultimates;
 using Combat.Weapons;
 using Environment;
+using Heroes.Bot.AimingStrategies;
 using Heroes.Bot.States;
 using JetBrains.Annotations;
 using Misc;
 using Misc.StateMachine;
 using Models;
 using NaughtyAttributes;
-using Ultimates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,10 +24,16 @@ namespace Heroes.Bot
         private ColoredMinMaxRange _randomPointRange;
 
         [SerializeField] [BoxGroup(Group.Combat)] [Required] [ShowAssetPreview]
-        private Weapon _weapon;
+        private Usable _weapon;
+        
+        [SerializeField] [BoxGroup(Group.Combat)] [Required]
+        private AimingStrategy _weaponAimingStrategy;
 
         [SerializeField] [BoxGroup(Group.Combat)] [Required] [ShowAssetPreview]
-        private Ultimate _ultimate;
+        private Usable _ultimate;
+        
+        [SerializeField] [BoxGroup(Group.Combat)] [Required]
+        private AimingStrategy _ultimateAimingStrategy;
 
         [SerializeField] [BoxGroup(Group.Combat)] [MinValue(0.0f)]
         private float _strafeLength = 2.0f;
@@ -66,14 +74,17 @@ namespace Heroes.Bot
 
             var chooseCrate = new ChooseCrate(this, botSensor);
             var goToCrate = new GoToCrate(this, navMeshAgent, botAnimation, botSensor);
-            var destroyCrate = new DestroyCrate(this, _weapon);
+            var destroyCrate = new DestroyCrate(this, _weapon, _weaponAimingStrategy);
 
             var chooseBoost = new ChooseBoost(this, botSensor);
             var goToBoost = new CollectBoost(this, navMeshAgent, botAnimation, botSensor);
 
             var chooseEnemy = new ChooseEnemy(this, botSensor);
             var goToEnemy = new GoToEnemy(this, navMeshAgent, botAnimation, botSensor);
-            var killEnemy = new KillEnemy(this, navMeshAgent, botAnimation, _weapon, _ultimate, _strafeLength, botSensor.AttackRange - StrafeDistanceFromTargetOffset);
+            var killEnemy = new KillEnemy(this, navMeshAgent, botAnimation, 
+                _weapon, _weaponAimingStrategy,
+                _ultimate, _ultimateAimingStrategy,
+                _strafeLength, botSensor.AttackRange - StrafeDistanceFromTargetOffset);
 
             // Transitions
             If(chooseRandomPoint, RandomPointChosen(), goToRandomPoint);
