@@ -1,10 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using Misc;
 using Models;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ultimates
+namespace Combat.Ultimates
 {
     public class FlyingUltimate : Ultimate
     {
@@ -26,7 +27,7 @@ namespace Ultimates
             _groundChecker = this.GetComponentInParentWithNullCheck<GroundChecker>();
         }
 
-        protected override void Use()
+        protected override void Use(IEnumerator<Quaternion> aimRotations)
         {
             StartCoroutine(FlyingRoutine());
         }

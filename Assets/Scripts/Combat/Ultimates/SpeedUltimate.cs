@@ -1,12 +1,12 @@
 using System.Collections;
-using Combat;
+using System.Collections.Generic;
 using Heroes.Player;
 using Misc;
 using Models;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ultimates
+namespace Combat.Ultimates
 {
     public class SpeedUltimate : Ultimate
     {
@@ -42,7 +42,7 @@ namespace Ultimates
             _playerMovement = this.GetComponentInParentWithNullCheck<PlayerMovement>();
         }
 
-        protected override void Use()
+        protected override void Use(IEnumerator<Quaternion> aimRotations)
         {
             StartCoroutine(HittingRoutine());
         }

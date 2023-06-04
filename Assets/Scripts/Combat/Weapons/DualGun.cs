@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Combat.Projectiles;
 using Models;
 using NaughtyAttributes;
@@ -17,34 +18,48 @@ namespace Combat.Weapons
         [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
         private float _timeBetweenBullets = 0.25f;
 
-        protected override void Shoot()
+        private const bool FirstShotFromRight = true;
+        public float BulletsSpread => _bulletsSpread;
+        public bool ShotFromRight { get; private set; }
+
+        private void Awake()
         {
-            StartCoroutine(StartShooting());
+            ShotFromRight = FirstShotFromRight;
         }
 
-        private IEnumerator StartShooting()
+        protected override void Use(IEnumerator<Quaternion> aimRotations)
+        {
+            StartCoroutine(StartShooting(aimRotations));
+        }
+
+        private IEnumerator StartShooting(IEnumerator<Quaternion> aimRotations)
         {
             CanBeUsed = false;
 
-            int positionShiftAmount = 1;
             for (int i = 0; i < _bulletsPerShot; i++)
             {
                 Vector3 spawnPosition = _projectileSpawnPoint.position + // Position
-                                        _bulletsSpread * positionShiftAmount * transform.right; // Spread (left or right)
+                                        transform.right * (ShotFromRight ? _bulletsSpread : -_bulletsSpread); // Shift
 
                 bool isLastBullet = i == _bulletsPerShot - 1;
                 if (isLastBullet is false)
                 {
                     _onUse.Raise(this, null);
                 }
+                
+                if (!aimRotations.MoveNext())
+                {
+                    break;
+                }
 
-                Bullet bullet = Instantiate(_projectile, spawnPosition, _shootingDirection.rotation);
+                Bullet bullet = Instantiate(_projectile, spawnPosition, aimRotations.Current);
                 bullet.Init(_damage, _hitLayers, Owner, _speed, _maxDistance);
 
-                positionShiftAmount *= -1;
+                ShotFromRight = !ShotFromRight;
                 yield return new WaitForSeconds(_timeBetweenBullets);
             }
 
+            ShotFromRight = FirstShotFromRight;
             CanBeUsed = true;
         }
     }

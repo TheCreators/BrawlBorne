@@ -1,15 +1,18 @@
-﻿using Combat.Weapons;
+﻿using System.Collections.Generic;
+using Combat.Weapons;
 using Misc;
 using Models;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ultimates
+namespace Combat.Ultimates
 {
     public class WeaponUpgradeUltimate : Ultimate
     {
         [SerializeField] [BoxGroup(Group.Settings)] [Required]
-        private Weapon _weapon;
+        private Usable _weapon;
+        
+        public Usable Weapon => _weapon;
 
         protected override void OnValidate()
         {
@@ -18,9 +21,9 @@ namespace Ultimates
             base.OnValidate();
         }
 
-        protected override void Use()
+        protected override void Use(IEnumerator<Quaternion> aimRotations)
         {
-            _weapon.TryUse();
+            _weapon.TryUse(aimRotations);
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
     }

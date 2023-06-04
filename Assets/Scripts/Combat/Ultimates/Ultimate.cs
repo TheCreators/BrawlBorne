@@ -1,12 +1,13 @@
-﻿using Events;
+﻿using System.Collections.Generic;
+using Events;
 using Misc;
 using Models;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ultimates
+namespace Combat.Ultimates
 {
-    public abstract class Ultimate : MonoBehaviour
+    public abstract class Ultimate : Usable
     {
         [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
         protected float _cooldown = 10f;
@@ -30,11 +31,11 @@ namespace Ultimates
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);
         }
 
-        protected abstract void Use();
+        protected abstract void Use(IEnumerator<Quaternion> aimRotations);
 
         protected virtual bool CanBeUsedExtraCondition => true;
 
-        public void TryUse()
+        public override void TryUse(IEnumerator<Quaternion> aimRotations)
         {
             if (_canBeUsed is false || CanBeUsedExtraCondition is false)
             {
@@ -43,7 +44,7 @@ namespace Ultimates
 
             _canBeUsed = false;
             _onUse.Raise(this, null);
-            Use();
+            Use(aimRotations);
         }
 
         protected void SetCanBeUsedToTrue()

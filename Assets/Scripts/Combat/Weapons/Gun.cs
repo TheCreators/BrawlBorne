@@ -1,4 +1,5 @@
-﻿using Combat.Projectiles;
+﻿using System.Collections.Generic;
+using Combat.Projectiles;
 using Heroes;
 using Misc;
 using Models;
@@ -15,9 +16,6 @@ namespace Combat.Weapons
         [SerializeField] [BoxGroup(Group.Projectiles)] [Required]
         protected Transform _projectileSpawnPoint;
 
-        [SerializeField] [BoxGroup(Group.Settings)] [Required]
-        protected Transform _shootingDirection;
-
         protected Hero Owner;
 
         protected override void Start()
@@ -30,17 +28,9 @@ namespace Combat.Weapons
         protected override void OnValidate()
         {
             this.CheckIfNull(_projectile);
-            this.CheckIfNull(_shootingDirection);
             this.CheckIfNull(_projectileSpawnPoint);
 
             base.OnValidate();
         }
-
-        protected override void Use()
-        {
-            Shoot();
-        }
-
-        protected abstract void Shoot();
     }
 }

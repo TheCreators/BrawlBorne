@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Events;
 using Misc;
 using Models;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Combat.Weapons
 {
-    public abstract class Weapon : MonoBehaviour
+    public abstract class Weapon : Usable
     {
         [SerializeField] [BoxGroup(Group.Cells)] [ProgressBar("Cells", nameof(_maxCells), EColor.Orange)]
         private int _cellsBar = 3;
@@ -66,14 +67,7 @@ namespace Combat.Weapons
             get => _maxCells;
             set
             {
-                if (value < 0)
-                {
-                    _maxCells = 0;
-                }
-                else
-                {
-                    _maxCells = value;
-                }
+                _maxCells = value < 0 ? 0 : value;
 
                 if (CurrentCells > MaxCells)
                 {
@@ -94,9 +88,9 @@ namespace Combat.Weapons
             MaxCells = _maxCells;
         }
 
-        protected abstract void Use();
+        protected abstract void Use(IEnumerator<Quaternion> aimRotations);
 
-        public void TryUse()
+        public override void TryUse(IEnumerator<Quaternion> aimRotations)
         {
             if (CanBeUsed is false || CurrentCells == 0)
             {
@@ -104,14 +98,13 @@ namespace Combat.Weapons
             }
 
             CurrentCells--;
-            _onCellsAmountChanged.Raise(this, CurrentCells);
             if (_isRefilling is false)
             {
                 StartCoroutine(Refill());
             }
 
             _onUse.Raise(this, null);
-            Use();
+            Use(aimRotations);
         }
 
         public void IncreaseDamage(float increasePercent)
@@ -127,7 +120,6 @@ namespace Combat.Weapons
             {
                 yield return new WaitForSeconds(_refillTime);
                 CurrentCells++;
-                _onCellsAmountChanged.Raise(this, CurrentCells);
             }
 
             _isRefilling = false;
