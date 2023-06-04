@@ -1,7 +1,7 @@
-﻿using Combat.Weapons;
+﻿using System.Collections.Generic;
+using Combat;
 using Misc;
 using NaughtyAttributes;
-using Ultimates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,22 +10,26 @@ namespace Heroes.Player
     public class PlayerCombat : MonoBehaviour
     {
         [SerializeField] [Required] [ShowAssetPreview]
-        private Weapon _weapon;
+        private Usable _weapon;
 
         [SerializeField] [Required] [ShowAssetPreview]
-        private Ultimate _ultimate;
+        private Usable _ultimate;
+        
+        [SerializeField] [Required]
+        private Transform _aimTransform;
 
         private void OnValidate()
         {
             this.CheckIfNull(_weapon);
             this.CheckIfNull(_ultimate);
+            this.CheckIfNull(_aimTransform);
         }
 
         public void OnShoot(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
-                _weapon.TryUse();
+                _weapon.TryUse(GetAimRotations());
             }
         }
 
@@ -33,7 +37,15 @@ namespace Heroes.Player
         {
             if (context.performed)
             {
-                _ultimate.TryUse();
+                _ultimate.TryUse(GetAimRotations());
+            }
+        }
+        
+        private IEnumerator<Quaternion> GetAimRotations()
+        {
+            while (true)
+            {
+                yield return _aimTransform.rotation;
             }
         }
     }
