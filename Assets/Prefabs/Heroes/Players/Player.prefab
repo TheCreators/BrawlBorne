@@ -595,6 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootAt: {fileID: 7632048028256500891}
+  _shootFrom: {fileID: 8693570749161455904}
   _name: 
 --- !u!114 &2037473731519624922
 MonoBehaviour:
@@ -657,6 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapon: {fileID: 0}
   _ultimate: {fileID: 0}
+  _aimTransform: {fileID: 6942594267192523694}
 --- !u!114 &1307913016
 MonoBehaviour:
   m_ObjectHideFlags: 0
