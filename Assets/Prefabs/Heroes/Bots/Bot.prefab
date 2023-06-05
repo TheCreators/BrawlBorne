@@ -94,7 +94,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!82 &8344269675317444000
 AudioSource:
@@ -248,13 +248,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootAt: {fileID: 4907142902796656471}
+  _shootFrom: {fileID: 4084415905231610014}
   _name: 
   _randomPointRange:
     _range: {x: 40, y: 80}
     _minColor: {r: 0.06568062, g: 1, b: 0, a: 1}
     _maxColor: {r: 0.06666667, g: 1, b: 0, a: 1}
   _weapon: {fileID: 0}
+  _weaponAimingStrategy: {fileID: 0}
   _ultimate: {fileID: 0}
+  _ultimateAimingStrategy: {fileID: 0}
   _strafeLength: 2
 --- !u!114 &6686982960833355882
 MonoBehaviour:

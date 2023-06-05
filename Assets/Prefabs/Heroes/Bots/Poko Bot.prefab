@@ -167,6 +167,14 @@ PrefabInstance:
       propertyPath: _strafeDistance
       value: 9.9
       objectReference: {fileID: 0}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _weaponAimingStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a6a5629b21f378419c00dc06c9075f3, type: 2}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _ultimateAimingStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: 8447b0214a9ee744897665cd838c6ee7, type: 2}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0

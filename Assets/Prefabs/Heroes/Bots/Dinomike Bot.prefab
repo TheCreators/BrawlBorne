@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: _projectileSpawnPoint
       value: 
       objectReference: {fileID: 7143125964561387292}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _heroVelocityInfluence
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9033627670222265075, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
       propertyPath: m_Name
       value: Ballistic Gun
@@ -260,6 +264,10 @@ PrefabInstance:
       propertyPath: _projectileSpawnPoint
       value: 
       objectReference: {fileID: 7143125964561387292}
+    - target: {fileID: 6260097870712585865, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
+      propertyPath: _heroVelocityInfluence
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8517768023548802772, guid: f36bd5cf83570434d86d9ac782e2e006, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -345,6 +353,14 @@ PrefabInstance:
       propertyPath: _ultimate
       value: 
       objectReference: {fileID: 1345940511699783491}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _weaponAimingStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: f8cbbc2d40fcd844089122a33ec76cde, type: 2}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _ultimateAimingStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: f8cbbc2d40fcd844089122a33ec76cde, type: 2}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0

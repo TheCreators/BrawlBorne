@@ -18,11 +18,17 @@ namespace Combat.Weapons
         [SerializeField] [BoxGroup(Group.Settings)] [Min(0)]
         private float _horizontalSpread = 10f;
 
-        protected override void Shoot()
+        protected override void Use(IEnumerator<Quaternion> aimRotations)
         {
+            if (!aimRotations.MoveNext())
+            {
+                Debug.LogError("No aim rotations");
+                return;
+            }
+            
             CanBeUsed = false;
 
-            List<Quaternion> rotations = GenerateRandomRotations(_bulletsPerShot);
+            List<Quaternion> rotations = GenerateRandomRotations(aimRotations.Current);
 
             for (int i = 0; i < _bulletsPerShot; i++)
             {
@@ -33,12 +39,12 @@ namespace Combat.Weapons
             CanBeUsed = true;
         }
 
-        private List<Quaternion> GenerateRandomRotations(int count)
+        private List<Quaternion> GenerateRandomRotations(Quaternion aimRotation)
         {
             List<Quaternion> rotations = new List<Quaternion>();
             Vector3 forward = Vector3.forward;
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < _bulletsPerShot; i++)
             {
                 // Generate random rotation around X and Y axes
                 float randomXRotation = Random.Range(-_verticalSpread, _verticalSpread);
@@ -49,7 +55,7 @@ namespace Combat.Weapons
                 Vector3 randomizedDirection = randomRotation * forward;
 
                 // Rotate the randomized direction by the rotation of _shootingDirection
-                randomizedDirection = _shootingDirection.rotation * randomizedDirection;
+                randomizedDirection = aimRotation * randomizedDirection;
 
                 rotations.Add(Quaternion.LookRotation(randomizedDirection));
             }

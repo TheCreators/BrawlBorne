@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Misc;
 using Models;
 using NaughtyAttributes;
@@ -27,14 +28,15 @@ namespace Combat.Weapons
             base.OnValidate();
         }
 
-        protected override void Use()
+        protected override void Use(IEnumerator<Quaternion> aimRotations)
         {
             CanBeUsed = false;
-            Swing();
+            
+            Swing(aimRotations);
             CanBeUsed = true;
         }
 
-        private void Swing()
+        private void Swing(IEnumerator<Quaternion> aimRotations)
         {
             Vector3 castStart = _lookDirection.position + _hitOffset;
 

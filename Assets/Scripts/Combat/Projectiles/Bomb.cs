@@ -1,4 +1,5 @@
-﻿using Heroes;
+﻿using System;
+using Heroes;
 using Misc;
 using NaughtyAttributes;
 using Unity.VisualScripting;
@@ -19,8 +20,8 @@ namespace Combat.Projectiles
         private GameObject _objectToDestroy;
 
         private AudioSource _audioSource;
-        private float _timeToExplode = 3f;
         private float _explosionRadius = 5f;
+        private bool _exploded = false;
 
         private void OnValidate()
         {
@@ -39,18 +40,22 @@ namespace Combat.Projectiles
             float damage,
             LayerMask hitLayers,
             Hero sender,
-            float timeToExplode,
             float explosionRadius)
         {
             base.Init(damage, hitLayers, sender);
-            _timeToExplode = timeToExplode;
             _explosionRadius = explosionRadius;
+        }
 
-            Invoke(nameof(Explode), _timeToExplode);
+        private void OnCollisionEnter()
+        {
+            Explode();
         }
 
         private void Explode()
         {
+            if (_exploded) return;
+            _exploded = true;
+            
             Instantiate(_explosion, transform.position, _explosion.transform.rotation);
             _audioSource.PlayOneShot(_explosionSound);
 

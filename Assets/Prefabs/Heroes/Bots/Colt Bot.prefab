@@ -101,6 +101,14 @@ PrefabInstance:
       propertyPath: _ultimate
       value: 
       objectReference: {fileID: 2209871640601313285}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _weaponAimingStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: 64467a39c8a4a5740b65c291c4e9f1eb, type: 2}
+    - target: {fileID: -7126832125545192323, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
+      propertyPath: _ultimateAimingStrategy
+      value: 
+      objectReference: {fileID: 11400000, guid: 64467a39c8a4a5740b65c291c4e9f1eb, type: 2}
     - target: {fileID: 477042130070592946, guid: 5eeb5254880d5c24da0e277be0af0813, type: 3}
       propertyPath: m_RootOrder
       value: 0

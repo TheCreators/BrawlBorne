@@ -1,10 +1,10 @@
-using Combat;
+using System.Collections.Generic;
 using Misc;
 using Models;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Ultimates
+namespace Combat.Ultimates
 {
     public class HealingUltimate : Ultimate
     {
@@ -18,7 +18,7 @@ namespace Ultimates
             _health = this.GetComponentInParentWithNullCheck<Health>();
         }
 
-        protected override void Use()
+        protected override void Use(IEnumerator<Quaternion> aimRotations)
         {
             _health.Heal(_healingPointsPercent);
             Invoke(nameof(SetCanBeUsedToTrue), _cooldown);

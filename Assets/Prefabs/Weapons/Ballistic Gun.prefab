@@ -97,8 +97,7 @@ MonoBehaviour:
     m_Bits: 776
   _projectile: {fileID: 3430874567808542318, guid: 34a3b144c7ed88345af601ad49fc421a, type: 3}
   _projectileSpawnPoint: {fileID: 0}
-  _shootingDirection: {fileID: 0}
-  _throwPower: 10
+  _throwPower: 12
   _heroVelocityInfluence: 0.5
   _timeToExplode: 2
   _explosionRadius: 5
