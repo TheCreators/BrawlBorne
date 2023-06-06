@@ -9,8 +9,8 @@
         public const string Cells = "Cells";
         public const string Projectiles = "Projectiles";
         public const string Hit = "Hit";
-        public const string Strafe = "Strafe";
         public const string FootstepsDelay = "Footsteps Delay";
         public const string Combat = "Combat";
+        public const string Sounds = "Sounds";
     }
 }
