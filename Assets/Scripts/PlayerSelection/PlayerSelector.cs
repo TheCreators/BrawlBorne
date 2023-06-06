@@ -4,11 +4,13 @@ using Events;
 using Misc;
 using Models;
 using NaughtyAttributes;
+using Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace PlayerSelection
 {
+    [RequireComponent(typeof(AudioSource))]
     public class PlayerSelector : MonoBehaviour
     {
         [SerializeField] [BoxGroup(Group.Prefabs)]
@@ -20,8 +22,14 @@ namespace PlayerSelection
         [SerializeField] [BoxGroup(Group.Settings)]
         private float _shiftSpeed = 2f;
 
-        [SerializeField] [BoxGroup(Group.Settings)]
+        [SerializeField] [BoxGroup(Group.Settings)] [Required]
         private GameEvent _onPlayerNameChanged;
+        
+        [SerializeField] [BoxGroup(Group.Sounds)] [Required]
+        private AudioClip _playerSelectedSound;
+
+        [SerializeField] [BoxGroup(Group.Sounds)] [Range(0, 100)]
+        private int _musicVolumeDecrease = 20;
 
         [SerializeField] [BoxGroup(Group.SceneLoading)]
         private GameObject _loadingScreen;
@@ -29,6 +37,7 @@ namespace PlayerSelection
         [SerializeField] [BoxGroup(Group.SceneLoading)] [Scene]
         private int _gameScene;
 
+        private AudioSource _audioSource;
         private int _selectedPlayerIndex;
         private bool _isMoving;
         private Transform _transform;
@@ -36,10 +45,12 @@ namespace PlayerSelection
         private void OnValidate()
         {
             this.CheckIfNull(_onPlayerNameChanged);
+            this.CheckIfNull(_playerSelectedSound);
         }
 
         private void Awake()
         {
+            _audioSource = this.GetComponentWithNullCheck<AudioSource>();
             _transform = transform;
         }
 
@@ -52,13 +63,23 @@ namespace PlayerSelection
 
         public void SelectPlayer()
         {
+            MixerManager.Instance.Music.Volume -= _musicVolumeDecrease;
+            _audioSource.clip = _playerSelectedSound;
+            _audioSource.Play();
+            
+            Invoke(nameof(ChangeScene), _playerSelectedSound.length);
+        }
+        
+        private void ChangeScene()
+        {
             SceneManager.sceneLoaded += OnSceneLoaded;
             _loadingScreen.SetActive(true);
             SceneManager.LoadScene(_gameScene);
         }
-
+        
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            MixerManager.Instance.Music.ResetVolume();
             ObjectsPool objectsPool = FindObjectOfType<ObjectsPool>();
             if (objectsPool != null)
             {
