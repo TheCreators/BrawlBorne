@@ -3,8 +3,8 @@ using Heroes.Player;
 using JetBrains.Annotations;
 using Models;
 using NaughtyAttributes;
-using Sound;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 namespace PlayerSelection
@@ -17,6 +17,9 @@ namespace PlayerSelection
 
         [SerializeField] [BoxGroup(Group.Settings)] [CanBeNull]
         private AudioClip _musicTheme;
+        
+        [SerializeField] [BoxGroup(Group.Settings)] [CanBeNull]
+        private AudioMixerGroup _musicMixerGroup;
 
         private Player _playerInstance;
         private AudioSource _playerInstanceAudioSource;
@@ -62,6 +65,7 @@ namespace PlayerSelection
             AudioSource audioSource = _playerInstance.gameObject.AddComponent<AudioSource>();
             audioSource.clip = _musicTheme;
             audioSource.loop = true;
+            audioSource.outputAudioMixerGroup = _musicMixerGroup;
             _playerInstanceAudioSource = audioSource;
         }
     }
