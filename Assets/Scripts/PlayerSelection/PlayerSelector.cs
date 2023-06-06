@@ -25,12 +25,12 @@ namespace PlayerSelection
         [SerializeField] [BoxGroup(Group.Settings)] [Required]
         private GameEvent _onPlayerNameChanged;
         
-        [SerializeField] [BoxGroup(Group.Sounds)] [Required]
-        private AudioClip _playerSelectedSound;
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 5)]
+        private float _delayBeforeLoading = 2f;
 
         [SerializeField] [BoxGroup(Group.Sounds)] [Range(0, 100)]
-        private int _musicVolumeDecrease = 20;
-
+        private int _musicVolumeDecreaseAmount = 10;
+        
         [SerializeField] [BoxGroup(Group.SceneLoading)]
         private GameObject _loadingScreen;
 
@@ -45,7 +45,6 @@ namespace PlayerSelection
         private void OnValidate()
         {
             this.CheckIfNull(_onPlayerNameChanged);
-            this.CheckIfNull(_playerSelectedSound);
         }
 
         private void Awake()
@@ -63,11 +62,10 @@ namespace PlayerSelection
 
         public void SelectPlayer()
         {
-            MixerManager.Instance.Music.Volume -= _musicVolumeDecrease;
-            _audioSource.clip = _playerSelectedSound;
+            MixerManager.Instance.Music.Volume -= _musicVolumeDecreaseAmount;
             _audioSource.Play();
             
-            Invoke(nameof(ChangeScene), _playerSelectedSound.length);
+            Invoke(nameof(ChangeScene), _delayBeforeLoading);
         }
         
         private void ChangeScene()
