@@ -198,6 +198,106 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 1.196848
       objectReference: {fileID: 0}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _hurtSounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _killSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _deathSounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _startSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _hurtSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b11ff8f5777c314391a6bd23b3fc5e2, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _hurtSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: dfe38112a4ea13041a9d7a0c32f7dea4, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _hurtSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: fc3f1999ee33f0248999af491ed529c8, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _hurtSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 47f83466e5ec8e348b4ea9fd404ea19a, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _hurtSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: fa0b533eb94d4be458c44de7366766e2, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _killSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6a68b8f5b818984cbaa5fcfbae6da56, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _killSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: c3fdb9c35935e3642a354749824cba98, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _killSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9e74694f343395b4bb93034f02519c06, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _killSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4307b71020517a14f9de98d98e8e7f41, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _deathSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 136d68cf6ce1f8a49acc62e5be8cab4c, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _deathSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d511c82ef6d58141b51e12e87b5e5d0, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _deathSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: c06e813bf4fd83a42a7a9abd0a0cb8b0, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _deathSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: ad2e055bec1bb7147b89730bbef134e7, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _deathSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 41fcdb8c1496e144686e58d890a20fab, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _startSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 99ea0b1483d2f5340a7b10929635913d, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _startSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: ee16a3312ffad1b4a9a137dd4dc50ccd, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _startSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ed01a8968e936fb47bcb5e74fba012b1, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _startSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 71ffed4dc7d51d2499b5e16e2d745dc1, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _ultimateSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _ultimateSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f746bd7e25aa10488c30c28a72c874d, type: 3}
+    - target: {fileID: 683689404120488323, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
+      propertyPath: _ultimateSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d450c2b7710c3e41ac2b32a0bbc085a, type: 3}
     - target: {fileID: 1146891796700530722, guid: 7e0f671054eb2e946866838c08d4f992, type: 3}
       propertyPath: _name
       value: Dinomike
