@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4554927317660275725, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9499a363d1e85184684dc0cae7924392, type: 3}
     - target: {fileID: 1783682040439834756, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -63,6 +67,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7352767474091393370, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6715291111157372975}
+    - targetCorrespondingSourceObject: {fileID: 7352767474091393370, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7865113064272267978}
   m_SourcePrefab: {fileID: 100100000, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
 --- !u!1 &491816741458629648 stripped
 GameObject:
@@ -85,3 +92,42 @@ MonoBehaviour:
   _onUse: {fileID: 11400000, guid: 6365880e29c1acb478df347cf660ed17, type: 2}
   _onReady: {fileID: 11400000, guid: fd58774d0cfd2244fab7022c71190b7c, type: 2}
   _healingPointsPercent: 15
+--- !u!114 &-7865113064272267978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491816741458629648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867288c91c5643cf9bfbbf84cd8c17e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: 6365880e29c1acb478df347cf660ed17, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2310533573286444729}
+        m_TargetAssemblyTypeName: Sound.Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2310533573286444729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4554927317660275725, guid: 23caf528dd0c6bf4dab4c928e4c3d704, type: 3}
+  m_PrefabInstance: {fileID: 6978626379872523594}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491816741458629648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dae91862bf3af4595a6503fcbece46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
