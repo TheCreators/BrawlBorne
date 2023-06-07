@@ -3,6 +3,7 @@ using Heroes.Player;
 using JetBrains.Annotations;
 using Models;
 using NaughtyAttributes;
+using Sound.Sets;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -45,6 +46,16 @@ namespace PlayerSelection
             if (_playerInstanceAudioSource == null) return;
             _playerInstanceAudioSource.Stop();
         }
+        
+        public void PlaySelectedSound()
+        {
+            if (_playerInstance == null) return;
+            if (_playerInstance.TryGetComponent(out VoiceSound voiceSound))
+            {
+                voiceSound.AudioSource.mute = false;
+                voiceSound.PlaySelectedSound(_playerInstance, null);
+            }
+        }
 
         private void SetupPlayer()
         {
@@ -60,13 +71,16 @@ namespace PlayerSelection
 
             if (_playerInstance.TryGetComponent(out PlayerInput playerInput)) playerInput.enabled = false;
             if (_playerInstance.TryGetComponent(out Rigidbody playerRigidbody)) playerRigidbody.interpolation = RigidbodyInterpolation.None;
-            if (_playerInstance.TryGetComponent(out AudioSource playerAudioSource)) playerAudioSource.mute = true;
+            foreach (AudioSource audioSource in _playerInstance.GetComponentsInChildren<AudioSource>())
+            {
+                audioSource.mute = true;
+            }
 
-            AudioSource audioSource = _playerInstance.gameObject.AddComponent<AudioSource>();
-            audioSource.clip = _musicTheme;
-            audioSource.loop = true;
-            audioSource.outputAudioMixerGroup = _musicMixerGroup;
-            _playerInstanceAudioSource = audioSource;
+            AudioSource newAudioSource = _playerInstance.gameObject.AddComponent<AudioSource>();
+            newAudioSource.clip = _musicTheme;
+            newAudioSource.loop = true;
+            newAudioSource.outputAudioMixerGroup = _musicMixerGroup;
+            _playerInstanceAudioSource = newAudioSource;
         }
     }
 }

@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 
 namespace PlayerSelection
 {
-    [RequireComponent(typeof(AudioSource))]
     public class PlayerSelector : MonoBehaviour
     {
         [SerializeField] [BoxGroup(Group.Prefabs)]
@@ -37,7 +36,6 @@ namespace PlayerSelection
         [SerializeField] [BoxGroup(Group.SceneLoading)] [Scene]
         private int _gameScene;
 
-        private AudioSource _audioSource;
         private int _selectedPlayerIndex;
         private bool _isMoving;
         private Transform _transform;
@@ -49,7 +47,6 @@ namespace PlayerSelection
 
         private void Awake()
         {
-            _audioSource = this.GetComponentWithNullCheck<AudioSource>();
             _transform = transform;
         }
 
@@ -63,7 +60,7 @@ namespace PlayerSelection
         public void SelectPlayer()
         {
             MixerManager.Instance.Music.Volume -= _musicVolumeDecreaseAmount;
-            _audioSource.Play();
+            _players[_selectedPlayerIndex].PlaySelectedSound();
             
             Invoke(nameof(ChangeScene), _delayBeforeLoading);
         }
