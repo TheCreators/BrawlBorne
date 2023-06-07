@@ -1,19 +1,44 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8454396956221745142
+--- !u!1001 &5744991159685617588
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5339421899746549392, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
+      propertyPath: _used
+      value: 
+      objectReference: {fileID: 8300000, guid: fa965b157c03ea645a4e71ffd4b7dfc5, type: 3}
+    - target: {fileID: -5339421899746549392, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
+      propertyPath: _reload
+      value: 
+      objectReference: {fileID: 8300000, guid: 71b806184c73919448d8565140edd131, type: 3}
+    - target: {fileID: -5339421899746549392, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
+      propertyPath: _used._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fa965b157c03ea645a4e71ffd4b7dfc5, type: 3}
+    - target: {fileID: -5339421899746549392, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
+      propertyPath: _reload._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 71b806184c73919448d8565140edd131, type: 3}
+    - target: {fileID: -5339421899746549392, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
+      propertyPath: _usedRandomPitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4142159789061123195, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
       propertyPath: _sound
       value: 
-      objectReference: {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
+      objectReference: {fileID: 8300000, guid: fa965b157c03ea645a4e71ffd4b7dfc5, type: 3}
+    - target: {fileID: -4142159789061123195, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
+      propertyPath: _randomPitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 936402671515005356, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
       propertyPath: m_Name
-      value: Knife
+      value: Poko Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 8039073245070755080, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
       propertyPath: m_RootOrder
@@ -60,34 +85,47 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 936402671515005356, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8842939245098008114}
   m_SourcePrefab: {fileID: 100100000, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
---- !u!1 &8767040049865643610 stripped
+--- !u!1 &4847151114035062296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 936402671515005356, guid: ccc2d0fb604a6b345b0170161eacf26b, type: 3}
-  m_PrefabInstance: {fileID: 8454396956221745142}
+  m_PrefabInstance: {fileID: 5744991159685617588}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1626132344196601840
+--- !u!114 &-8842939245098008114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8767040049865643610}
+  m_GameObject: {fileID: 4847151114035062296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0f561bdd50119b4d884dce19297afda, type: 3}
+  m_Script: {fileID: 11500000, guid: 6284ea602b8834d4dad00a195f7143b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cellsBar: 3
   _maxCells: 3
   _currentCells: 3
   _refillTime: 2
   _onUse: {fileID: 11400000, guid: d18531d1412b2e141b1aa986c753afa0, type: 2}
   _onCellsAmountChanged: {fileID: 11400000, guid: c6c7094979ac94d47b11bd361c323c77, type: 2}
-  _damage: 50
+  _onCellsAmountIncreased: {fileID: 11400000, guid: b7f35c8fdeaf72c40a42527b18b42a8a, type: 2}
+  _onOutOfCells: {fileID: 11400000, guid: 057080935167fe94c84f342ebf488d46, type: 2}
+  _onDryUse: {fileID: 11400000, guid: d0a115b9f757eae4687e9b2ef41c52a3, type: 2}
+  _damage: 5
   _hitLayers:
     serializedVersion: 2
-    m_Bits: 776
-  _lookDirection: {fileID: 0}
-  _radius: 0.77
-  _length: 2.2
-  _hitOffset: {x: 0, y: 0, z: 0}
+    m_Bits: 841
+  _projectile: {fileID: 1326810490223367697, guid: 96f2411160fdf134cbf4bfaef61dc466, type: 3}
+  _projectileSpawnPoint: {fileID: 0}
+  _speed: 25
+  _maxDistance: 15
+  _bulletsPerShot: 15
+  _verticalSpread: 5
+  _horizontalSpread: 12

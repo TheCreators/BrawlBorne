@@ -5,11 +5,48 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _used
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d5d25512cfa8fc4cba754bcf1f4a55b, type: 3}
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _outOfAmmo
+      value: 
+      objectReference: {fileID: 8300000, guid: 61b46463f4035aa4abee59c548d98d12, type: 3}
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _used._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d5d25512cfa8fc4cba754bcf1f4a55b, type: 3}
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _reload._clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _dryUsed._clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _reload._source
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _dryUsed._source
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _outOfCells._clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217978524097823015, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _outOfCells._source
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3026265384466338299, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: m_Name
-      value: Ultimate Dual Gun
+      value: Colt Ultimate Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 5373136956010505567, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: m_RootOrder
@@ -55,21 +92,48 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5989415849432809329, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -3546732505933918024, guid: bcab992fc3871504ca55ce7087dac1bb, type: 2}
+    - target: {fileID: 7171321118481413074, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d5d25512cfa8fc4cba754bcf1f4a55b, type: 3}
     - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: _damage
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _cellsBar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _maxCells
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: _projectile
       value: 
       objectReference: {fileID: 6323033957192560943, guid: aa0bc6e1a1187774cb0110eef4a9672b, type: 3}
     - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _refillTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: _maxDistance
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
+      propertyPath: _currentCells
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7411239547227329234, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}
       propertyPath: _bulletsPerShot
       value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ead1407d7f816449ee2ef816650d2e, type: 3}

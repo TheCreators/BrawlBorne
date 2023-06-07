@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2092081537109872952, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
@@ -21,12 +22,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2289054197709934623, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
       propertyPath: m_Name
-      value: Ultimate Shot Gun
+      value: Shelly Ultimate Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 2800130647011918019, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
+      propertyPath: _used._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 62eef56b709d33449a955bcb31ae2dd8, type: 3}
     - target: {fileID: 6178525756610851382, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
       propertyPath: _sound
       value: 
-      objectReference: {fileID: 8300000, guid: 63551295bbf074b458e56da38138b42b, type: 3}
+      objectReference: {fileID: 8300000, guid: 62eef56b709d33449a955bcb31ae2dd8, type: 3}
     - target: {fileID: 8983020343555056827, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -72,4 +77,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cd7362782ee17343b9f56ed9890f52f, type: 3}
