@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Heroes;
 using Heroes.Player;
 using Misc;
 using Models;
@@ -27,8 +28,9 @@ namespace Combat.Ultimates
 
         [SerializeField] [BoxGroup(Group.Hit)] [Min(0)]
         private float _hitRadius = 3f;
-
+        
         private PlayerMovement _playerMovement;
+
 
         protected override void OnValidate()
         {
@@ -37,8 +39,10 @@ namespace Combat.Ultimates
             base.OnValidate();
         }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _playerMovement = this.GetComponentInParentWithNullCheck<PlayerMovement>();
         }
 
@@ -74,7 +78,7 @@ namespace Combat.Ultimates
             {
                 if (colliders[i].gameObject.TryGetComponent(out IDamageable damageable) && colliders[i].gameObject != gameObject)
                 {
-                    damageable.TakeDamage(_damagePerHit);
+                    damageable.TakeDamage(_damagePerHit, Owner);
                 }
             }
         }

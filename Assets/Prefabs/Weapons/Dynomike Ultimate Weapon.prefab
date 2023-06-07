@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7495845348285913219
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176266947951734359, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3974204958311905498, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f4d9fe907b809f4b8fcb4c0c9728003, type: 3}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _damage
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _cellsBar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _maxCells
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _explosion
+      value: 
+      objectReference: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _projectile
+      value: 
+      objectReference: {fileID: 8703537298634163013, guid: 5b62258f73e3f97459a0fc17b161e3be, type: 3}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _refillTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _throwPower
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _currentCells
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532523903042987530, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _explosionRadius
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919533700946217519, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _used
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f4d9fe907b809f4b8fcb4c0c9728003, type: 3}
+    - target: {fileID: 4919533700946217519, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _used._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f4d9fe907b809f4b8fcb4c0c9728003, type: 3}
+    - target: {fileID: 4919533700946217519, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _reload._clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919533700946217519, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _dryUsed._clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919533700946217519, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _reload._source
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919533700946217519, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _dryUsed._source
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919533700946217519, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _outOfCells._clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919533700946217519, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: _outOfCells._source
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033627670222265075, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}
+      propertyPath: m_Name
+      value: Dynomike Ultimate Weapon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de7d11cb68e18ff489e489c7cf49de36, type: 3}

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Events;
-using Heroes.Player;
 using Misc;
 using Models;
 using NaughtyAttributes;
+using Sound;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace PlayerSelection
@@ -15,7 +13,7 @@ namespace PlayerSelection
     public class PlayerSelector : MonoBehaviour
     {
         [SerializeField] [BoxGroup(Group.Prefabs)]
-        private List<Player> _players;
+        private List<PlayerDummy> _players;
 
         [SerializeField] [BoxGroup(Group.Settings)]
         private float _shiftDistance = 2f;
@@ -23,9 +21,15 @@ namespace PlayerSelection
         [SerializeField] [BoxGroup(Group.Settings)]
         private float _shiftSpeed = 2f;
 
-        [SerializeField] [BoxGroup(Group.Settings)]
+        [SerializeField] [BoxGroup(Group.Settings)] [Required]
         private GameEvent _onPlayerNameChanged;
+        
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 5)]
+        private float _delayBeforeLoading = 2f;
 
+        [SerializeField] [BoxGroup(Group.Sounds)] [Range(0, 100)]
+        private int _musicVolumeDecreaseAmount = 10;
+        
         [SerializeField] [BoxGroup(Group.SceneLoading)]
         private GameObject _loadingScreen;
 
@@ -50,21 +54,31 @@ namespace PlayerSelection
         {
             InstantiatePlayers();
             _onPlayerNameChanged.Raise(this, _players[_selectedPlayerIndex].Name);
+            _players[_selectedPlayerIndex].PlayMusicTheme();
         }
 
         public void SelectPlayer()
+        {
+            MixerManager.Instance.Music.Volume -= _musicVolumeDecreaseAmount;
+            _players[_selectedPlayerIndex].PlaySelectedSound();
+            
+            Invoke(nameof(ChangeScene), _delayBeforeLoading);
+        }
+        
+        private void ChangeScene()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
             _loadingScreen.SetActive(true);
             SceneManager.LoadScene(_gameScene);
         }
-
+        
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            MixerManager.Instance.Music.ResetVolume();
             ObjectsPool objectsPool = FindObjectOfType<ObjectsPool>();
             if (objectsPool != null)
             {
-                objectsPool.SetPlayerPrefab(_players[_selectedPlayerIndex]);
+                objectsPool.SetPlayerPrefab(_players[_selectedPlayerIndex].PlayerPrefab);
             }
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -77,8 +91,10 @@ namespace PlayerSelection
                 return;
             }
 
+            _players[_selectedPlayerIndex].StopMusicTheme();
             _selectedPlayerIndex++;
             _onPlayerNameChanged.Raise(this, _players[_selectedPlayerIndex].Name);
+            _players[_selectedPlayerIndex].PlayMusicTheme();
             Shift(true);
         }
 
@@ -89,8 +105,10 @@ namespace PlayerSelection
                 return;
             }
 
+            _players[_selectedPlayerIndex].StopMusicTheme();
             _selectedPlayerIndex--;
             _onPlayerNameChanged.Raise(this, _players[_selectedPlayerIndex].Name);
+            _players[_selectedPlayerIndex].PlayMusicTheme();
             Shift(false);
         }
 
@@ -125,47 +143,10 @@ namespace PlayerSelection
         {
             for (int i = 0; i < _players.Count; i++)
             {
-                Player player = Instantiate(
-                    _players[i],
+                _players[i].Instantiate(
                     _transform.position - _transform.right * _shiftDistance * i,
                     _transform.rotation,
                     _transform);
-
-                TurnPlayerDown(player);
-            }
-        }
-
-        private void TurnPlayerDown(Player player)
-        {
-            Camera playerCamera = player.GetComponentInChildren<Camera>();
-            if (playerCamera != null)
-            {
-                playerCamera.enabled = false;
-
-                if (playerCamera.TryGetComponent(out MouseRotation mouseRotation))
-                {
-                    mouseRotation.enabled = false;
-                }
-
-                if (playerCamera.TryGetComponent(out AudioListener audioListener))
-                {
-                    audioListener.enabled = false;
-                }
-            }
-
-            if (player.TryGetComponent(out PlayerInput playerInput))
-            {
-                playerInput.enabled = false;
-            }
-
-            if (player.TryGetComponent(out AudioSource audioSource))
-            {
-                audioSource.mute = true;
-            }
-
-            if (player.TryGetComponent(out Rigidbody playerRigidbody))
-            {
-                playerRigidbody.interpolation = RigidbodyInterpolation.None;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace Environment
                 weapon.IncreaseDamage(_damageIncreasePercent);
             }
 
-            _onCollected.Raise(this, null);
+            _onCollected.Raise(this, hero);
         }
     }
 }

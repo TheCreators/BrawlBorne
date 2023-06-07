@@ -61,5 +61,5 @@ MonoBehaviour:
   _bushesDensity: 0.03
   _maxBushSize: 3
   _cratesCount: 9
-  _heroesCount: 20
+  _heroesCount: 10
   _spawnDistance: 8

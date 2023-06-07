@@ -22,8 +22,10 @@ namespace Combat.Weapons
         
         public float ThrowPower => _throwPower;
         
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _rigidbody = this.GetComponentInParentWithNullCheck<Rigidbody>();
         }
 

@@ -1,4 +1,5 @@
 using Events;
+using Heroes;
 using Misc;
 using Models;
 using NaughtyAttributes;
@@ -28,6 +29,9 @@ namespace Combat
 
         [SerializeField] [BoxGroup(Group.Events)] [Required]
         private GameEvent _onMaxHealthChanged;
+        
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onHeroTakeDamage;
 
         private float HealthPoints
         {
@@ -49,12 +53,6 @@ namespace Combat
 
                 _healthPointsBar = HealthPoints;
                 _onHealthChanged.Raise(this, HealthPoints);
-
-                bool isDead = HealthPoints <= 0;
-                if (isDead)
-                {
-                    _onDeath.Raise(this, null);
-                }
             }
         }
 
@@ -83,7 +81,7 @@ namespace Combat
 
         private void OnValidate()
         {
-            this.CheckIfNull(_onDeath, _onHealthChanged);
+            this.CheckIfNull(_onDeath, _onHealthChanged, _onMaxHealthChanged, _onHeroTakeDamage);
         }
 
         private void Start()
@@ -92,14 +90,19 @@ namespace Combat
             _onMaxHealthChanged.Raise(this, MaxHealthPoints);
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, Hero dealer)
         {
-            if (_isInvulnerable)
-            {
-                return;
-            }
+            if (_isInvulnerable) return;
 
             HealthPoints -= damage;
+            
+            if (HealthPoints <= 0)
+            {
+                _onDeath.Raise(this, dealer);
+            } else
+            {
+                _onHeroTakeDamage.Raise(this, dealer);
+            }
         }
 
         public void Heal(float healedPointsPercent)

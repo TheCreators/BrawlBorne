@@ -29,6 +29,15 @@ namespace Combat.Weapons
 
         [SerializeField] [BoxGroup(Group.Events)] [Required]
         protected GameEvent _onCellsAmountChanged;
+        
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onCellsAmountIncreased;
+        
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onOutOfCells;
+        
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onDryUse;
 
         [SerializeField] [Min(0)] [BoxGroup(Group.Hit)]
         protected float _damage = 5f;
@@ -44,6 +53,8 @@ namespace Combat.Weapons
             get => _currentCells;
             set
             {
+                int oldValue = CurrentCells;
+                
                 if (value < 0)
                 {
                     _currentCells = 0;
@@ -59,6 +70,14 @@ namespace Combat.Weapons
 
                 _cellsBar = CurrentCells;
                 _onCellsAmountChanged.Raise(this, CurrentCells);
+                
+                if (oldValue < CurrentCells)
+                {
+                    _onCellsAmountIncreased.Raise(this, CurrentCells);
+                } else if (CurrentCells == 0)
+                {
+                    _onOutOfCells.Raise(this, null);
+                }
             }
         }
 
@@ -94,6 +113,7 @@ namespace Combat.Weapons
         {
             if (CanBeUsed is false || CurrentCells == 0)
             {
+                if (CurrentCells == 0) _onDryUse.Raise(this, null);
                 return;
             }
 

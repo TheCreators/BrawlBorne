@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9580285f44704bef94cac567e46c7d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionSound: {fileID: 8300000, guid: 78d5e92dc6d551c45b8aeb4cac63b784, type: 3}
+  _explosionSound: {fileID: 8300000, guid: 1be3b5a545b145748a7b4d8c170d911b, type: 3}
   _explosion: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   _objectToDestroy: {fileID: 6221226717185464711}
 --- !u!82 &6613808925844265763

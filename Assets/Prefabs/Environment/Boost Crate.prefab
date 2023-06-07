@@ -157,6 +157,7 @@ MonoBehaviour:
   _onDeath: {fileID: 11400000, guid: 80d7fcd566e08834d807313e7f84ac5e, type: 2}
   _onHealthChanged: {fileID: 11400000, guid: 48d790a501997594ca9f11b485fd2f22, type: 2}
   _onMaxHealthChanged: {fileID: 11400000, guid: 0247b307e92b3414e9c1d13d7c4139d0, type: 2}
+  _onHeroTakeDamage: {fileID: 11400000, guid: ea105fe4379d00e44b90b33abb8d3f53, type: 2}
 --- !u!114 &1915759271517685591
 MonoBehaviour:
   m_ObjectHideFlags: 0
