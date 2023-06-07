@@ -39,7 +39,7 @@ namespace Combat.Projectiles
 
             if (hit.collider.gameObject.TryGetComponent(out IDamageable damageable))
             {
-                damageable.TakeDamage(Damage);
+                damageable.TakeDamage(Damage, Sender);
             }
 
             Destroy(gameObject);

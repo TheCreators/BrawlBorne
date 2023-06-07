@@ -21,8 +21,10 @@ namespace Combat.Ultimates
         private Rigidbody _rigidbody;
         private GroundChecker _groundChecker;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _rigidbody = this.GetComponentInParentWithNullCheck<Rigidbody>();
             _groundChecker = this.GetComponentInParentWithNullCheck<GroundChecker>();
         }

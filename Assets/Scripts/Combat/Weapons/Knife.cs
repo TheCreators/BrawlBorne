@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Heroes;
 using Misc;
 using Models;
 using NaughtyAttributes;
@@ -19,7 +20,7 @@ namespace Combat.Weapons
 
         [SerializeField] [BoxGroup(Group.Hit)]
         private Vector3 _hitOffset;
-
+        
         protected override void OnValidate()
         {
             this.CheckIfNull(_lookDirection);
@@ -44,7 +45,7 @@ namespace Combat.Weapons
 
             if (hit.collider.TryGetComponent(out IDamageable damageable))
             {
-                damageable.TakeDamage(_damage);
+                damageable.TakeDamage(_damage, Owner);
             }
         }
 

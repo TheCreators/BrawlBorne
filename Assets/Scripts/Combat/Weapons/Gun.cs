@@ -16,15 +16,6 @@ namespace Combat.Weapons
         [SerializeField] [BoxGroup(Group.Projectiles)] [Required]
         protected Transform _projectileSpawnPoint;
 
-        protected Hero Owner;
-
-        protected override void Start()
-        {
-            Owner = this.GetComponentInParentWithNullCheck<Hero>();
-
-            base.Start();
-        }
-
         protected override void OnValidate()
         {
             this.CheckIfNull(_projectile);

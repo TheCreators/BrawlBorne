@@ -13,8 +13,10 @@ namespace Combat.Ultimates
 
         private Health _health;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             _health = this.GetComponentInParentWithNullCheck<Health>();
         }
 
