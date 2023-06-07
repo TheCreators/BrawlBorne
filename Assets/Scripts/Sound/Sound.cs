@@ -1,30 +1,28 @@
 using Misc;
+using Models;
 using NaughtyAttributes;
 using UnityEngine;
 
 namespace Sound
 {
-    public class WeaponSound : MonoBehaviour
+    [RequireComponent(typeof(AudioSource))]
+    public class Sound : Playable
     {
-        [SerializeField] [Required]
+        [SerializeField] [BoxGroup(Group.Sounds)]
         private AudioClip _sound;
 
         private AudioSource _audioSource;
 
-        private void OnValidate()
-        {
-            this.CheckIfNull(_sound);
-        }
-
         private void Awake()
         {
-            _audioSource = this.GetComponentInParentWithNullCheck<AudioSource>();
+            _audioSource = this.GetComponentWithNullCheck<AudioSource>();
         }
 
-        public void PlaySound(Component component, object data)
+        public override void PlaySound(Component component, object data)
         {
             if (component.gameObject != gameObject) return;
-
+            
+            _audioSource.pitch = Pitch;
             _audioSource.PlayOneShot(_sound);
         }
     }

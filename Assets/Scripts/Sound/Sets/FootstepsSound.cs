@@ -1,18 +1,19 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Misc;
 using Models;
 using NaughtyAttributes;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Sound
+namespace Sound.Sets
 {
     [RequireComponent(typeof(AudioSource))]
     public class FootstepsSound : MonoBehaviour
     {
+        [SerializeField] [BoxGroup(Group.Settings)] [Required]
+        private AudioSource _audioSource;
+        
         [SerializeField] [BoxGroup(Group.Settings)]
         private List<AudioClip> _footstepSounds;
 
@@ -28,7 +29,6 @@ namespace Sound
         [SerializeField] [BoxGroup(Group.FootstepsDelay)] [Min(0)]
         private float _footstepSneakDelay = 0.5f;
 
-        private AudioSource _audioSource;
         private Coroutine _footstepCoroutine;
         private float _footstepDelay;
         private bool _isGrounded = true;
@@ -39,11 +39,11 @@ namespace Sound
         private void OnValidate()
         {
             this.CheckIfNull(_jumpSound, _landingSound);
+            this.CheckIfNull(_audioSource);
         }
 
         private void Awake()
         {
-            _audioSource = this.GetComponentWithNullCheck<AudioSource>();
             _footstepDelay = _footstepWalkDelay;
         }
 
