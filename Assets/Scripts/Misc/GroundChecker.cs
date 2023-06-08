@@ -1,22 +1,30 @@
 ﻿using Events;
+using Models;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Misc
 {
     public class GroundChecker : MonoBehaviour
     {
-        [Header("Requirements")]
-        [SerializeField] private Transform _groundCheck;
+        [SerializeField] [BoxGroup(Group.Settings)] [Required]
+        private Transform _groundCheck;
 
-        [Header("Settings")]
-        [SerializeField, Range(0, 5)] private float _checkRadius = 0.4f;
-        [SerializeField] private LayerMask _groundMask;
-        [SerializeField] private GameEvent _onLand;
-        [SerializeField] private GameEvent _onAirborne;
+        [SerializeField] [BoxGroup(Group.Settings)] [Range(0, 3)]
+        private float _checkRadius = 0.4f;
+
+        [SerializeField] [BoxGroup(Group.Settings)]
+        private LayerMask _groundMask;
+
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onLand;
+
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onAirborne;
 
         public bool IsGrounded { get; private set; }
-        private bool _wasGrounded = false;
-        
+        private bool _wasGrounded;
+
         private void OnValidate()
         {
             this.CheckIfNull(_groundCheck);

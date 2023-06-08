@@ -1,12 +1,14 @@
 using Misc;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Environment
 {
     public class Crate : MonoBehaviour
     {
-        [SerializeField] private Boost _boost;
-        
+        [SerializeField] [Required] [ShowAssetPreview]
+        private Boost _boost;
+
         private void OnValidate()
         {
             this.CheckIfNull(_boost);
@@ -18,7 +20,7 @@ namespace Environment
             {
                 return;
             }
-            
+
             ObjectsPool.Instance.AddBoost(Instantiate(_boost, transform.position, transform.rotation));
         }
     }

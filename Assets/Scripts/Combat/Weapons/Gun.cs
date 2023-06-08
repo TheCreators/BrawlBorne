@@ -1,40 +1,27 @@
-﻿using Combat.Projectiles;
+﻿using System.Collections.Generic;
+using Combat.Projectiles;
+using Heroes;
 using Misc;
+using Models;
+using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Combat.Weapons
 {
     public abstract class Gun<TProjectile> : Weapon where TProjectile : Projectile
     {
-        [Header("Requirements")]
-        [SerializeField] protected TProjectile _projectile;
-        [SerializeField] protected Transform _projectileSpawnPoint;
-        [SerializeField] protected Transform _shootingDirection;
+        [SerializeField] [BoxGroup(Group.Projectiles)] [Required] [ShowAssetPreview]
+        protected TProjectile _projectile;
 
-        protected Hero Hero;
-        
-        protected override void Start()
-        {
-            Hero = this.GetComponentInParentWithNullCheck<Hero>();
-            
-            base.Start();
-        }
-        
+        [SerializeField] [BoxGroup(Group.Projectiles)] [Required]
+        protected Transform _projectileSpawnPoint;
+
         protected override void OnValidate()
         {
             this.CheckIfNull(_projectile);
-            this.CheckIfNull(_shootingDirection);
             this.CheckIfNull(_projectileSpawnPoint);
-            
+
             base.OnValidate();
         }
-
-        protected override void Use()
-        {
-            Shoot();
-        }
-        
-        protected abstract void Shoot();
     }
 }

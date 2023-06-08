@@ -1,70 +1,124 @@
 using Events;
+using Heroes;
 using Misc;
 using Models;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Combat
 {
     public class Health : MonoBehaviour, IDamageable
     {
-        [Header("Settings")]
-        [SerializeField, Min(0)] private float _maxHealthPoints = 100f;
-        [SerializeField, Min(0)] private float _healthPoints = 100f;
+        [SerializeField] [ProgressBar("Health", nameof(_maxHealthPoints), EColor.Green)]
+        private float _healthPointsBar = 100f;
+
+        [SerializeField] [Min(0)] [OnValueChanged(nameof(OnHealthChangedUsingInspector))]
+        private float _healthPoints = 100f;
+
+        [SerializeField] [Min(0)] [OnValueChanged(nameof(OnMaxHealthChangedUsingInspector))]
+        private float _maxHealthPoints = 100f;
+
+        [SerializeField]
+        private bool _isInvulnerable;
+
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onDeath;
+
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onHealthChanged;
+
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onMaxHealthChanged;
         
-        [SerializeField] private GameEvent _onDeath;
-        [SerializeField] private GameEvent _onHealthChanged;
-        
+        [SerializeField] [BoxGroup(Group.Events)] [Required]
+        private GameEvent _onHeroTakeDamage;
+
+        private float HealthPoints
+        {
+            get => _healthPoints;
+            set
+            {
+                if (value < 0)
+                {
+                    _healthPoints = 0;
+                }
+                else if (value > MaxHealthPoints)
+                {
+                    _healthPoints = MaxHealthPoints;
+                }
+                else
+                {
+                    _healthPoints = value;
+                }
+
+                _healthPointsBar = HealthPoints;
+                _onHealthChanged.Raise(this, HealthPoints);
+            }
+        }
+
+        private float MaxHealthPoints
+        {
+            get => _maxHealthPoints;
+            set
+            {
+                if (value < 0)
+                {
+                    _maxHealthPoints = 0;
+                }
+                else
+                {
+                    _maxHealthPoints = value;
+
+                    if (HealthPoints > MaxHealthPoints)
+                    {
+                        HealthPoints = MaxHealthPoints;
+                    }
+                }
+
+                _onMaxHealthChanged.Raise(this, MaxHealthPoints);
+            }
+        }
+
         private void OnValidate()
         {
-            this.CheckIfNull(_onDeath, _onHealthChanged);
+            this.CheckIfNull(_onDeath, _onHealthChanged, _onMaxHealthChanged, _onHeroTakeDamage);
         }
 
         private void Start()
         {
-            _healthPoints = _maxHealthPoints;
-            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
+            _onHealthChanged.Raise(this, HealthPoints);
+            _onMaxHealthChanged.Raise(this, MaxHealthPoints);
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, Hero dealer)
         {
-            _healthPoints -= damage;
-            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
+            if (_isInvulnerable) return;
 
-            if (_healthPoints <= 0)
+            HealthPoints -= damage;
+            
+            if (HealthPoints <= 0)
             {
-                _onDeath.Raise(this, null);
+                _onDeath.Raise(this, dealer);
+            } else
+            {
+                _onHeroTakeDamage.Raise(this, dealer);
             }
         }
 
         public void Heal(float healedPointsPercent)
         {
-            float healedValue = _maxHealthPoints * healedPointsPercent / 100;
-            if (_healthPoints + healedValue < _maxHealthPoints)
-            {
-                _healthPoints += healedValue;
-            }
-            else
-            {
-                _healthPoints = _maxHealthPoints;
-            }
-            
-            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
+            HealthPoints += MaxHealthPoints * healedPointsPercent / 100;
         }
 
-        public void IncreaseMaxHealth(float increasePercent)
+        public void IncreaseMaxHealthWithCurrentHealth(float increasePercent)
         {
-            _maxHealthPoints *= (1 + increasePercent / 100);
-            float increasedCurrentHealth = _healthPoints * (1 + increasePercent / 100);
-            if (increasedCurrentHealth >= _maxHealthPoints)
-            {
-                _healthPoints = _maxHealthPoints;
-            }
-            else
-            {
-                _healthPoints = increasedCurrentHealth;
-            }
-            
-            _onHealthChanged.Raise(this, new HealthAmount(_healthPoints, _maxHealthPoints));
+            float increaseCoefficient = 1 + increasePercent / 100;
+            MaxHealthPoints *= increaseCoefficient;
+            HealthPoints *= increaseCoefficient;
         }
+
+        private void OnHealthChangedUsingInspector() => HealthPoints = _healthPoints;
+
+        private void OnMaxHealthChangedUsingInspector() => MaxHealthPoints = _maxHealthPoints;
     }
 }

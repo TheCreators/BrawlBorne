@@ -50,17 +50,16 @@ MonoBehaviour:
   _crate: {fileID: 1915759271517685591, guid: c5c19a7db485f404c8fbb4e18e4d4b03, type: 3}
   _ground: {fileID: 3321912436738672957, guid: df9ecbb0971409f458bf699f3860efae, type: 3}
   _bots:
-  - {fileID: 6620761618144734648, guid: be7e1e95650b66348a49bad8c208d8bc, type: 3}
-  - {fileID: 5165398221145229241, guid: f336d85d8be62d84fbda5b66b1ff8fb3, type: 3}
-  - {fileID: 7501857608295575825, guid: 1fa34e49b880c094e8983afc855dcc00, type: 3}
-  - {fileID: 9172240393972733174, guid: 0d569ea5300e77f43a1ce6af947d39cc, type: 3}
-  - {fileID: 8339106170205478523, guid: 2b091ab1fa24b724daf0c8502c9b99e1, type: 3}
+  - {fileID: 6546364298997277182, guid: be7e1e95650b66348a49bad8c208d8bc, type: 3}
+  - {fileID: 5086778845932899327, guid: f336d85d8be62d84fbda5b66b1ff8fb3, type: 3}
+  - {fileID: 7575902880113261911, guid: 1fa34e49b880c094e8983afc855dcc00, type: 3}
+  - {fileID: 9111529932873095344, guid: 0d569ea5300e77f43a1ce6af947d39cc, type: 3}
+  - {fileID: 8251303536036090429, guid: 2b091ab1fa24b724daf0c8502c9b99e1, type: 3}
   _fieldLength: 30
   _fieldWidth: 30
-  _tileSize: 2
   _wallDensity: 0.0404
   _bushesDensity: 0.03
   _maxBushSize: 3
-  _potsCount: 9
-  _heroesCount: 20
+  _cratesCount: 9
+  _heroesCount: 10
   _spawnDistance: 8

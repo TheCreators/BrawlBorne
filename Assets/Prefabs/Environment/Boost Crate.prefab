@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 708521868062827603}
   - component: {fileID: 1915759271517685591}
   - component: {fileID: -6817648966148636139}
-  - component: {fileID: 7888813566713819097}
+  - component: {fileID: 8011779799459703470}
   m_Layer: 9
   m_Name: Boost Crate
   m_TagString: Untagged
@@ -98,9 +98,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5305912507053142902}
   m_Material: {fileID: 13400000, guid: b487e6889bef8f84b98ef7c80a34b2a2, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 8.000004, y: 8, z: 8.000004}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8830530530166940497
@@ -110,10 +118,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5305912507053142902}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 4
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -131,10 +150,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27626dbb1b1e46aebdd4bbab6ae8858d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 200
+  _healthPointsBar: 200
   _healthPoints: 200
+  _maxHealthPoints: 200
+  _isInvulnerable: 0
   _onDeath: {fileID: 11400000, guid: 80d7fcd566e08834d807313e7f84ac5e, type: 2}
   _onHealthChanged: {fileID: 11400000, guid: 48d790a501997594ca9f11b485fd2f22, type: 2}
+  _onMaxHealthChanged: {fileID: 11400000, guid: 0247b307e92b3414e9c1d13d7c4139d0, type: 2}
+  _onHeroTakeDamage: {fileID: 11400000, guid: ea105fe4379d00e44b90b33abb8d3f53, type: 2}
 --- !u!114 &1915759271517685591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,29 +199,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7888813566713819097
-MonoBehaviour:
+--- !u!208 &8011779799459703470
+NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5305912507053142902}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_IgnoreFromBuild: 1
-  m_AffectedAgents: ffffffff
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 4, y: 4, z: 4}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &8771292789811020833
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 4821582773850745292}
     m_Modifications:
+    - target: {fileID: 1903910918654715466, guid: 871389aa702a8b345abe50d1d37f2cee, type: 3}
+      propertyPath: _gameEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 0247b307e92b3414e9c1d13d7c4139d0, type: 2}
     - target: {fileID: 5548959462233258521, guid: 871389aa702a8b345abe50d1d37f2cee, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 94.9
@@ -308,6 +336,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 48d790a501997594ca9f11b485fd2f22, type: 2}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 871389aa702a8b345abe50d1d37f2cee, type: 3}
 --- !u!224 &3798849416620660305 stripped
 RectTransform:

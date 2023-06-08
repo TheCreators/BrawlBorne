@@ -7,12 +7,12 @@ namespace Combat.Projectiles
     public abstract class RigidbodyProjectile : Projectile
     {
         private Rigidbody _rigidbody;
-        
+
         protected virtual void Awake()
         {
             _rigidbody = this.GetComponentWithNullCheck<Rigidbody>();
         }
-        
+
         public void SetVelocity(Vector3 velocity)
         {
             _rigidbody.velocity = velocity;
